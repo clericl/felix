@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  taggable: 
+  tagger_id: 1
+
+two:
+  taggable: 
+  tagger_id: 1
