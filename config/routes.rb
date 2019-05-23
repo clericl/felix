@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root to: 'static-pages#root'
+
+  # namespace :api do
+  #   resources 
+  # end
+
   resources :comments
   resources :likes
   resources :tags
