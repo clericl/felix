@@ -1,18 +1,31 @@
-import { RECEIVE_CURRENT_USER, LOGOUT } from '../actions/session_actions';
+import { merge } from 'lodash';
+import {
+    RECEIVE_CURRENT_USER,
+    LOGOUT_CURRENT_USER
+} from '../actions/session_actions';
 
 const _nullUser = {
-    currentUserId: null,
+    currentUser: null,
 };
 
+// currentUser points to a User object
+// what do we need on hand to display?
+// currentUser: {
+//     id: 999,
+//     name: "Some Garbage",
+//     avatar: "somegarbageactivestoragekey"
+// }
+
 const sessionReducer = (state = _nullUser, action) => {
+    Object.freeze(state);
 
     switch (action.type) {
 
         case RECEIVE_CURRENT_USER:
-            const { id } = action.currentUser;
-            return merge({}, { id }) // yikes
+            const { currentUser } = action;
+            return merge({}, currentUser)
 
-        case LOGOUT:
+        case LOGOUT_CURRENT_USER:
             return _nullUser;
             
         default:

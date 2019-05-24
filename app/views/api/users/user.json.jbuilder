@@ -1,1 +1,0 @@
-json.currentUserId user.id

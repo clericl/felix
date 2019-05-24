@@ -1,10 +1,11 @@
 import React from 'react';
 import SessionForm from './session_form';
+import Logo from './logo';
 
 const Header = props => {
     return (
         <header className="new-session-header">
-            {/* <Logo /> */}
+            <Logo />
             <SessionForm />
         </header>
     )

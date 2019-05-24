@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createUser } from '../../actions/session_actions';
 
 class NewUserForm extends React.Component {
     constructor(props) {
@@ -8,17 +10,16 @@ class NewUserForm extends React.Component {
             lastName: "",
             emailPhone: "",
             password: "",
-            // birthdayVals
-            // genderVal
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     };
 
     handleSubmit(e) {
-        const { firstName, lastName, emailPhone, password } = this.state;
-        createUser(firstName, lastName, emailPhone, password).then(
-            e => this.setState({
-                password: "",
-        }));
+        e.preventDefault();
+        this.props.createUser(this.state).then(        
+            // e => this.props.history.push('/index')
+        )
     };
 
     handleChange(e, key) {
@@ -29,21 +30,23 @@ class NewUserForm extends React.Component {
 
     render() {
         const { firstName, lastName, emailPhone, password } = this.state;
-
+        
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
+                
+                <h2>Sign Up</h2>
                 <div className="first-last-name-input">
                     <input
                         type="text"
                         value={firstName}
                         placeholder="First name"
-                        onChange={e => handleChange(e, firstName)}
+                        onChange={e => this.handleChange(e, 'firstName')}
                     />
                     <input
                         type="text"
                         value={lastName}
                         placeholder="Last name"
-                        onChange={e => handleChange(e, lastName)}    
+                        onChange={e => this.handleChange(e, 'lastName')}    
                     />
                 </div>
                 <div className="email-phone-input">
@@ -51,7 +54,7 @@ class NewUserForm extends React.Component {
                         type="text"
                         value={emailPhone}
                         placeholder="Mobile number or email"
-                        onChange={e => handleChange(e, emailPhone)}
+                        onChange={e => this.handleChange(e, 'emailPhone')}
                     />
                 </div>
                 <div className="password-input">
@@ -59,13 +62,20 @@ class NewUserForm extends React.Component {
                         type="password"
                         value={password}
                         placeholder="New password"
-                        onChange={e => handleChange(e, password)}
+                        onChange={e => this.handleChange(e, 'password')}
                     />
                 </div>
-                <button type="submit" className="sign-up-button">Sign Up</button>
+                <button
+                    type="submit"
+                    className="sign-up-button"
+                >Sign Up</button>
             </form>
         )
     };
 };
 
-export default NewUserForm;
+const mapDispatchToProps = dispatch => ({
+    createUser: user => dispatch(createUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(NewUserForm);

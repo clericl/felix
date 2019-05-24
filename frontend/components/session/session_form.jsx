@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { requestLogin } from '../../actions/session_actions';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -7,11 +9,12 @@ class SessionForm extends React.Component {
             emailPhone: "",
             password: "",
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     };
 
     handleSubmit(e) {
-        const { emailPhone, password } = this.state;
-        requestLogin(emailPhone, password);
+        this.props.requestLogin(this.state);
     };
 
     handleChange(e, key) {
@@ -24,13 +27,13 @@ class SessionForm extends React.Component {
         const { emailPhone, password } = this.state;
 
         return (
-            <form>
+            <form className="session-form">
                 <div className="email-phone-input">
                     <label htmlFor="email-phone">Email or Phone</label>
                     <input
                         type="text"
                         value={emailPhone}
-                        onChange={e => handleChange(e, emailPhone)}
+                        onChange={e => this.handleChange(e, 'emailPhone')}
                     />
                 </div>
                 <div className="password-input">
@@ -38,7 +41,7 @@ class SessionForm extends React.Component {
                     <input
                         type="password"
                         value={password}
-                        onChange={e => handleChange(e, password)}
+                        onChange={e => this.handleChange(e, 'password')}
                     />
                     <a href="#">Forgot account?</a>
                 </div>
@@ -48,4 +51,8 @@ class SessionForm extends React.Component {
     };
 };
 
-export default SessionForm;
+const mapDispatchToProps = dispatch => ({
+    createUser: user => dispatch(requestLogin(user))
+})
+
+export default connect(null, mapDispatchToProps)(SessionForm);

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_025054) do
+ActiveRecord::Schema.define(version: 2019_05_24_145345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2019_05_22_025054) do
     t.integer "author_id"
     t.text "body", null: false
     t.bigint "commentable_id"
-    t.string "commentable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "commentable_type"
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
   end
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 2019_05_22_025054) do
   create_table "likes", force: :cascade do |t|
     t.integer "liker_id"
     t.bigint "likeable_id"
-    t.string "likeable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "likeable_type"
     t.index ["likeable_id"], name: "index_likes_on_likeable_id"
     t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
@@ -53,17 +53,16 @@ ActiveRecord::Schema.define(version: 2019_05_22_025054) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer "tagger_id"
     t.bigint "taggable_id"
-    t.string "taggable_type"
+    t.integer "tagger_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "taggable_type"
     t.index ["taggable_id"], name: "index_tags_on_taggable_id"
     t.index ["tagger_id"], name: "index_tags_on_tagger_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
@@ -73,7 +72,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_025054) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["session_token"], name: "index_users_on_session_token"
-    t.index ["username"], name: "index_users_on_username"
   end
 
 end

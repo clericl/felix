@@ -1,6 +1,6 @@
 import React from 'react';
 import SessionHeader from './session/header';
-import SessionSection from './session/section';
+import SessionMain from './session/main';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
             return (
                 <>
                     <Header />
-                    <Section />
+                    <Main />
                     <Footer />
                 </>
             )
@@ -21,7 +21,7 @@ class App extends React.Component {
             return (
                 <>
                     <SessionHeader />
-                    <SessionSection />
+                    <SessionMain />
                     {/* <SessionFooter /> */}
                 </>
             )
@@ -33,5 +33,4 @@ const mapStateToProps = state => ({
     currentUser: state.session.currentUserId,
 });
 
-// export default App;
 export default connect(mapStateToProps, null)(App);
