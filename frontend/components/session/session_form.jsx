@@ -4,30 +4,42 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailPhoneVal = "",
-            passwordVal = "",
+            emailPhone: "",
+            password: "",
         }
     };
 
     handleSubmit(e) {
-        const { emailPhoneVal, passwordVal } = this.state;
-        requestLogin(emailPhoneVal, passwordVal);
-        passwordVal = "";
+        const { emailPhone, password } = this.state;
+        requestLogin(emailPhone, password);
     };
 
+    handleChange(e, key) {
+        this.setState({
+           [key]: e.target.value, 
+        })
+    }
 
     render() {
-        const { emailPhoneVal, passwordVal } = this.state;
+        const { emailPhone, password } = this.state;
 
         return (
             <form>
                 <div className="email-phone-input">
                     <label htmlFor="email-phone">Email or Phone</label>
-                    <input type="text" value={emailPhoneVal}></input>
+                    <input
+                        type="text"
+                        value={emailPhone}
+                        onChange={e => handleChange(e, emailPhone)}
+                    />
                 </div>
                 <div className="password-input">
                     <label htmlFor="password">Password</label>
-                    <input type="password" value={passwordVal}></input>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={e => handleChange(e, password)}
+                    />
                     <a href="#">Forgot account?</a>
                 </div>
                 <button type="submit" className="session-button">Log In</button>

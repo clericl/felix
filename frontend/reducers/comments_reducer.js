@@ -1,12 +1,12 @@
 import { merge } from 'lodash';
 import {
-    RECEIVE_OBJECT_COMMENTS,
-    RECEIVE_OBJECT_COMMENT,
-    REMOVE_OBJECT_COMMENT
+    RECEIVE_COMMENTS,
+    RECEIVE_COMMENT,
+    REMOVE_COMMENT
 } from '../actions/comment_actions';
 
 
-const likesReducer = (state = {}, action) => {\
+const commentsReducer = (state = {}, action) => {
 
     Object.freeze(state);
 

@@ -1,13 +1,37 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import Page from './page';
+import SessionHeader from './session/header';
+import SessionSection from './session/section';
+import { connect } from 'react-redux';
 
-const App = ({ store }) => {
-    return (
-        <Provider store={store}>
-            <Page />
-        </Provider>
-    )
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+    };
+
+    render() {
+        if (this.props.currentUser) {
+            return (
+                <>
+                    <Header />
+                    <Section />
+                    <Footer />
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <SessionHeader />
+                    <SessionSection />
+                    {/* <SessionFooter /> */}
+                </>
+            )
+        }
+    };
 };
 
-export default App;
+const mapStateToProps = state => ({
+    currentUser: state.session.currentUserId,
+});
+
+// export default App;
+export default connect(mapStateToProps, null)(App);
