@@ -14,29 +14,22 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.32.1",
+    "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
   },
-  "description": "Why did the tomato blush? Because he saw the WIP GitHub readme. Do us all a favor and afford felix some modesty as he does some prettymaking around the place.",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/clericl/felix.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/clericl/felix/issues"
-  },
-  "homepage": "https://github.com/clericl/felix#readme"
+  "license": "ISC"
 }
