@@ -1,0 +1,102 @@
+.session-main {
+    width: 980px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    font-family: Arimo;
+}
+
+.session-content {
+    width: 480px;
+    font-size: 16px;
+    margin-top: 45px;
+}
+
+.session-content > * {
+    margin: 25px 0;
+}
+
+.session-h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.strong {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.session-text {
+    display: flex;
+    align-items: center;
+}
+
+.new-user-form {
+    width: 400px;
+    box-sizing: border-box;
+}
+
+.new-user-form-h2 {
+    font-size: 38px;
+}
+
+.new-user-form-h3 {
+    font-size: 20px;
+}
+
+.new-user-form > span {
+    margin: 0 40px;
+}
+
+.new-user-form > span > * {
+    margin: 10px 0;
+}
+
+.new-user-form > * {
+    margin-bottom: 12px;
+}
+
+::placeholder {
+    color: #949494;
+}
+
+.new-user-form-name-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-user-name-input {
+    height: 40px;
+    width: 195px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 1px solid #bdc6d8;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.new-user-input {
+    height: 40px;
+    width: 400px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 1px solid #bdc6d8;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.new-user-birthday > * {
+    margin: 10px 0;
+}
+
+.new-user-label {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.birthday-select {
+    border-radius: 5px;
+    height: 30px;
+    font-size: 12px;
+    border: 1px solid #bdc6d8;
+}
