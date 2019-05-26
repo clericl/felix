@@ -49,5 +49,5 @@ export const signupUser = user => dispatch => {
     return SessionAPIUtil.createUser(user).then(
         res => dispatch(receiveCurrentUser(res)),
         err => dispatch(receiveSessionErrors(err.responseJSON))
-    )
+    );
 };

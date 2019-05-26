@@ -3,7 +3,14 @@ export const createUser = user => {
         method: "POST",
         url: "api/users",
         data: {
-            user
+            user: {
+                first_name: user.firstName,
+                last_name: user.lastName,
+                email: user.email,
+                password: user.password,
+                gender: user.gender,
+                birthday: user.birthday,    
+            },
         },
     });
 };
