@@ -4,10 +4,17 @@ class Api::UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             login(@user)
-            render "api/users/show.json.jbuilder", user: @user
+            render "api/users/user.json.jbuilder", user: @user
         else
             render json: @user.errors.full_messages, status: 422
         end
+    end
+
+    def show
+        @user = User.find(params[:id])
+        # @user = User.includes(:friended_users).find(params[:id])
+        # include associated pictures and friends in db request
+        render :show
     end
 
     private 
@@ -16,7 +23,6 @@ class Api::UsersController < ApplicationController
         params.require(:user).permit(
             :first_name,
             :last_name,
-            :username,
             :password,
             :email,
             :gender,

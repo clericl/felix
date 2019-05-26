@@ -1,6 +1,8 @@
 import React from 'react';
+import { loginUser } from '../../actions/session_actions';
+import { connect } from 'react-redux';
 
-class SessionForm extends React.Component {
+class NewSessionHeaderForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,13 +21,14 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.loginUser(this.state);
+        debugger
+        this.props.loginUser(this.state);
     }
 
     render() {
         return (
             <div className="header-form">
-                <form className="header-inputs">
+                <form className="header-inputs" id="header-form" onSubmit={this.handleSubmit}>
                     <div className="header-input-box">
                         <label className="header-label">Email or Phone</label>
                         <input
@@ -47,11 +50,18 @@ class SessionForm extends React.Component {
                 </form>
                 <button
                     className="header-submit-button"
-                    onClick={this.handleSubmit}
+                    form="header-form"
+                    type="submit"
                 >Log In</button>
             </div>
         )
     }
 }
 
-export default SessionForm;
+const mdp = dispatch => {
+    return {
+        loginUser: user => dispatch(loginUser(user)),
+    };
+};
+
+export default connect(null, mdp)(NewSessionHeaderForm);

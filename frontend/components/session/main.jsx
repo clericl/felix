@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { merge } from 'lodash';
+import { Link } from 'react-router-dom';
+import { signupUser } from '../../actions/session_actions';
 
-class Main extends React.Component {
+class NewSessionMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +20,9 @@ class Main extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOkayClick = this.handleOkayClick.bind(this);
+        this.handleBirthdayHover = this.handleBirthdayHover.bind(this);
+        this.handleBirthdayVanish = this.handleBirthdayVanish.bind(this);
     }
 
     handleChange(e, key) {
@@ -34,11 +40,25 @@ class Main extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const newUser = merge({}, this.state);
-        delete newUser["birthMonth"];
-        delete newUser["birthDay"];
-        delete newUser["birthYear"];
-        newUser["birthday"] = [this.state.birthYear, this.state.birthMonth, this.state.birthDay].join("-");
+        delete newUser.birthMonth;
+        delete newUser.birthDay;
+        delete newUser.birthYear;
+        newUser.birthday = [this.state.birthYear, this.state.birthMonth, this.state.birthDay].join("-");
         this.props.signupUser(newUser);
+    }
+
+    handleOkayClick(e) {
+        e.target.parentElement.classList.add("hidden");
+    }
+
+    handleBirthdayHover(e) {
+        const hoverBox = document.getElementsByClassName("hover-box")[0];
+        hoverBox.classList.remove("hidden");
+    }
+    
+    handleBirthdayVanish(e) {
+        const hoverBox = document.getElementsByClassName("hover-box")[0];
+        setTimeout(() => hoverBox.classList.add("hidden"), 600);
     }
 
     render() {
@@ -141,7 +161,13 @@ class Main extends React.Component {
                                 {selectYears}
                             </select>
                         </div>
-                        <span className="new-user-birthday-why">Why do I need to provide my birthday?</span>
+                        <Link to="#" className="new-user-birthday-why" title="Click for more information" onMouseEnter={this.handleBirthdayHover} onMouseLeave={this.handleBirthdayVanish}>
+                            Why do I need to provide my birthday?
+                        </Link>
+                        <span className="hover-box hidden">
+                            <p>Providing your birthday helps make sure you get the right Facebook experience for your age. If you want to change who sees this, go to the About section of your profile. For more details, please visit our Data Policy.</p>
+                            <button className="hover-box-button" onClick={this.handleOkayClick}>Okay</button>
+                        </span>
                     </div>
                     <div className="new-user-radio" onChange={this.handleRadioChange}>
                         <label><input type="radio" name="gender-radio" value="f"/>Female</label>
@@ -160,4 +186,10 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+const mdp = dispatch => {
+    return {
+        signupUser: user => dispatch(signupUser(user)),
+    }
+}
+
+export default connect(null, mdp)(NewSessionMain);

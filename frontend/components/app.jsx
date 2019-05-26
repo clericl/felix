@@ -1,22 +1,35 @@
 import React from 'react';
-import SessionHeader from './session/header';
-import SessionMain from './session/main';
-import { signupUser } from '../actions/session_actions';
+import NewSessionHeader from './session/header';
+import NewSessionMain from './session/main';
+import Header from './main/header';
+import Main from './main/main';
 import { connect } from 'react-redux';
+// import AuthRoute from '../util/route_util';
 
 const App = props => {
-    return (
-        <>
-            <SessionHeader />
-            <SessionMain signupUser={props.signupUser} />
-        </>
-    )
+    const { currentUser } = props;
+
+    if (currentUser) {
+        return (
+            <>
+                <Header />
+                <Main />
+            </>
+        )
+    } else {
+        return (
+            <>
+                <NewSessionHeader />
+                <NewSessionMain signupUser={props.signupUser} />
+            </>
+        )
+    }
 };
 
-const mdp = dispatch => {
+const msp = (state, ownProps) => {
     return {
-        signupUser: user => dispatch(signupUser(user)),
-    };
+        currentUser: state.session.currentUser,
+    }
 };
 
-export default connect(null, mdp)(App);
+export default connect(msp)(App);

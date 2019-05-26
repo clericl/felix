@@ -1,0 +1,217 @@
+.session-main {
+    width: 980px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    font-family: 'Muli';
+}
+
+.session-content {
+    width: 520px;
+    font-size: 16px;
+    margin-top: 65px;
+}
+
+.session-content > * {
+    margin-top: 40px;
+}
+
+.session-content > div > div {
+    margin: 25px 0;
+}
+
+.session-h2 {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.strong {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.session-text {
+    display: flex;
+    align-items: center;
+}
+
+.new-user-form {
+    width: 400px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.new-user-form-box {
+    margin-top: 22px;
+}
+
+.new-user-form-box > * {
+    margin-bottom: 8px;
+}
+
+.new-user-form-h2 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.new-user-form-h3 {
+    font-size: 20px;
+}
+
+.new-user-form > span > * {
+    margin: 10px 0;
+}
+
+.new-user-form > * {
+    margin-bottom: 15px;
+}
+
+::placeholder {
+    color: #949494;
+}
+
+.new-user-form-name-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-user-name-input {
+    height: 40px;
+    width: 195px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 1px solid #bdc6d8;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.new-user-input {
+    height: 40px;
+    width: 400px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 1px solid #bdc6d8;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.new-user-birthday {
+    display: flex;    
+}
+
+.new-user-birthday > * {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.birthday-inputs {
+    width: 200px;
+}
+
+.new-user-label {
+    font-size: 18px;
+}
+
+.birthday-select {
+    border-radius: 5px;
+    height: 30px;
+    font-size: 13px;
+    border: 1px solid #bdc6d8;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.new-user-birthday-why {
+    font-family: sans-serif;
+    font-size: 11px;
+    margin-top: 20px;
+    width: 180px;
+    color: #4070B4;
+    text-decoration: none;
+    position: relative;
+}
+
+.new-user-birthday-why:hover {
+    text-decoration: underline;
+}
+
+
+.hover-box {
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    z-index: 1;
+    color: black;
+    background-color: white;
+    font-size: 12px;
+    transform: translate(-37.5%, -2%);
+    filter: drop-shadow(0 0 4px gray);
+    border: 1px solid #bdc6d8;
+    border-radius: 2px;
+    font-family: sans-serif;
+}
+
+.hover-box > p {
+    padding: 15px;
+}
+
+.hover-box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    transform: translate(297px, 10px);
+    border-left: 8px solid white;
+    border-right: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    z-index: 2;
+}
+
+.hover-box-button {
+    position: relative;
+    height: 23px;
+    width: 45px;
+    left: 240px;
+    bottom: 5px;
+    background-color: #4167b2;
+    color: white;
+    border: 1px solid #29477d;
+    border-radius: 2px;
+    font-size: 11.5px;
+    font-weight: bold;
+}
+
+.new-user-radio > label {
+    margin: 0 10px;
+    margin-bottom: 15px;
+}
+
+.sign-up-text {
+    font-family: sans-serif;
+    font-size: 11px;
+    width: 290px;
+    color: #939393;
+}
+
+.new-user-submit-button {
+    background-image: linear-gradient(#67ad55, #578843);
+    width: 200px;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px black;
+    border-top: 1px solid #3b6e22;
+    border-bottom: 1px solid #2c5115;
+    border-left: 1px solid #3b6e22;
+    border-right: 1px solid #3b6e22;
+    box-shadow: inset 0 1px 1px #a4e388;
+}

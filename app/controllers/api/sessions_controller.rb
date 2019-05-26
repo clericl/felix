@@ -1,11 +1,11 @@
 class Api::SessionsController < ApplicationController
 
     def create
-        @user = User.find_by(username: params[:user][:username])
+        @user = User.find_by(email: params[:user][:email])
         if @user
             if @user.is_password?(params[:user][:password])
                 login(@user)
-                render 'api/users/show.json.jbuilder'
+                render 'api/users/user.json.jbuilder'
             else
                 render json: ["The password you've entered is incorrect. Forgot Password?"], status: 422
             end

@@ -83,7 +83,7 @@ class User < ApplicationRecord
             "welcome",
         ]
         if commons.include?(@password)
-            errors.add(:password, "password too obvious")
+            errors.add(:password, "Please pick a stronger password.")
         end
     end
 

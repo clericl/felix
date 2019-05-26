@@ -1,16 +1,16 @@
 import React from 'react';
-import Logo from './logo';
-import SessionForm from './session_form';
+import NewSessionLogo from './logo';
+import NewSessionForm from './session_form';
 
-const Header = props => {
+const NewSessionHeader = props => {
     return (
         <header className="session-header">
             <nav className="session-nav">
-                <Logo />
-                <SessionForm />
+                <NewSessionLogo />
+                <NewSessionForm />
             </nav>
         </header>
     )
 };
 
-export default Header;
+export default NewSessionHeader;
