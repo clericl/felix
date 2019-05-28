@@ -55,7 +55,7 @@ class NewUserBirthday extends React.Component {
                     Why do I need to provide my birthday?
                 </Link>
                 <span
-                    className="hover-box hidden slow-hidden"
+                    className="hover-box"
                     onMouseEnter={this.handleBoxHover}
                     onMouseLeave={this.handleBirthdayVanish}
                 >

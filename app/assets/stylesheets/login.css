@@ -1,18 +1,24 @@
 .login-main-box {
-    height: 415px;
+    height: 375px;
     width: 615px;
     background-color: white;
     border: 1px solid #dddfe2;
     border-radius: 4px;
     font-family: sans-serif;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
 }
 
 .login-box {
+    height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin-top: 5px;
 }
 
 .login-box > p {
@@ -42,7 +48,7 @@
     position: absolute;
     right: 100%;
     margin-right: 15px;
-    top: 5.5px;
+    top: 5px;
 }
 
 .login-inputs {
@@ -64,9 +70,18 @@
 .login-submit-button {
     height: 46px;
     background-color: #4167b2;
+    border: 1px solid #4167b2;
     border-radius: 4px;
     font-size: 13px;
     color: white;
+    transition: background-color .1s ease-in-out;
+    transition: border .1s ease-in-out;
+}
+
+.login-submit-button:hover {
+    background-color: #385999;
+    border: 1px solid #385999;
+    transition: all .1s ease-in-out;
 }
 
 .forgot-account-link {
@@ -85,7 +100,16 @@
     width: 185px;
     height: 45px;
     background-color: #41b72a;
+    border: 1px solid #41b72a;
     color: white;
     font-size: 14px;
     border-radius: 3px;
+    transition: background-color .1s ease-in-out;
+    transition: border .1s ease-in-out;
+}
+
+.new-account-button:hover {
+    background-color: #379b24;
+    border: 1px solid #379b24;
+    transition: all .1s ease-out;
 }
