@@ -22,7 +22,7 @@ class User < ApplicationRecord
     validates :password_digest, :session_token, presence: true, uniqueness: true
 
     validates :password, length: { minimum: 6, allow_nil: true }
-    validate :password_not_common
+    validate :password_not_common, :email_correct_format
 
     before_validation :ensure_session_token
 
@@ -83,8 +83,22 @@ class User < ApplicationRecord
             "welcome",
         ]
         if commons.include?(@password)
-            errors.add(:password, "Please pick a stronger password.")
+            errors.add(:base, "Please pick a stronger password.")
         end
+    end
+
+    def email_correct_format
+
+        if self.email.split("@").length == 2
+            if self.email.split.(".").last.chars.length <= 3
+                return true
+            end
+        elsif self.email.count("@") == 0
+            if self.email.count('0123456789') == 10
+                return true
+            end
+        end
+        errors.add(:base, "Please enter a valid email address.")
     end
 
 end

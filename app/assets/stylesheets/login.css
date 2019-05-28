@@ -1,0 +1,91 @@
+.login-main-box {
+    height: 415px;
+    width: 615px;
+    background-color: white;
+    border: 1px solid #dddfe2;
+    border-radius: 4px;
+    font-family: sans-serif;
+    margin: 0 auto;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-box > p {
+    font-size: 12px;
+    position: relative;
+}
+
+.login-box > p:before, .login-box > p:after {
+    content: "";
+    border-bottom: 1px solid #bdc6d8;
+    display: block;
+    width: 130px;
+}
+
+.login-box > h3 {
+    font-size: 18px;
+}
+
+.login-box > p:before {
+    position: absolute;
+    left: 100%;
+    margin-left: 15px;
+    bottom: 6px;
+}
+
+.login-box > p:after {
+    position: absolute;
+    right: 100%;
+    margin-right: 15px;
+    top: 5.5px;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.login-input {
+    height: 34px;
+    width: 302px;
+    padding: 0 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+.login-submit-button {
+    height: 46px;
+    background-color: #4167b2;
+    border-radius: 4px;
+    font-size: 13px;
+    color: white;
+}
+
+.forgot-account-link {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #4167b2;
+    text-decoration: none;
+}
+
+.forgot-account-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.new-account-button {
+    width: 185px;
+    height: 45px;
+    background-color: #41b72a;
+    color: white;
+    font-size: 14px;
+    border-radius: 3px;
+}

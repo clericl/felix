@@ -36,15 +36,14 @@ export const loginUser = user => dispatch => {
     return SessionAPIUtil.loginUser(user).then(
         res => dispatch(receiveCurrentUser(res)),
         err => {
-            debugger
-            return dispatch(receiveSessionErrors(err.responseJSON))
+            return dispatch(receiveSessionErrors(err.responseJSON));
         });
 };
 
 export const logoutUser = () => dispatch => {
     return SessionAPIUtil.logoutUser().then(res => (
         dispatch(logoutCurrentUser())
-    ))
+    ));
 };
 
 export const signupUser = user => dispatch => {

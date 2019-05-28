@@ -58,6 +58,11 @@
     font-size: 11px;
 }
 
+.header-submit-button:hover {
+    cursor: pointer;
+    background-color: #29477d;
+}
+
 .logo {
     font-size: 48px;
     font-weight: 500;
@@ -70,4 +75,25 @@
      .5px -.5px 0 #788db7,
      -.5px .5px 0 #788db7,
       .5px .5px 0 #788db7;
+}
+
+.splash-header-error {
+    height: 50px;
+    width: 320px;
+    background-color: #ba4a46;
+    color: white;
+    font-family: sans-serif;
+    position: absolute;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 4px;
+    top: 80px;
+    /* display: flex;
+    align-items: center; */
+}
+
+.error-link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }

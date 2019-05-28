@@ -1,4 +1,5 @@
 import React from 'react';
+import SplashHeaderError from './splash_header_error';
 import { loginUser } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 
@@ -21,7 +22,6 @@ class NewSessionHeaderForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        debugger
         this.props.loginUser(this.state);
     }
 

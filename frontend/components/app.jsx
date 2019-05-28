@@ -1,9 +1,11 @@
 import React from 'react';
-import NewSessionHeader from './session/header';
-import NewSessionMain from './session/main';
+import SplashHeader from './session/splash_header';
+import NewUserMain from './session/new_user_main';
+import LoginMain from './session/login_main'
 import Header from './main/header';
 import Main from './main/main';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 // import AuthRoute from '../util/route_util';
 
 const App = props => {
@@ -19,8 +21,9 @@ const App = props => {
     } else {
         return (
             <>
-                <NewSessionHeader />
-                <NewSessionMain signupUser={props.signupUser} />
+                <SplashHeader />
+                <Route exact path="/" render={props => <NewUserMain {...props} />} />
+                <Route exact path="/login" render={props => <LoginMain {...props} />} />
             </>
         )
     }
@@ -30,6 +33,6 @@ const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
     }
-};
+}; 
 
 export default connect(msp)(App);
