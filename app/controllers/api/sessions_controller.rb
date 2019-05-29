@@ -7,7 +7,7 @@ class Api::SessionsController < ApplicationController
                 login(@user)
                 render 'api/users/show.json.jbuilder'
             else
-                render json: ["The password you've entered is incorrect. Forgot Password?"], status: 422
+                render json: ["The pass"], status: 422
             end
         else
             render json: ["The email you've entered doesn't match any account. Sign up for an account."], status: 422

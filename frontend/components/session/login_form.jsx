@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { loginUser } from '../../actions/session_actions';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -24,6 +25,10 @@ class LoginForm extends React.Component {
     }
 
     render() {
+        const errors = this.props.sessionErrors.map(error => {
+            
+        })
+
         return (
             <div className="login-form">
                 <form className="login-inputs" id="login-form" onSubmit={this.handleSubmit}>
@@ -33,14 +38,18 @@ class LoginForm extends React.Component {
                         placeholder="Email or Phone Number"
                         onChange={e => this.handleChange(e, "email")}
                         value={this.state.email}
-                    />
+                    >
+                        {/* <SessionError type="email" /> */}
+                    </input>
                     <input
                         type="password"
                         className="login-input"
                         placeholder="Password"
                         onChange={e => this.handleChange(e, "password")}
                         value={this.state.password}
-                    />
+                    >
+                        {/* <SessionError type="password" /> */}
+                    </input>
                     <button
                         className="login-submit-button"
                         form="login-form"
@@ -52,10 +61,16 @@ class LoginForm extends React.Component {
     }
 }
 
+const msp = (state, ownProps) => {
+    return {
+        sessionErrors: state.errors.sessions,
+    }
+}
+
 const mdp = dispatch => {
     return {
         loginUser: user => dispatch(loginUser(user)),
     };
 };
 
-export default connect(null, mdp)(LoginForm);
+export default connect(msp, mdp)(LoginForm);

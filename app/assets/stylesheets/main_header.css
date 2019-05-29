@@ -1,0 +1,18 @@
+.header-nav {
+    height: 43px;
+    background-color: #4267b1;
+    color: white;
+    display: flex;
+}
+
+.dropdown-box {
+    position: absolute;
+    display: block;
+    background: white;
+    width: 120px;
+    height: 200px;
+}
+
+.nav-dropdown-item {
+    color: black;
+}

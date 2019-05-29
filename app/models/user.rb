@@ -88,9 +88,8 @@ class User < ApplicationRecord
     end
 
     def email_correct_format
-
         if self.email.split("@").length == 2
-            if self.email.split.(".").last.chars.length <= 3
+            if self.email.split(".").last.chars.length <= 3
                 return true
             end
         elsif self.email.count("@") == 0
