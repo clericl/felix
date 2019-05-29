@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/session_actions';
+import SessionError from './session_error';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class LoginForm extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.errors = null;
     }
 
     handleChange(e, key) {
@@ -24,32 +26,41 @@ class LoginForm extends React.Component {
         this.props.loginUser(this.state);
     }
 
+    // renderErrors() {
+    //     this.errors = this.props.sessionErrors.map((error, index) => {
+    //         return <SessionError type={error} key={index} />
+    //     });
+    // }
+
+    // componentDidUpdate() {
+    //     this.renderErrors();
+    // }
+
     render() {
-        const errors = this.props.sessionErrors.map(error => {
-            
-        })
+        const errors = this.props.sessionErrors.map((error, index) => {
+            return <SessionError type={error} key={index} />
+        });
 
         return (
             <div className="login-form">
+                {errors}
                 <form className="login-inputs" id="login-form" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
+                        id="email"
                         className="login-input"
                         placeholder="Email or Phone Number"
                         onChange={e => this.handleChange(e, "email")}
                         value={this.state.email}
-                    >
-                        {/* <SessionError type="email" /> */}
-                    </input>
+                    />
                     <input
                         type="password"
+                        id="password"
                         className="login-input"
                         placeholder="Password"
                         onChange={e => this.handleChange(e, "password")}
                         value={this.state.password}
-                    >
-                        {/* <SessionError type="password" /> */}
-                    </input>
+                    />
                     <button
                         className="login-submit-button"
                         form="login-form"
