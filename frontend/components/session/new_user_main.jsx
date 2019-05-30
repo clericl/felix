@@ -1,5 +1,6 @@
 import React from 'react';
 import NewUserForm from './new_user_form';
+import DemoLink from './demo_link';
 
 class NewUserMain extends React.Component {
     constructor(props) {
@@ -20,7 +21,10 @@ class NewUserMain extends React.Component {
                         <div className="session-text"><img src="https://scontent-lga3-1.xx.fbcdn.net/v/t39.2365-6/32158113_191365994837162_5605369115159035904_n.png?_nc_cat=106&_nc_ht=scontent-lga3-1.xx&oh=e89952daf8c051cf371e3178ec5e9f0c&oe=5D9C64B5" /><strong className="strong">Find more</strong>&nbsp; of what you're looking for with felix Search.</div>
                     </div>
                 </section>
-                <NewUserForm />
+                <div>
+                    <NewUserForm />
+                    <DemoLink />
+                </div>
             </main>
         )
     }
