@@ -103,7 +103,8 @@
 }
 
 .new-user-birthday {
-    display: flex;    
+    display: flex;
+    position: relative;
 }
 
 .new-user-birthday > * {
@@ -111,8 +112,9 @@
 }
 
 .birthday-inputs {
-    width: 200px;
+    /* width: 210px; */
     margin-top: 8px;
+    margin-right: 5px;
 }
 
 .new-user-label {
@@ -134,7 +136,7 @@
     font-family: sans-serif;
     font-size: 11px;
     margin-top: 12px;
-    width: 180px;
+    width: 160px;
     color: #4070B4;
     text-decoration: none;
     position: relative;
@@ -153,7 +155,8 @@
     color: black;
     background-color: white;
     font-size: 12px;
-    transform: translate(-125px, -10px);
+    right: 191px;
+    top: -11px;
     filter: drop-shadow(0 0 4px #a6a8aab8);
     border: 1px solid #bdc6d8;
     border-radius: 3px;
@@ -164,16 +167,6 @@
     transition-duration: .1s;
     transition-timing-function: ease-out;
 }
-
-/* .new-user-birthday-why:hover ~ .hover-box {
-    visibility: visible;
-    opacity: 1;
-    transition: all .1s ease-in;
-}
-
-.hover-box:hover {
-    visibility: visible;
-} */
 
 .hover-box > p {
     padding: 15px;

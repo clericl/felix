@@ -89,3 +89,7 @@ button:hover {
 *:focus {
 	outline: none;
 }
+
+.position {
+	position: relative;
+}

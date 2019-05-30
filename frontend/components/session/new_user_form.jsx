@@ -16,10 +16,32 @@ class NewUserForm extends React.Component {
             birthDay: "0",
             birthYear: "0",
             gender: "",
+            firstNameError: false,
+            firstNameBorder: this.props.sessionErrors.includes("fname"),
+            lastNameError: false,
+            lastNameBorder: this.props.sessionErrors.includes("lname"),
+            emailError: false,
+            emailBorder: this.props.sessionErrors.includes("newemail"),
+            passwordError: false,
+            passwordBorder: this.props.sessionErrors.includes("newpassword"),
+            birthdayError: false,
+            birthdayBorder: this.props.sessionErrors.includes("birthday"),
+            genderError: false,
+            genderBorder: this.props.sessionErrors.includes("gender"),
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleError = this.toggleError.bind(this);
+    }
+
+    toggleError(e, key) {
+        if (this.props.sessionErrors.includes(key)) {
+            this.setState({
+                [`${key}Error`]: !this.state[`${key}Error`],
+                [`${key}Border`]: !this.state[`${key}Border`],
+            });
+        }
     }
 
     handleChange(e, key) {
@@ -37,14 +59,27 @@ class NewUserForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const newUser = merge({}, this.state);
-        delete newUser.birthMonth;
-        delete newUser.birthDay;
-        delete newUser.birthYear;
         newUser.birthday = [this.state.birthYear, this.state.birthMonth, this.state.birthDay].join("-");
         this.props.signupUser(newUser);
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            this.setState({
+                firstNameBorder: this.props.sessionErrors.includes("fname"),
+                lastNameBorder: this.props.sessionErrors.includes("lname"),
+                emailBorder: this.props.sessionErrors.includes("newemail"),
+                passwordBorder: this.props.sessionErrors.includes("newpassword"),
+                birthdayBorder: this.props.sessionErrors.includes("birthday"),
+                genderBorder: this.props.sessionErrors.includes("gender"),
+            });
+        }
+    }
+
     render() {
+        const errorBorder = "login-input error-border";
+        const noBorder = "login-input";
+        
         const selectDays = Array.from(
             { length: 31 },
             (x, index) => <option value={index + 1} key={index}>{index + 1}</option>
