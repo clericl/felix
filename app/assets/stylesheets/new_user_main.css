@@ -154,7 +154,7 @@
     background-color: white;
     font-size: 12px;
     transform: translate(-125px, -10px);
-    filter: drop-shadow(0 0 4px gray);
+    filter: drop-shadow(0 0 4px #a6a8aab8);
     border: 1px solid #bdc6d8;
     border-radius: 3px;
     font-family: sans-serif;

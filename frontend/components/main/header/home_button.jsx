@@ -1,14 +1,31 @@
-import NavButton from './nav_button';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-const msp = state => {
-    return {
-        currentUser: state.session.currentUser,
-        text: "Home",
-        hidden: "hidden",
-        url: "/",
-    };
-};
+class HomeButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fireRedirect: false,
+        };
+    }
 
-export default withRouter(connect(msp, null)(NavButton));
+    setRedirect() {
+        this.setState({
+            fireRedirect: true,
+        });
+    }
+
+    render() {
+        if (this.state.fireRedirect) {
+            return (
+                <Redirect to="/" />
+            )
+        } else {
+            return (
+                <button className="nav-button" onClick={this.setRedirect}>Home</button>
+            )
+        }
+    }
+} 
+
+export default HomeButton;

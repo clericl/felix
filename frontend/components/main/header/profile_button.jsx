@@ -1,14 +1,17 @@
-import NavButton from './nav_button';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+const ProfileButton = props => {
+    return (
+        <button className="nav-button">{props.currentUser.firstName}</button>
+    )
+}
 
 const msp = state => {
     return {
         currentUser: state.session.currentUser,
-        text: state.session.currentUser.firstName,
-        hidden: "",
-        url: `users/${state.session.currentUser.id}`,
     };
 };
 
-export default withRouter(connect(msp, null)(NavButton));
+export default withRouter(connect(msp, null)(ProfileButton));

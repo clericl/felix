@@ -59,7 +59,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+    position: relative;
 }
 
 .login-input {
@@ -170,8 +170,14 @@
     left: -45px;
 }
 
-#error-icon {
-    visibility: visible;
+#email-icon {
+    top: 6px;
+    left: 274px;
+}
+
+#password-icon {
+    left: 274px;
+    top: 52px;
 }
 
 .error-border {

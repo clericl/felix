@@ -1,30 +1,46 @@
 import React from 'react';
-import NavDropdownItem from './nav_dropdown_item';
-import { logoutUser } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
-import { FaCaretDown } from 'react-icons/fa'
+import { FaCaretDown } from 'react-icons/fa';
+import { logoutUser } from '../../../actions/session_actions';
+import NavDropdownItem from './nav_dropdown_item';
 
 class SettingsDropdown extends React.Component {
     constructor(props) {
         super(props);
         this.handleIconClick = this.handleIconClick.bind(this);
         this.handleCloseDropdown = this.handleCloseDropdown.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     handleIconClick(e) {
-        e.currentTarget.parentNode.querySelector(".dropdown-box").classList.remove("hidden");
+        e.currentTarget.classList.add("icon-selected");
+        document.querySelector("#settings-dropdown").classList.remove("hidden");
+        document.addEventListener("click", this.handleClickOutside);
     }
 
     handleCloseDropdown(e) {
-        debugger
-        e.target.classList.add("hidden");
+        document.querySelector("#settings-icon").classList.remove("icon-selected");
+        document.querySelector("#settings-dropdown").classList.add("hidden");
+        document.removeEventListener("click", this.handleClickOutside);
+    }
+
+    handleClickOutside(e) {
+        const dropdown = document.getElementById("settings-dropdown");
+
+        if (dropdown && !dropdown.contains(e.target)) {
+            this.handleCloseDropdown();
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("click", this.handleClickOutside);
     }
 
     render() {
         return (
-            <div className="nav-dropdown">
-                <FaCaretDown className="dropdown-icon" onClick={this.handleIconClick} />
-                <ul className="dropdown-box hidden" onBlur={this.handleCloseDropdown} >
+            <div>
+                <FaCaretDown className="nav-icon" id="settings-icon" onClick={this.handleIconClick} />
+                <ul className="dropdown-box hidden" id="settings-dropdown" >
                     <NavDropdownItem text="Log Out" action={this.props.logoutUser} />
                 </ul>
             </div>

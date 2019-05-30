@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
         if @user
             if @user.is_password?(params[:user][:password])
                 login(@user)
-                render 'api/users/show.json.jbuilder'
+                render :show
             else
                 render json: ["password"], status: 422
                 # render json: ["The password you've entered is incorrect. Forgot Password?"], status: 422

@@ -5,10 +5,13 @@ import LoginMain from './session/login_main'
 import Header from './main/header/header';
 import Main from './main/main';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 // import AuthRoute from '../util/route_util';
 
-const App = ({ currentUser, sessionErrors }) => {
+const App = props => {
+
+    const { currentUser, sessionErrors } = props;
+
     if (currentUser) {
         return (
             <>
@@ -16,22 +19,12 @@ const App = ({ currentUser, sessionErrors }) => {
                 <Main />
             </>
         )
-    // } else if (sessionErrors.length > 0) {
-    //     return (
-    //         <>
-    //             <Redirect path="/login" render={props => <LoginMain {...props} />} />
-    //         </>
-    //     )
     } else {
         return (
             <>
                 <SplashHeader />
-                <Route exact path="/" render={props => sessionErrors.length > 0 ? (
-                        <Redirect to="/login" />
-                    ) : (
-                        <NewUserMain {...props} />
-                    )
-                } />
+    
+                <Route exact path="/" render={props => <NewUserMain {...props} />} />
                 <Route exact path="/login" render={props => <LoginMain {...props} />} />
             </>
         )
@@ -45,4 +38,4 @@ const msp = (state, ownProps) => {
     }
 }; 
 
-export default connect(msp)(App);
+export default withRouter(connect(msp)(App));

@@ -9,9 +9,11 @@ class Header extends React.Component {
 
     render() {
         return (
-            <nav className="header-nav">
-                <LogoSearch />
-                <HeaderNav />
+            <nav className="header-main">
+                <div className="header-nav">
+                    <LogoSearch />
+                    <HeaderNav />
+                </div>
             </nav>
         )
     }
