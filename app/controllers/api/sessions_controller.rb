@@ -8,11 +8,9 @@ class Api::SessionsController < ApplicationController
                 render :show
             else
                 render json: ["password"], status: 422
-                # render json: ["The password you've entered is incorrect. Forgot Password?"], status: 422
             end
         else
             render json: ["email"], status: 422
-            # render json: ["The email you've entered doesn't match any account. Sign up for an account."], status: 422
         end
     end
 

@@ -122,37 +122,25 @@
     transition: all .1s ease-out;
 }
 
-.red-error-box {
-    height: 50px;
-    width: 320px;
-    background-color: #ba4a46;
-    color: white;
-    font-family: sans-serif;
-    position: absolute;
-    font-size: 13px;
-    line-height: 1.2;
-    padding: 10px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    left: 105%;
-}
-
 .error-link {
     color: white;
     font-weight: bold;
     text-decoration: none;
 }
 
-.email-error {
-    top: -8px;
+.email-error-icon {
+    top: -63px;
+    left: 274px;
 }
 
-.password-error {
-    top: 38px;
+.email-error-box {
+    width: 318px;
+    height: 50px;
+    left: 320px;
+    top: -74px;
 }
 
-.red-error-box:before {
+.email-error-box:before {
     content: "";
     display: block;
     position: absolute;
@@ -163,24 +151,30 @@
     border-bottom: 12px solid transparent;
 }
 
-.error-icon {
+.password-error-icon {
+    top: -17px;
+    left: 274px;
+}
+
+.password-error-box {
+    width: 318px;
+    height: 50px;
+    left: 320px;
+    top: -31px;
+}
+
+.password-error-box:before {
+    content: "";
+    display: block;
     position: absolute;
-    color: #ba4a46;
-    font-size: 22px;
-    left: -45px;
+    left: -10px;
+    border-right: 12px solid #ba4a46;
+    border-left: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
 }
 
-#email-icon {
-    top: 6px;
-    left: 274px;
-}
-
-#password-icon {
-    left: 274px;
-    top: 52px;
-}
-
-.error-border {
-    border: 1px solid #ba4a46;
-    border-radius: 3px;
+.error-bounds {
+    display: block;
+    position: absolute;
 }

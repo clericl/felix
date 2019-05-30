@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { loginUser, clearErrors } from '../../actions/session_actions';
-import { Link } from 'react-router-dom';
-import { FaExclamationCircle } from 'react-icons/fa';
+import FormError from './form_error';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -51,64 +50,47 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        const errorBorder = "login-input error-border";
-        const noBorder = "login-input";
+        // const signupLink = <Link to="/" className="error-link">Sign up for an account.</Link>
+
+        // const passwordLink = () => {
+        //     return (
+        //         <Link to="/" className="error-link">Forgot Password?</Link>
+        //     )
+        // }
 
         return (
             <div className="login-form">
                 <form className="login-inputs" id="login-form" onSubmit={this.handleSubmit}>
                     <input
                         type="text"
-                        className={this.state.emailBorder ? errorBorder : noBorder}
+                        className={`login-input ${this.state.emailBorder ? "error-border" : ""}`}
                         placeholder="Email or Phone Number"
                         onChange={e => this.handleChange(e, "email")}
                         onFocus={e => this.toggleError(e, "email")}
                         onBlur={e => this.toggleError(e, "email")}
                         value={this.state.email}
                     />
-                    <div className="email-error-bounds">
-                        <FaExclamationCircle
-                            className="error-icon"
-                            id="email-icon"
-                            style={this.state.emailBorder ? {} : { visibility: "hidden" }}
-                        />
-                        <div
-                            className="red-error-box email-error"
-                            id="email-error-box"
-                            style={this.state.emailError ? {} : {visibility: "hidden"}}
-                        >
-                            <p>
-                                The email or phone number you've entered doesn't match any account.&nbsp;
-                                <Link to="/login" className="error-link">Sign up for an account.</Link>
-                            </p>
-                        </div>
-                    </div>
+                    <FormError
+                        type="email"
+                        text="The email or phone number you've entered doesn't match any account."
+                        displayBorder={this.state.emailBorder}
+                        displayError={this.state.emailError}
+                    />
                     <input
                         type="password"
-                        className={this.state.passwordBorder ? errorBorder : noBorder}
+                        className={`login-input ${this.state.passwordBorder ? "error-border" : ""}`}
                         placeholder="Password"
                         onChange={e => this.handleChange(e, "password")}
                         onFocus={e => this.toggleError(e, "password")}
                         onBlur={e => this.toggleError(e, "password")}
                         value={this.state.password}
                         />
-                    <div className="password-error-bounds">
-                        <FaExclamationCircle
-                            className="error-icon"
-                            id="password-icon"
-                            style={this.state.passwordBorder ? {} : { visibility: "hidden" }}
-                        />
-                        <div
-                            className="red-error-box password-error"
-                            id="password-error-box"
-                            style={this.state.passwordError ? {} : {visibility: "hidden"}}
-                        >
-                            <p>
-                                The password you've entered is incorrect.&nbsp;
-                                <Link to="/login" className="error-link">Forgot Password?</Link>
-                            </p>
-                        </div>
-                    </div>
+                    <FormError
+                        type="password"
+                        text="The password you've entered is incorrect."
+                        displayBorder={this.state.passwordBorder}
+                        displayError={this.state.passwordError}
+                    />
                     <button
                         className="login-submit-button"
                         form="login-form"

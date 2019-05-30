@@ -16,13 +16,19 @@
 
 class User < ApplicationRecord
 
-    validates :email, presence: true, uniqueness: true
-    validates :first_name, :last_name, :birthday, :gender, presence: true
-    validates :gender, inclusion: { in: ["m", "f", "o"] }
-    validates :password_digest, :session_token, presence: true, uniqueness: true
+    # validates :email, presence: true, uniqueness: true
 
-    validates :password, length: { minimum: 6, allow_nil: true }
-    validate :password_not_common, :email_correct_format
+    validates :email, presence: { message: "newemail" }
+    validates :email, uniqueness: { message: "newemail" }
+    validates :first_name, presence: { message: "fname" }
+    validates :last_name, presence: { message: "lname" }
+    validates :birthday, presence: { message: "birthday" }
+    validates :gender, presence: { message: "gender" }
+    # validates :gender, inclusion: { in: ["m", "f", "t"] }
+    validates :password, length: { minimum: 6, allow_nil: true, message: "newpassword" }
+    validate :email_correct_format
+    
+    validates :password_digest, :session_token, presence: true, uniqueness: true
 
     before_validation :ensure_session_token
 
@@ -83,7 +89,7 @@ class User < ApplicationRecord
             "welcome",
         ]
         if commons.include?(@password)
-            errors.add(:base, "Please pick a stronger password.")
+            errors.add(:base, "strongerpassword")
         end
     end
 
@@ -97,7 +103,7 @@ class User < ApplicationRecord
                 return true
             end
         end
-        errors.add(:base, "Please enter a valid email address.")
+        errors.add(:base, "email")
     end
 
 end

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { clearErrors } from '../../actions/session_actions';
 
 const NewUserLogo = props => {
     return (
-        // <img src="#" alt="Go to felix home"/>
         <Link to="/" className="logo" >felix</Link>
     )
 };
