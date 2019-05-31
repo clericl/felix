@@ -3,7 +3,7 @@ class Api::FriendRequestsController < ApplicationController
     def create
         @friend = FriendRequest.new(friend_request_params)
         if @friend.save
-            render "api/friend_requests/show.json.jbuilder", friend: @friend
+            render :show, friend: @friend
         else
             render json: @friend.errors.values.flatten, status: 422
         end

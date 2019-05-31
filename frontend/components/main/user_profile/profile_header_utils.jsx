@@ -1,27 +1,43 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import FriendsButton from './friends_button';
+import MessageButton from './message_button';
 
 class ProfileHeaderUtils extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            myUser: this.props.myUser
+            pageUser: this.props.pageUser
         };
     }
 
+    componentDidUpdate() {
+        if (this.state.pageUser !== this.props.pageUser) {
+            this.setState({
+                pageUser: this.props.pageUser,
+            });
+        }
+    }
+
     render() {
-        const displayName = [this.props.myUser.firstName, this.props.myUser.lastName].join(" ");
-        
+        const displayName = [
+            this.state.pageUser.firstName,
+            this.state.pageUser.lastName
+        ].join(" ");
+
         return (
-            <div>
+            <div className="position">
                 <Link
-                    to={`/users/${this.props.myUser.id}`}
-                    className="header-user-name">{displayName}
+                    to={`/users/${this.state.pageUser.id}`}
+                    className="header-user-name"
+                >
+                {displayName}
                 </Link>
                 <div className="profile-header-nav-floating-buttons">
-                    <FriendsButton />
+                    <FriendsButton pageUser={this.state.pageUser} />
+                    <div>
+                        <MessageButton />
+                    </div>
                 </div>
             </div>
 
@@ -30,14 +46,4 @@ class ProfileHeaderUtils extends React.Component {
     }
 }
 
-const msp = (state, ownProps) => {
-    return {
-        myUser: state.entities.users[ownProps.match.params.userId] || {
-            firstName: "",
-            lastName: "",
-            id: ""
-        },
-    }
-}
-
-export default withRouter(connect(msp, null)(ProfileHeaderUtils));
+export default withRouter(ProfileHeaderUtils);

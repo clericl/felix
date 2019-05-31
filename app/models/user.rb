@@ -31,7 +31,7 @@ class User < ApplicationRecord
     
     validates :password_digest, :session_token, presence: true, uniqueness: true
 
-    before_validation :ensure_session_token
+    before_validation :ensure_session_token, :ensure_default_img_url, :ensure_capitalized
 
     attr_reader :password
 
@@ -87,6 +87,11 @@ class User < ApplicationRecord
 
     def ensure_default_img_url
         self.default_img_url ||= "http://localhost:3000/assets/catvatar-d2e991ad62187cb1cc169a044df9414ce311cb218801ee8d745408dadcfbcf74.jpg"
+    end
+
+    def ensure_capitalized
+        self.first_name.capitalize!
+        self.last_name.capitalize!
     end
 
     def password_not_common

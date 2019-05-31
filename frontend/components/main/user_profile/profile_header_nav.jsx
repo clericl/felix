@@ -14,10 +14,10 @@ class ProfileHeaderNav extends React.Component {
     render() {
         return (
             <nav className="profile-header-nav">
-                <Link className="profile-header-nav-button" to={this.props.match.params.userId}>Timeline</Link>
-                <Link className="profile-header-nav-button" to={this.props.match.params.userId}>About</Link>
-                <Link className="profile-header-nav-button" to={this.props.match.params.userId}>Friends</Link>
-                <Link className="profile-header-nav-button" to={this.props.match.params.userId}>Photos</Link>
+                <Link className="profile-header-nav-button" to={this.props.match.url}>Timeline</Link>
+                <Link className="profile-header-nav-button" to={this.props.match.url}>About</Link>
+                <Link className="profile-header-nav-button" to={this.props.match.url}>Friends</Link>
+                <Link className="profile-header-nav-button" to={this.props.match.url}>Photos</Link>
                 <p className="profile-header-nav-button">More &nbsp;<FaCaretDown /></p>
             </nav>
         )

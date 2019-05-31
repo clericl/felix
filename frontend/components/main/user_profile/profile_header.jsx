@@ -12,10 +12,10 @@ class ProfileHeader extends React.Component {
     render() {
         return (
             <header className="profile-header">
-                <CoverPhoto userId={this.props.userId} />
-                <ProfilePhoto userId={this.props.userId} />
-                <ProfileHeaderNav userId={this.props.userId} />
-                <ProfileHeaderUtils userId={this.props.userId} />
+                <CoverPhoto pageUser={this.props.pageUser} />
+                <ProfilePhoto pageUser={this.props.pageUser} />
+                <ProfileHeaderNav pageUser={this.props.pageUser} />
+                <ProfileHeaderUtils pageUser={this.props.pageUser} />
             </header>
         )
     }

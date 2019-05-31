@@ -12,41 +12,55 @@ import { withRouter } from 'react-router-dom';
 import { fetchUser } from '../../../actions/user_actions';
 
 class HeaderNav extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pageUser: this.props.pageUser,
+        };
+    }
+
     componentDidMount() {
         this.props.fetchUser(this.props.currentUser);
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.match.params.userId != this.props.match.params.userId) {
-            this.props.fetchUser(this.props.match.params.userId);
-        };
+    componentDidUpdate() {
+        if (!this.state.pageUser) {
+            this.setState({
+                pageUser: this.props.pageUser,
+            });
+        }
     }
 
     render() {
-        return (
-            <div className="header-menu">
-                <div className="header-buttons">
-                    <ProfileButton />
-                    <HomeButton />
-                    <CreateDropdown />
+        if (this.state.pageUser) {
+            return (
+                <div className="header-menu">
+                    <div className="header-buttons">
+                        <ProfileButton pageUser={this.state.pageUser} />
+                        <HomeButton />
+                        <CreateDropdown />
+                    </div>
+                    <div className="header-indexes">
+                        <FriendsIndex />
+                        <MessagesIndex />
+                        <NotificationsIndex />
+                    </div>
+                    <div className="header-utils">
+                        <HelpDropdown />
+                        <SettingsDropdown />
+                    </div>
                 </div>
-                <div className="header-indexes">
-                    <FriendsIndex />
-                    <MessagesIndex />
-                    <NotificationsIndex />
-                </div>
-                <div className="header-utils">
-                    <HelpDropdown />
-                    <SettingsDropdown />
-                </div>
-            </div>
-        )
+            )
+        } else {
+            return null;
+        }
     }
 }
 
-const msp = state => {
+const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
+        pageUser: state.entities.users[state.session.currentUser],
     };
 }
 

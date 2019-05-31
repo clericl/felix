@@ -1,6 +1,2 @@
-json.set! @friend.id do
-    json.id @friend.id
-    json.userId @friend.user_id
-    json.friendId @friend.friend_id
-    json.status @friend.status
-end
+json.partial! '/api/users/user.json.jbuilder', user: @friend.user
+json.partial! '/api/users/user.json.jbuilder', user: @friend.target_user

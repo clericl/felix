@@ -50,14 +50,6 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        // const signupLink = <Link to="/" className="error-link">Sign up for an account.</Link>
-
-        // const passwordLink = () => {
-        //     return (
-        //         <Link to="/" className="error-link">Forgot Password?</Link>
-        //     )
-        // }
-
         return (
             <div className="login-form">
                 <form className="login-inputs" id="login-form" onSubmit={this.handleSubmit}>

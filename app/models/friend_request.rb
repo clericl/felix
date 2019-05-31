@@ -4,7 +4,7 @@ class FriendRequest < ApplicationRecord
         foreign_key: :user_id,
         class_name: :User 
 
-    has_one :target_user,
+    belongs_to :target_user,
         foreign_key: :friend_id,
         class_name: :User
         

@@ -71,41 +71,45 @@
     color: white;
     text-decoration: none;
     position: absolute;
-    top: 270px;
-    left: 200px;
+    top: -83px;
+    left: 195px;
     text-shadow: 0 0 3px black;
     letter-spacing: 1px;
 }
 
 .profile-header-nav-floating-buttons {
-    position: relative;
+    position: absolute;
+    top: -90px;
+    display: flex;
+    right: 148px;
 }
 
-.profile-friends-button {
+.profile-header-button {
     height: 28px;
     font-size: 12px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    position: absolute;
-    top: -88px;
-    right: 400px;
     border: 1px solid black;
     border-radius: 2px;
 }
 
-.profile-friends-button:hover {
+.profile-header-button:hover {
     background-color: #f1f1f1;
     transition: all .5s linear;
 }
 
-.profile-friends-button:active {
+.profile-header-button:active {
     background-color: #e4e4e4;
     transform: scale(0.99);
     transition: all 0s;
 }
 
-.profile-friends-button > * {
+.profile-header-button > * {
     padding: 0 2px;
+}
+
+.profile-friends-button {
+    margin-right: 12px;
 }

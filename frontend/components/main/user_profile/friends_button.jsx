@@ -2,68 +2,61 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addFriend } from '../../../actions/friend_actions';
-import { FaCheck, FaUserClock, FaUserPlus, FaCaretDown } from 'react-icons/fa';
+import { FaCheck, FaUserClock, FaUserPlus, FaCaretDown, FaPen } from 'react-icons/fa';
 
 class FriendsButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            myUser: this.props.myUser,
+            pageUser: this.props.pageUser,
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
     }
 
 
-    handleClick(e) {
-        debugger
-        this.props.addFriend(this.props.currentUser, this.state.myUser.id);
-    }
-
-    componentDidMount() {
-        this.setState({
-            myUser: this.props.myUser,
-        });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.myUser.id !== this.state.myUser.id) {
-            this.setState({
-                myUser: this.props.myUser,
-            });
-        }
+    handleAdd(e) {
+        this.props.addFriend(this.props.currentUser, this.state.pageUser.id);
     }
 
     render() {
-        return (null)
-        // if (this.)
-        //         return (
-        //             <button className="profile-friends-button">
-        //                 <FaCheck /> <p>Friends</p> <FaCaretDown />
-        //             </button>
-        //         );
-        //     case "pending":
-        //         return (
-        //             <button className="profile-friends-button">
-        //                 <FaUserClock /> <p>Friend Request Sent</p>
-        //             </button>
-        //         );
-        //     default:
-        //         return (
-        //             <button className="profile-friends-button" onClick={this.handleClick}>
-        //                 <FaUserPlus /> <p>Add Friend</p>
-        //             </button>
-        //         );
+        if (this.state.pageUser) {
+            if (this.state.pageUser.id === this.props.currentUser) {
+                return (
+                    <button className="profile-header-button profile-friends-button">
+                        <FaPen /> <p>Edit Profile</p>
+                    </button>
+                )
+            } else if (this.props.currentPending.includes(this.state.pageUser.id)) {
+                return (
+                    <button className="profile-header-button profile-friends-button">
+                        <FaUserClock /> <p>Friend Request Sent</p>
+                    </button>
+                )
+            } else if (this.props.currentFriends.includes(this.state.pageUser.id)) {
+                return (
+                    <button className="profile-header-button profile-friends-button">
+                        <FaCheck /> <p>Friends</p> <FaCaretDown />
+                    </button>
+                )
+            } else {
+                return (
+                    <button className="profile-header-button profile-friends-button" onClick={this.handleAdd}>
+                        <FaUserPlus /> <p>Add Friend</p>
+                    </button>
+                )
+            }
+        } else {
+            return null;
         }
     }
+}
     
-const msp = (state, ownProps) => {
+const msp = state => {
+    const currentUser = state.session.currentUser;
     return {
-        myUser: state.entities.users[ownProps.match.params.userId] || {
-            firstName: "",
-            lastName: "",
-            id: ""
-        },
-        currentUser: state.session.currentUser,
+        currentUser: currentUser,
+        currentPending: state.entities.users[currentUser].pending,
+        currentFriends: state.entities.users[currentUser].friends,
     };
 };
 

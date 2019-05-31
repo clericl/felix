@@ -7,12 +7,21 @@ class HomeButton extends React.Component {
         this.state = {
             fireRedirect: false,
         };
+        this.setRedirect = this.setRedirect.bind(this);
     }
 
     setRedirect() {
         this.setState({
             fireRedirect: true,
         });
+    }
+
+    componentDidUpdate() {
+        if (this.state.fireRedirect) {
+            this.setState({
+                fireRedirect: false,
+            });
+        }
     }
 
     render() {

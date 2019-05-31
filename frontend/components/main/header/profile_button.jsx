@@ -1,36 +1,60 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class ProfileButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            myUser: this.props.myUser
+            pageUser: this.props.pageUser,
+            fireRedirect: false,
         };
-        this.setPath = this.setPath.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    setPath(e) {
-        this.props.history.push(`/users/${this.props.currentUser}`)
+    handleClick(e) {
+        this.setState({
+            fireRedirect: true,
+        });
+    }
+
+    componentDidUpdate() {
+        if (this.state.fireRedirect) {
+            this.setState({
+                fireRedirect: false,
+            });
+        }
     }
 
     render() {
-        const proPic = this.props.myUser.defaultImgUrl || window.catvatarUrl
-        return (
-            <button className="nav-button" id="profile-button" onClick={this.setPath}>
-                <img className="profile-photo-nav-icon" src={proPic} />
-                {this.props.myUser.firstName}
-            </button>
-        )
+        if (this.state.fireRedirect) {
+            return (
+                <Redirect to={`/users/${this.state.pageUser.id}`} />
+            )
+        } else if (this.state.pageUser) {
+            return (
+                <button
+                    className="nav-button"
+                    id="profile-button"
+                    onClick={this.handleClick}
+                >
+                    <img
+                        className="profile-photo-nav-icon"
+                        src={this.state.pageUser.defaultImgUrl}
+                    />
+                    {this.state.pageUser.firstName}
+                </button>
+            )
+        } else {
+            return null;
+        }
     }
 }
 
-const msp = state => {
+const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
-        myUser: state.entities.users[state.session.currentUser] || {id: ""},
     };
-};
+}
 
 export default withRouter(connect(msp, null)(ProfileButton));

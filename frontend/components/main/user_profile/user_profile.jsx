@@ -7,21 +7,33 @@ import { connect } from 'react-redux';
 class UserProfile extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            pageUser: this.props.pageUser,
+        };
     }
 
     componentDidMount() {
         this.props.fetchUser(this.props.match.params.userId);
     }
 
-    componentDidUpdate(prevProps) {
-        this.props.fetchUser(this.props.match.params.userId);
+    componentDidUpdate() {
+        if (this.state.pageUser.id != this.props.match.params.userId) {
+            if (this.props.pageUser === this.state.pageUser) {
+                this.props.fetchUser(this.props.match.params.userId);
+            } else {
+                this.setState({
+                    pageUser: this.props.pageUser,
+                });
+            }
+        }
     }
 
     render() {
-        return (
-            <div className="profile-body">
-                <ProfileHeader userId={this.props.match.params.userId} />
-                {/* <aside>
+        if (this.state.pageUser.id) {
+            return (
+                <div className="profile-body">
+                    <ProfileHeader pageUser={this.state.pageUser} />
+                    {/* <aside>
                     <ProfileIntro />
                     <ProfilePhotos />
                     <ProfileFriends />
@@ -31,15 +43,25 @@ class UserProfile extends React.Component {
                     <CreatePostBox />
                     <ProfileTimeline />
                 </main> */}
-            </div>
-        )
+                </div>
+            )
+        } else {
+            return null;
+        }
     }
+}
+
+const msp = (state, ownProps) => {
+    return {
+        currentUser: state.session.currentUser,
+        pageUser: state.entities.users[ownProps.match.params.userId] || {id: null},
+    };
 }
 
 const mdp = dispatch => {
     return {
-        fetchUser: id => dispatch(fetchUser(id)),
+        fetchUser: userId => dispatch(fetchUser(userId)),
     }
 }
 
-export default withRouter(connect(null, mdp)(UserProfile));
+export default withRouter(connect(msp, mdp)(UserProfile));
