@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
         if @user
             if @user.is_password?(params[:user][:password])
                 login(@user)
-                render :show
+                render :show, user: @user
             else
                 render json: ["password"], status: 422
             end

@@ -1,9 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const ProfilePhoto = props => {
+    const proPic = props.myUser ? props.myUser.defaultImgUrl : window.catvatarUrl
     return (
-        <img className="profile-photo" src="https://www.nydailynews.com/resizer/EfzByiVBnuJkjD_ip1WAJGDOQMU=/800x0/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/4HDSW6YT777BLGN7SBPHL7STMM.jpg" />
+        <img className="profile-photo" src={proPic} />
     )
 };
 
-export default ProfilePhoto;
+const msp = (state, ownProps) => {
+    return {
+        myUser: state.entities.users[ownProps.match.params.userId]
+    }
+}
+
+export default withRouter(connect(msp, null)(ProfilePhoto));

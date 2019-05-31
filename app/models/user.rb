@@ -39,7 +39,7 @@ class User < ApplicationRecord
     # has_many :comments
     # has_many :likes
     has_many :friend_requests
-    # has_many :friends, through: :friend_requests, source: :target_user
+    # has_many :added, through: :friend_requests, source: :target_user
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
@@ -50,13 +50,13 @@ class User < ApplicationRecord
         end
     end
 
-    def requestStatus(other_user)
-        FriendRequest.where(
-            "user_id = ? AND friend_id = ?",
-            self.id, 
-            other_user.id
-        ).pluck(:status)
+    def friends
+        self.friend_requests.where(status: "accepted").pluck(:friend_id)
     end
+
+    def pending
+        self.friend_requests.where(status: "pending").pluck(:friend_id)
+    end 
 
     def is_password?(password)
         BCrypt::Password.new(self.password_digest).is_password?(password)
@@ -83,6 +83,10 @@ class User < ApplicationRecord
     
     def ensure_session_token
         self.session_token ||= User.generate_session_token
+    end
+
+    def ensure_default_img_url
+        self.default_img_url ||= "http://localhost:3000/assets/catvatar-d2e991ad62187cb1cc169a044df9414ce311cb218801ee8d745408dadcfbcf74.jpg"
     end
 
     def password_not_common

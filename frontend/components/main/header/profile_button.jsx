@@ -6,28 +6,21 @@ class ProfileButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            myUser: {
-                id: "",
-                firstName: "",
-                avatarUrl: "",
-            }
+            myUser: this.props.myUser
         };
+        this.setPath = this.setPath.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.state.myUser.id != this.props.currentUser) {
-            this.setState({
-                myUser: this.props.myUser,
-            });
-        }
+    setPath(e) {
+        this.props.history.push(`/users/${this.props.currentUser}`)
     }
 
     render() {
+        const proPic = this.props.myUser.defaultImgUrl || window.catvatarUrl
         return (
-            <button className="nav-button" id="profile-button">
-                {/* <img className="profile-photo-icon" src={this.state.myUser.avatarUrl} /> */}
-                <img className="profile-photo-nav-icon" src="https://www.nydailynews.com/resizer/EfzByiVBnuJkjD_ip1WAJGDOQMU=/800x0/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/4HDSW6YT777BLGN7SBPHL7STMM.jpg" />
-                {this.state.myUser.firstName}
+            <button className="nav-button" id="profile-button" onClick={this.setPath}>
+                <img className="profile-photo-nav-icon" src={proPic} />
+                {this.props.myUser.firstName}
             </button>
         )
     }

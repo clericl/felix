@@ -34,29 +34,28 @@ class FriendsButton extends React.Component {
     }
 
     render() {
-        switch (this.state.myUser.requestStatus) {
-            case "accepted":
-                return (
-                    <button className="profile-friends-button">
-                        <FaCheck /> <p>Friends</p> <FaCaretDown />
-                    </button>
-                );
-            case "pending":
-                return (
-                    <button className="profile-friends-button">
-                        <FaUserClock /> <p>Friend Request Sent</p>
-                    </button>
-                );
-            default:
-                return (
-                    <button className="profile-friends-button" onClick={this.handleClick}>
-                        <FaUserPlus /> <p>Add Friend</p>
-                    </button>
-                );
+        return (null)
+        // if (this.)
+        //         return (
+        //             <button className="profile-friends-button">
+        //                 <FaCheck /> <p>Friends</p> <FaCaretDown />
+        //             </button>
+        //         );
+        //     case "pending":
+        //         return (
+        //             <button className="profile-friends-button">
+        //                 <FaUserClock /> <p>Friend Request Sent</p>
+        //             </button>
+        //         );
+        //     default:
+        //         return (
+        //             <button className="profile-friends-button" onClick={this.handleClick}>
+        //                 <FaUserPlus /> <p>Add Friend</p>
+        //             </button>
+        //         );
         }
     }
-}
-
+    
 const msp = (state, ownProps) => {
     return {
         myUser: state.entities.users[ownProps.match.params.userId] || {

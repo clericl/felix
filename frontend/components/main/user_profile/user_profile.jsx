@@ -13,6 +13,10 @@ class UserProfile extends React.Component {
         this.props.fetchUser(this.props.match.params.userId);
     }
 
+    componentDidUpdate(prevProps) {
+        this.props.fetchUser(this.props.match.params.userId);
+    }
+
     render() {
         return (
             <div className="profile-body">

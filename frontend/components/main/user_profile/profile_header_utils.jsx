@@ -11,21 +11,13 @@ class ProfileHeaderUtils extends React.Component {
         };
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.state.myUser.id != this.props.match.params.userId) {
-            this.setState({
-                myUser: this.props.myUser,
-            });
-        }
-    }
-
     render() {
-        const displayName = [this.state.myUser.firstName, this.state.myUser.lastName].join(" ");
+        const displayName = [this.props.myUser.firstName, this.props.myUser.lastName].join(" ");
         
         return (
             <div>
                 <Link
-                    to={`/users/${this.state.myUser.id}`}
+                    to={`/users/${this.props.myUser.id}`}
                     className="header-user-name">{displayName}
                 </Link>
                 <div className="profile-header-nav-floating-buttons">
