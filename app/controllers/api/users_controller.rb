@@ -12,8 +12,6 @@ class Api::UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        # @user = User.includes(:friended_users).find(params[:id])
-        # include associated pictures and friends in db request
         render :show
     end
 

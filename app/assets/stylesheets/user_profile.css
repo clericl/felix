@@ -1,0 +1,111 @@
+.profile-body {
+    width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header {
+    position: relative;
+}
+
+.cover-photo {
+    width: 850px;
+    height: 315px;
+    margin-top: -1px;
+    position: relative;
+    z-index: -1;
+}
+
+.profile-photo {
+    border-radius: 50%;
+    border: 5px solid white;
+    height: 160px;
+    width: 160px;
+    position: absolute;
+    left: 16px;
+    top: 170px;
+    box-shadow: 0 0 2px 1px #acaeb3;
+}
+
+.profile-header-nav {
+    height: 45px;
+    width: 850px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    margin-top: -4px;
+    border: 1px solid #d3d6db;
+    box-sizing: border-box;
+}
+
+.profile-header-nav-button {
+    height: 100%;
+    width: 90px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #385797;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #e9eaed;
+}
+
+.profile-header-nav > p {
+    border-right: 1px solid #e9eaed;
+}
+
+
+/* .profile-header-nav-button-selected {
+
+} */
+
+.header-user-name {
+    font-family: sans-serif;
+    font-size: 24px;
+    width: 200px;
+    height: 200px;
+    background: none;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    top: 270px;
+    left: 200px;
+    text-shadow: 0 0 3px black;
+    letter-spacing: 1px;
+}
+
+.profile-header-nav-floating-buttons {
+    position: relative;
+}
+
+.profile-friends-button {
+    height: 28px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    top: -88px;
+    right: 400px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.profile-friends-button:hover {
+    background-color: #f1f1f1;
+    transition: all .5s linear;
+}
+
+.profile-friends-button:active {
+    background-color: #e4e4e4;
+    transform: scale(0.99);
+    transition: all 0s;
+}
+
+.profile-friends-button > * {
+    padding: 0 2px;
+}

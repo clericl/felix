@@ -25,8 +25,8 @@ export const clearErrors = () => {
     };
 };
 
-export const fetchUser = user => dispatch => {
-    return UserAPIUtil.fetchUser(user).then(
+export const fetchUser = userId => dispatch => {
+    return UserAPIUtil.fetchUser(userId).then(
         res => dispatch(receiveUser(res)),
         err => dispatch(receiveUserErrors(err.responseJSON))
     );

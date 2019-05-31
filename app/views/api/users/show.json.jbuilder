@@ -5,3 +5,5 @@ json.set! @user.id do
     json.birthday @user.birthday
     # other fields as they are added
 end
+
+# json.friend_requests @user.friend_requests

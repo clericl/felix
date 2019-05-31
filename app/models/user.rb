@@ -25,7 +25,8 @@ class User < ApplicationRecord
     validates :birthday, presence: { message: "birthday" }
     validates :gender, presence: { message: "gender" }
     # validates :gender, inclusion: { in: ["m", "f", "t"] }
-    validates :password, length: { minimum: 6, allow_nil: true, message: "newpassword" }
+    validates :password,
+        length: { minimum: 6, allow_nil: true, message: "newpassword" }
     validate :email_correct_format
     
     validates :password_digest, :session_token, presence: true, uniqueness: true
@@ -37,8 +38,8 @@ class User < ApplicationRecord
     # has_many :posts
     # has_many :comments
     # has_many :likes
-    # has_many :friends
-    # has_many :friended_users, through: :friends, source: :friendee
+    has_many :friend_requests
+    # has_many :friends, through: :friend_requests, source: :target_user
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
@@ -47,6 +48,14 @@ class User < ApplicationRecord
         else
             nil 
         end
+    end
+
+    def requestStatus(other_user)
+        FriendRequest.where(
+            "user_id = ? AND friend_id = ?",
+            self.id, 
+            other_user.id
+        ).pluck(:status)
     end
 
     def is_password?(password)

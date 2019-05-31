@@ -10,7 +10,7 @@ class LogoSearch extends React.Component {
     render() {
         return (
             <div className="logo-search">
-                <Link to="/" >
+                <Link to="/" className="header-logo-box" >
                     <FaFacebookSquare className="header-logo-icon" />
                 </Link>
                 <input type="text" className="header-search" />
