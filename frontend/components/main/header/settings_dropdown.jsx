@@ -7,29 +7,25 @@ import NavDropdownItem from './nav_dropdown_item';
 class SettingsDropdown extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            show: "hidden",
+        };
         this.handleIconClick = this.handleIconClick.bind(this);
-        this.handleCloseDropdown = this.handleCloseDropdown.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     handleIconClick(e) {
-        e.currentTarget.classList.add("icon-selected");
-        document.querySelector("#settings-dropdown").classList.remove("hidden");
         document.addEventListener("click", this.handleClickOutside);
-    }
-
-    handleCloseDropdown(e) {
-        document.querySelector("#settings-icon").classList.remove("icon-selected");
-        document.querySelector("#settings-dropdown").classList.add("hidden");
-        document.removeEventListener("click", this.handleClickOutside);
+        this.setState({
+            show: "",
+        });
     }
 
     handleClickOutside(e) {
-        const dropdown = document.getElementById("settings-dropdown");
-
-        if (dropdown && !dropdown.contains(e.target)) {
-            this.handleCloseDropdown();
-        }
+        document.removeEventListener("click", this.handleClickOutside);
+        this.setState({
+            show: "hidden",
+        });
     }
 
     componentWillUnmount() {
@@ -40,7 +36,10 @@ class SettingsDropdown extends React.Component {
         return (
             <div>
                 <FaCaretDown className="nav-icon" id="settings-icon" onClick={this.handleIconClick} />
-                <ul className="dropdown-box hidden" id="settings-dropdown" >
+                <ul className={`dropdown-box ${this.state.show}`}
+                    id="settings-dropdown"
+                    onClick={this.handleIconClick}
+                >
                     <NavDropdownItem text="Log Out" action={this.props.logoutUser} />
                 </ul>
             </div>

@@ -6,35 +6,24 @@ import MessageButton from './message_button';
 class ProfileHeaderUtils extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            pageUser: this.props.pageUser
-        };
-    }
-
-    componentDidUpdate() {
-        if (this.state.pageUser !== this.props.pageUser) {
-            this.setState({
-                pageUser: this.props.pageUser,
-            });
-        }
     }
 
     render() {
         const displayName = [
-            this.state.pageUser.firstName,
-            this.state.pageUser.lastName
+            this.props.pageUser.firstName,
+            this.props.pageUser.lastName
         ].join(" ");
 
         return (
             <div className="position">
                 <Link
-                    to={`/users/${this.state.pageUser.id}`}
+                    to={`/users/${this.props.pageUser.id}`}
                     className="header-user-name"
                 >
                 {displayName}
                 </Link>
                 <div className="profile-header-nav-floating-buttons">
-                    <FriendsButton pageUser={this.state.pageUser} />
+                    <FriendsButton pageUser={this.props.pageUser} />
                     <div>
                         <MessageButton />
                     </div>

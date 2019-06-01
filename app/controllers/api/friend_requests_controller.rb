@@ -1,9 +1,43 @@
 class Api::FriendRequestsController < ApplicationController
 
+    def find
+        @friend = FriendRequest.find_by(
+            user_id: params[:friend_request][:user_id],
+            friend_id: params[:friend_request][:friend_id]
+        )
+        @friend ||= FriendRequest.find_by(
+            user_id: params[:friend_request][:friend_id],
+            friend_id: params[:friend_request][:user_id]
+        )
+        if @friend
+            render plain: @friend.id
+        else
+            render json: ["Couldn't find what you were looking for"], status: 422
+        end
+    end
+
     def create
         @friend = FriendRequest.new(friend_request_params)
         if @friend.save
             render :show, friend: @friend
+        else
+            render json: @friend.errors.values.flatten, status: 422
+        end
+    end
+
+    def update
+        @friend = FriendRequest.find(params[:id])
+        if @friend.update(status: params[:friend_request][:status])
+            render :show
+        else
+            render json: @friend.errors.values.flatten, status: 422
+        end
+    end
+
+    def destroy
+        @friend = FriendRequest.find(params[:id])
+        if @friend.delete
+            render :show
         else
             render json: @friend.errors.values.flatten, status: 422
         end

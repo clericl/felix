@@ -5,14 +5,27 @@ import { receiveUser } from './user_actions';
 export const addFriend = (userId, targetId) => dispatch => {
     return FriendAPIUtil.addFriend(userId, targetId).then(
         res => {
-            debugger
             return dispatch(receiveUser(res));
         }
     );
 };
 
-export const confirmRequest = friendId => dispatch => {
-    return FriendAPIUtil.confirmRequest(friendId).then(
-        res => dispatch(receiveUser(res))
+export const deleteFriend = (userId, targetId) => dispatch => {
+    return FriendAPIUtil.findFriendId(userId, targetId).then(
+        requestId => {
+            return FriendAPIUtil.deleteFriend(requestId).then(
+                res => dispatch(receiveUser(res))
+            );
+        }
+    );
+};
+    
+export const confirmFriend = (userId, targetId) => dispatch => {
+    return FriendAPIUtil.findFriendId(userId, targetId).then(
+        requestId => {
+            return FriendAPIUtil.confirmFriend(requestId).then(
+                res => dispatch(receiveUser(res))
+            );
+        } 
     );
 };

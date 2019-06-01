@@ -6,7 +6,10 @@ const usersReducer = (state = {}, action) => {
     
     switch (action.type) {
         case RECEIVE_USER:
-            return merge({}, state, action.user);
+            const newState = merge({}, state, action.user);
+            delete newState[Object.keys(action.user)[0]];
+            newState[Object.keys(action.user)[0]] = Object.values(action.user)[0];
+            return newState;
         case RECEIVE_USERS:
             return merge({}, state, action.users);
         default:

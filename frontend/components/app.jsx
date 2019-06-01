@@ -14,7 +14,6 @@ const App = props => {
     const { currentUser, sessionErrors } = props;
 
     if (currentUser) {
-        // document.body.setAttribute("style", "background-color: #d3d6db;");
         return (
             <>
                 <Header />
@@ -23,7 +22,6 @@ const App = props => {
             </>
         )
     } else {
-        // document.body.setAttribute("style", "background-color: #edf0f5;");
         return (
             <>
                 <SplashHeader />

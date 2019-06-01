@@ -22,7 +22,7 @@ class NewUserBirthday extends React.Component {
                 this.setState({
                     show: false,
                     slow: true,
-                })
+                });
             },
         500);
     }
@@ -32,7 +32,7 @@ class NewUserBirthday extends React.Component {
         this.setState({
             show: true,
             slow: true,
-        })
+        });
     }
 
     handleOkayClick(e) {

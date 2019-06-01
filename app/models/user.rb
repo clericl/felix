@@ -51,7 +51,7 @@ class User < ApplicationRecord
     end
 
     def friends
-        self.friend_requests.where(status: "accepted").pluck(:friend_id)
+        FriendRequest.where
     end
 
     def pending

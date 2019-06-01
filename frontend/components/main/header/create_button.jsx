@@ -6,34 +6,40 @@ import { connect } from 'react-redux';
 class CreateButton extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            show: "hidden",
+        };
         this.handleIconClick = this.handleIconClick.bind(this);
-        this.handleCloseDropdown = this.handleCloseDropdown.bind(this);
-        this.hideDropdown = this.hideDropdown.bind(this);
-    }
-
-    hideDropdown() {
-        document.querySelector("#create-dropdown").classList.add("hidden");
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     handleIconClick(e) {
-        e.currentTarget.parentNode.querySelector(".dropdown-box").classList.remove("hidden");
-        document.body.addEventListener("click", this.hideDropdown);
+        document.addEventListener("click", this.handleClickOutside);
+        this.setState({
+            show: "",
+        });
     }
 
-    handleCloseDropdown(e) {
-        e.target.classList.add("hidden");
-        document.body.removeEventListener("click", this.hideDropdown);
+    handleClickOutside(e) {
+        document.removeEventListener("click", this.handleClickOutside);
+        this.setState({
+            show: "hidden",
+        });
     }
 
     componentWillUnmount() {
-        document.body.removeEventListener("click", this.hideDropdown);
+        document.removeEventListener("click", this.handleClickOutside);
     }
 
     render() {
         return (
             <>
                 <button className="nav-button" onClick={this.handleIconClick}>Create</button>
-                <ul className="dropdown-box hidden" id="create-dropdown" >
+                <ul
+                    className={`dropdown-box ${this.state.show}`}
+                    id="create-dropdown"
+                    onClick={this.handleIconClick}
+                >
                     <NavDropdownItem text="Log Out" action={this.props.logoutUser} />
                 </ul>
             </>

@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
   
   namespace :api, defaults: {format: :json} do
+    get 'find_friend', to: "friend_requests#find"
     resources :users, only: [:create, :show]
-    resources :friend_requests, only: [:create, :edit, :destroy]
+    resources :friend_requests, only: [:index, :create, :update, :destroy] do
+    end
     resource :session, only: [:create, :destroy]
   end
 end
