@@ -38,8 +38,11 @@ class User < ApplicationRecord
     # has_many :posts
     # has_many :comments
     # has_many :likes
-    has_many :friend_requests
-    # has_many :added, through: :friend_requests, source: :target_user
+    has_many :friend_requests do
+        def accepted
+            where("status = 'accepted'")
+        end
+    end
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
@@ -51,7 +54,13 @@ class User < ApplicationRecord
     end
 
     def friends
-        FriendRequest.where
+        friends = FriendRequest.where(
+            "status = 'accepted' AND (user_id = ? OR friend_id = ?)",
+            self.id,
+            self.id
+        ).pluck(:user_id, :friend_id).flatten
+        friends.delete(self.id)
+        return friends
     end
 
     def pending

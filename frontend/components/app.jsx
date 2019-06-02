@@ -1,13 +1,13 @@
 import React from 'react';
-import SplashHeader from './session/splash_header';
 import NewUserMain from './session/new_user_main';
-import LoginMain from './session/login_main'
+import LoginMain from './session/login_main';
+import SignupMain from './session/signup_main';
 import Header from './main/header/header';
 import Main from './main/main';
 import UserProfile from './main/user_profile/user_profile';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
-import { AuthRoute } from '../util/route_util';
+// import { AuthRoute } from '../util/route_util';
 
 const App = props => {
 
@@ -24,10 +24,9 @@ const App = props => {
     } else {
         return (
             <>
-                <SplashHeader />
-    
                 <Route exact path="/" render={props => <NewUserMain {...props} />} />
                 <Route exact path="/login" render={props => <LoginMain {...props} />} />
+                <Route exact path="/signup" render={props => <SignupMain {...props} />} />
                 <Route path="/users/:userId" render={props => <Redirect to="/login" /> } />
             </>
         )

@@ -17,7 +17,7 @@ class DemoLink extends React.Component {
 
     render() {
         return (
-            <p className="demo-text" onClick={this.handleClick}>Log in as a demo user.</p>
+            <button className="demo-text" onClick={this.handleClick}>Demo User Login</button>
         )
     }
 }

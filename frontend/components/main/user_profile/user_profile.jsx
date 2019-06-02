@@ -1,44 +1,43 @@
 import React from 'react';
 import ProfileHeader from './profile_header';
+import FriendsBox from './friends_box';
 import { withRouter } from 'react-router-dom';
-import { fetchUser } from '../../../actions/user_actions';
+import { fetchUser, fetchUsers } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
+import { sampleSize } from 'lodash';
 
 class UserProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageUser: this.props.pageUser,
+            friendsSample: sampleSize(this.props.pageUser.friends, 9)
         };
     }
 
     componentDidMount() {
+        window.scroll(0, 195);
         this.props.fetchUser(this.props.match.params.userId);
     }
 
     componentDidUpdate() {
-        if (this.state.pageUser.id != this.props.match.params.userId) {
-            if (this.props.pageUser === this.state.pageUser) {
-                this.props.fetchUser(this.props.match.params.userId);
-            } else {
-                this.setState({
-                    pageUser: this.props.pageUser,
-                });
-            }
+        if (this.props.pageUser.id != this.props.match.params.userId) {
+            this.props.fetchUser(this.props.match.params.userId);
         }
+        // this.props.fetchUsers(this.state.friendsSample);
     }
 
     render() {
-        if (this.state.pageUser.id) {
+        if (this.props.pageUser.id) {
             return (
                 <div className="profile-body">
-                    <ProfileHeader pageUser={this.state.pageUser} />
-                    {/* <aside>
+                    <ProfileHeader pageUser={this.props.pageUser} />
+                    <aside className="profile-side">
+                        <FriendsBox friendsSample={this.state.friendsSample}/>
+                    </aside>
+                    {/* 
                     <ProfileIntro />
                     <ProfilePhotos />
-                    <ProfileFriends />
                     <ProfileFooter />
-                </aside>
                 <main>
                     <CreatePostBox />
                     <ProfileTimeline />
@@ -61,6 +60,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         fetchUser: userId => dispatch(fetchUser(userId)),
+        fetchUsers: userIds => dispatch(fetchUsers(userIds))
     }
 }
 

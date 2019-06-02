@@ -1,14 +1,13 @@
 class Api::FriendRequestsController < ApplicationController
 
     def find
-        @friend = FriendRequest.find_by(
-            user_id: params[:friend_request][:user_id],
-            friend_id: params[:friend_request][:friend_id]
-        )
-        @friend ||= FriendRequest.find_by(
-            user_id: params[:friend_request][:friend_id],
-            friend_id: params[:friend_request][:user_id]
-        )
+        @friend = FriendRequest.where(
+            "(user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)",
+            params[:friend_request][:user_id],
+            params[:friend_request][:friend_id],
+            params[:friend_request][:friend_id],
+            params[:friend_request][:user_id]
+        ).first
         if @friend
             render plain: @friend.id
         else

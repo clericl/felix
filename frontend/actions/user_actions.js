@@ -39,3 +39,10 @@ export const fetchUser = userId => dispatch => {
         err => dispatch(receiveUserErrors(err.responseJSON))
     );
 };
+
+export const fetchUsers = userIds => dispatch => {
+    return UserAPIUtil.fetchUsers(userIds).then(
+        res => dispatch(receiveUsers(res)),
+        err => dispatch(receiveUserErrors(err.responseJSON))
+    );
+};

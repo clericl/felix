@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import LoginHeader from './login_header';
 import LoginForm from './login_form';
 import { connect } from 'react-redux';
 import { clearErrors } from '../../actions/session_actions';
@@ -11,15 +12,18 @@ class LoginMain extends React.Component {
 
     render() {
         return (
-            <div className="login-main-box">
-                <div className="login-box">
-                    <h3>Log Into Felix</h3>
-                    <LoginForm />
-                    <Link to="/" className="forgot-account-link">Forgot account?</Link>
-                    <p>or</p>
-                    <Link to="/"><button className="new-account-button">Create New Account</button></Link>
+            <>
+                <LoginHeader />
+                <div className="login-main-box">
+                    <div className="login-box">
+                        <h3>Log Into Felix</h3>
+                        <LoginForm />
+                        <Link to="/signup" className="forgot-account-link">
+                            Sign up for Felix
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

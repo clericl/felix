@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_30_212651) do
+ActiveRecord::Schema.define(version: 2019_06_02_014437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2019_05_30_212651) do
     t.index ["user_id", "friend_id"], name: "index_friend_requests_on_user_id_and_friend_id", unique: true
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer "author_id"
+    t.string "postable_type"
+    t.bigint "postable_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -35,6 +46,12 @@ ActiveRecord::Schema.define(version: 2019_05_30_212651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "default_img_url"
+    t.text "bio"
+    t.string "school"
+    t.string "title"
+    t.string "workplace"
+    t.string "hometown"
+    t.string "current_city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end

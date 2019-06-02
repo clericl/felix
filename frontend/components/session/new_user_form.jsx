@@ -72,7 +72,7 @@ class NewUserForm extends React.Component {
     }
 
     render() {
-        
+
         const selectDays = Array.from(
             { length: 31 },
             (x, index) => <option value={index + 1} key={index}>{index + 1}</option>
@@ -86,7 +86,7 @@ class NewUserForm extends React.Component {
         return (
             <form className="new-user-form">
                 <span>
-                    <h2 className="new-user-form-h2">Sign up</h2>
+                    <h2 className="new-user-form-h2">Sign Up</h2>
                     <h3 className="new-user-form-h3">It's free and always will be.</h3>
                 </span>
                 <div className="new-user-form-box">

@@ -1,30 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-const FriendsBoxItem = props => {
-    const itemStyle = {
-        backgroundColor: white,
-        backgroundImage: props.user.defaultImgUrl,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-    };
+class FriendsBoxItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirectId: null,
+            fireRedirect: false,
+        };
+    }
+
+    componentDidUpdate() {
+        if (this.state.fireRedirect) {
+            this.setState({
+                fireRedirect: false,
+            });
+        }
+    }
+
+    render() {
+        if (this.state.fireRedirect) {
+            return (
+                <Redirect to={`/users/${this.state.redirectId}`} />
+            )
+        } else {
+            const itemStyle = {
+                backgroundImage: `url(${window.catvatarUrl})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+            };
     
-    const displayName = [
-        this.props.user.firstName,
-        this.props.user.lastName
-    ].join(" ");
-
-    return (
-        <li>
-            <Link
-                to={`/users/${this.props.user.id}`}
-                className="friends-box-item"
-                style={itemStyle}
-            >
-                <p>{displayName}</p>
-            </Link>
-        </li>
-    )
+            const displayName = [
+                this.props.user.firstName,
+                this.props.user.lastName
+            ].join(" ");
+    
+            return (
+                <li className="friends-box-item" style={itemStyle}>
+                    {/* <img className="friends-box-item-pic" src={window.catvatarUrl} /> */}
+                    <p>{displayName}</p>
+                </li>
+            )
+        }
+    }
 }
+    
 
 export default FriendsBoxItem;

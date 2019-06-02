@@ -7,5 +7,5 @@ class FriendRequest < ApplicationRecord
     belongs_to :target_user,
         foreign_key: :friend_id,
         class_name: :User
-        
+
 end
