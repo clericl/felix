@@ -37,17 +37,9 @@ class FriendsButton extends React.Component {
         500);
     }
 
-    componentDidUpdate() {
-        // console.log(`pageUser pending ids: ${this.props.pageUser.pending}`);
-    }
-
     render() {
-        // console.log(this.props.pageUser.pending);
-        // if (this.props.pageUser.pending.includes(this.props.currentUser)) {
-        //     console.log("still pending");
-        // }
-
         const display = "friends-dropdown-box " + (this.state.show ? "slow-show" : "hidden");
+        
         if (this.props.pageUser) {
             if (this.props.pageUser.id === this.props.currentUser) {
                 return (

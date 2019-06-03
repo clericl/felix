@@ -15,7 +15,7 @@ export const receiveUser = user => {
 
 export const receiveUsers = users => {
     return {
-        type: RECEIVE_USER_ERRORS,
+        type: RECEIVE_USERS,
         users,
     };
 };
@@ -40,9 +40,15 @@ export const fetchUser = userId => dispatch => {
     );
 };
 
-export const fetchUsers = userIds => dispatch => {
-    return UserAPIUtil.fetchUsers(userIds).then(
+export const fetchFriends = userId => dispatch => {
+    return UserAPIUtil.fetchFriends(userId).then(
         res => dispatch(receiveUsers(res)),
         err => dispatch(receiveUserErrors(err.responseJSON))
+    );
+};
+
+export const editUser = user => dispatch => {
+    return UserAPIUtil.editUser(user).then(
+        res => dispatch(receiveUser(res))
     );
 };

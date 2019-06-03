@@ -6,4 +6,10 @@ json.set! user.id do
     json.defaultImgUrl user.default_img_url
     json.friends user.friends
     json.pending user.pending
+    json.bio user.bio
+    json.title user.title
+    json.workplace user.workplace
+    json.school user.school
+    json.currentCity user.current_city
+    json.hometown user.hometown
 end

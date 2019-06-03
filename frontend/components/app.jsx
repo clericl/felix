@@ -5,6 +5,7 @@ import SignupMain from './session/signup_main';
 import Header from './main/header/header';
 import Main from './main/main';
 import UserProfile from './main/user_profile/user_profile';
+import Modal from './modal';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 // import { AuthRoute } from '../util/route_util';
@@ -16,6 +17,7 @@ const App = props => {
     if (currentUser) {
         return (
             <>
+                <Modal />
                 <Header />
                 <Route exact path="/" render={props => <Main {...props} />} />
                 <Route path="/users/:userId" render={props => <UserProfile {...props} />} />

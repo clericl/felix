@@ -24,8 +24,9 @@ class FriendsBoxItem extends React.Component {
                 <Redirect to={`/users/${this.state.redirectId}`} />
             )
         } else {
+
             const itemStyle = {
-                backgroundImage: `url(${window.catvatarUrl})`,
+                backgroundImage: `url(${this.props.user.defaultImgUrl})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
             };

@@ -1,17 +1,16 @@
 import React from 'react';
 import ProfileHeader from './profile_header';
 import FriendsBox from './friends_box';
+import IntroBox from './intro_box';
+import CreatePostModal from './create_post_modal';
 import { withRouter } from 'react-router-dom';
-import { fetchUser, fetchUsers } from '../../../actions/user_actions';
+import { fetchUser } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
-import { sampleSize } from 'lodash';
+import { takeRight } from 'lodash';
 
 class UserProfile extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            friendsSample: sampleSize(this.props.pageUser.friends, 9)
-        };
     }
 
     componentDidMount() {
@@ -23,25 +22,24 @@ class UserProfile extends React.Component {
         if (this.props.pageUser.id != this.props.match.params.userId) {
             this.props.fetchUser(this.props.match.params.userId);
         }
-        // this.props.fetchUsers(this.state.friendsSample);
     }
 
     render() {
+        const friendsSample = takeRight(this.props.pageUser.friends, 9);
+
         if (this.props.pageUser.id) {
             return (
                 <div className="profile-body">
                     <ProfileHeader pageUser={this.props.pageUser} />
-                    <aside className="profile-side">
-                        <FriendsBox friendsSample={this.state.friendsSample}/>
-                    </aside>
-                    {/* 
-                    <ProfileIntro />
-                    <ProfilePhotos />
-                    <ProfileFooter />
-                <main>
-                    <CreatePostBox />
-                    <ProfileTimeline />
-                </main> */}
+                    <div className="profile-content">
+                        <aside className="profile-side">
+                            <IntroBox />
+                            <FriendsBox friendsSample={friendsSample}/>
+                        </aside>
+                        <main className="profile-main">
+                            <CreatePostModal />
+                        </main>
+                    </div>
                 </div>
             )
         } else {
@@ -60,7 +58,6 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         fetchUser: userId => dispatch(fetchUser(userId)),
-        fetchUsers: userIds => dispatch(fetchUsers(userIds))
     }
 }
 

@@ -11,12 +11,19 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = User.find(params[:user_ids])
+        friends = User.find(params[:user_id]).friends
+        @users = User.find(friends)
         render :index
     end
 
     def show
         @user = User.find(params[:id])
+        render :show
+    end
+
+    def update 
+        @user = User.find(params[:id])
+        @user.update(user_params)
         render :show
     end
 
@@ -29,7 +36,13 @@ class Api::UsersController < ApplicationController
             :password,
             :email,
             :gender,
-            :birthday
+            :birthday,
+            :bio,
+            :title,
+            :workplace,
+            :school,
+            :current_city,
+            :hometown
         )
     end
 

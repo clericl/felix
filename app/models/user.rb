@@ -35,14 +35,15 @@ class User < ApplicationRecord
 
     attr_reader :password
 
-    # has_many :posts
     # has_many :comments
     # has_many :likes
-    has_many :friend_requests do
-        def accepted
-            where("status = 'accepted'")
-        end
-    end
+
+    has_many :friend_requests
+    has_many :posts,
+        foreign_key: :author_id,
+        class_name: :Post
+    has_many :received_posts, as: :postable
+
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
