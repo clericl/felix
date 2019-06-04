@@ -1,5 +1,6 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/modal_actions';
 import { RECEIVE_POST, REMOVE_POST } from '../actions/post_actions';
+import { REMOVE_COMMENT } from '../actions/comment_actions';
 
 const modalReducer = (state = null, action) => {
     switch (action.type) {
@@ -10,6 +11,8 @@ const modalReducer = (state = null, action) => {
         case RECEIVE_POST:
             return null;
         case REMOVE_POST:
+            return null;
+        case REMOVE_COMMENT:
             return null;
         default:
             return state;

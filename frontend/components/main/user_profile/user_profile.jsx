@@ -14,7 +14,6 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
-        window.scroll(0, 195);
         this.props.fetchUser(this.props.match.params.userId);
     }
 

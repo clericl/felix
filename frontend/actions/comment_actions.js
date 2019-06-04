@@ -38,7 +38,7 @@ export const createComment = comment => dispatch => {
 // };
 
 export const refetchComments = (postId, offset) => dispatch => {
-    return PostAPIUtil.refetchComments(postId, offset).then(
+    return CommentAPIUtil.refetchComments(postId, offset).then(
         res => dispatch(receiveComments(res))
     );
 };

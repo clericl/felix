@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { createPost } from '../../../actions/post_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
 import { FaPencilAlt } from 'react-icons/fa';
+import TextareaAutosize from 'react-autosize-textarea';
 
 class CreatePostModal extends React.Component {
     constructor(props) {
@@ -89,12 +90,12 @@ class CreatePostModal extends React.Component {
                             </div>
                             <div className="create-post-body">
                                 <img src={this.props.currentUserIcon} className="create-post-avatar-icon" />
-                                <textarea
+                                <TextareaAutosize
                                     className={textarea}
                                     placeholder={placeholder}
                                     value={this.state.body}
                                     onChange={this.handleChange}
-                                ></textarea>
+                                />
                             </div>
                             <div className={footer}>
                                 {footerButton}

@@ -5,7 +5,7 @@
         json.parentId comment.parent_id
         json.postId comment.post_id
         json.body comment.body
-        json.createdAt @post.created_at
-        json.updatedAt @post.updated_at
+        json.createdAt comment.created_at
+        json.updatedAt comment.updated_at
     end
 end

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { closeModal } from '../actions/modal_actions';
 import EditPostModal from './main/posts/edit_post_modal';
 import DeletePostModal from './main/posts/delete_post_modal';
+import DeleteCommentModal from './main/posts/delete_comment_modal';
 
 const Modal = props => {
     if (!props.modal) {
@@ -29,6 +30,12 @@ const Modal = props => {
             return (
               <div className="modal-background" onClick={props.closeModal}>
                 <EditProfileModal />
+              </div>
+            );
+          case "deleteComment":
+            return (
+              <div className="modal-background" onClick={props.closeModal}>
+                <DeleteCommentModal />
               </div>
             );
           default:

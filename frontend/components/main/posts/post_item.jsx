@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import CommentsIndex from './comments_index';
-import CreateCommentBox from './create_comment_box';
+import CommentsIndex from './comments_index';
 import { FaEllipsisH } from 'react-icons/fa';
 import { withRouter, Link } from 'react-router-dom';
 import { openModal, closeModal } from '../../../actions/modal_actions';
@@ -54,7 +53,7 @@ class PostItem extends React.Component {
                                 className="post-item-header-name"
                                 to={`/users/${this.props.postAuthor.id}`}
                             >{displayName}</Link>
-                            <p className="post-item-header-date">{this.props.post.createdAt}</p>
+                            <p className="post-item-header-date">{this.props.post.displayDate}</p>
                         </div>
                         <FaEllipsisH
                             className={settingsIcon}
@@ -71,7 +70,7 @@ class PostItem extends React.Component {
                             />
                         </ul>
                     </div>
-                    <div className="post-item-body">
+                    <div className={this.props.post.body.length > 85 ? "post-item-body-small" : "post-item-body"}>
                         <p>{this.props.post.body}</p>
                     </div>
                     <div className="post-item-actions">
@@ -80,8 +79,7 @@ class PostItem extends React.Component {
                         <div className="post-item-actions-nav">
                         </div>
                     </div>
-                    {/* <CommentsIndex /> */}
-                    {/* <CreateCommentBox currentPost={this.props.post.id} /> */}
+                    <CommentsIndex post={this.props.post} />
                 </div>
             )
         } else {

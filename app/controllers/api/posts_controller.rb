@@ -9,7 +9,7 @@ class Api::PostsController < ApplicationController
     def batch
         @posts = User
             .find(params[:user_id])
-            .posts.order('updated_at DESC')
+            .posts
             .limit(5)
             .offset(params[:offset].to_i * 5)
             

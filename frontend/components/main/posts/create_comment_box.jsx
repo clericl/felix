@@ -6,7 +6,7 @@ class CreateCommentBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            body: "",
+            body: this.props.formType === "edit" ? this.props.comment.body : ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,7 +54,6 @@ const msp = state => {
     return {
         currentUser,
         currentUserIcon: state.entities.users[currentUser].defaultImgUrl,
-        // currentPost in ownProps
     };
 };
 

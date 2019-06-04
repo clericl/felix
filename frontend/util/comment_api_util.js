@@ -19,7 +19,7 @@ export const editComment = comment => {
         url: `api/comments/${comment.id}`,
         data: {
             comment: {
-                parent_id: comment.parentId,
+                body: comment.body
             },
         },
     });
@@ -28,7 +28,7 @@ export const editComment = comment => {
 export const deleteComment = commentId => {
     return $.ajax({
         method: "DELETE",
-        url: `api/comments/${comment.id}`,
+        url: `api/comments/${commentId}`,
     });
 };
 

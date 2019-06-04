@@ -9,10 +9,9 @@ class Api::CommentsController < ApplicationController
     def batch
         @comments = Post
             .find(params[:post_id])
-            .posts.order('updated_at DESC')
+            .comments
             .limit(50)
             .offset(params[:offset].to_i * 50)
-
         render :batch
     end
 

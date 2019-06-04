@@ -5,5 +5,7 @@ class Post < ApplicationRecord
         class_name: :User
 
     belongs_to :postable, polymorphic: true
+    
+    has_many :comments
 
 end
