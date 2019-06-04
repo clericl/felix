@@ -79,7 +79,7 @@ class PostItem extends React.Component {
                         <div className="post-item-actions-nav">
                         </div>
                     </div>
-                    <CommentsIndex post={this.props.post} />
+                    <CommentsIndex postId={this.props.post.id} parentId={null} indexType="comment" />
                 </div>
             )
         } else {

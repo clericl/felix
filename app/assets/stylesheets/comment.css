@@ -10,16 +10,47 @@
     margin-bottom: 8px;
 }
 
+.create-reply-box {
+    height: 35px;
+    width: 100%;
+    background-color: white;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
 .create-comment-avatar-icon {
     height: 32px;
     width: 32px;
     border-radius: 50%;
     margin-right: 7px;
+    margin-top: 5px;
+}
+
+.create-reply-avatar-icon {
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    margin-right: 7px;
+    margin-left: 12px;
 }
 
 .create-comment-input {
-    height: 40px;
+    height: 35px;
     width: 450px;
+    background-color: #f2f3f5;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccd0d5;
+}
+
+.create-reply-input {
+    height: 35px;
+    width: 413px;
     background-color: #f2f3f5;
     padding: 12px;
     font-size: 14px;
@@ -45,6 +76,25 @@
     margin-bottom: 8px;
 }
 
+.reply-item-box {
+    min-height: 35px;
+    width: 456px;
+    background-color: white;
+    font-family: sans-serif;
+    display: flex;
+    margin-top: 2px;
+    margin-left: 12px;
+    margin-bottom: 8px;
+}
+
+.reply-avatar-icon {
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    margin-right: 7px;
+    margin-top: 8px;
+}
+
 .comment-avatar-icon {
     height: 32px;
     width: 32px;
@@ -67,6 +117,18 @@
 .comment-item-text {
     min-height: 35px;
     max-width: 420px;
+    font-size: 14px;
+    border-radius: 18px;
+    background-color: #f2f3f5;
+    padding: 12px;
+    display: inline;
+    line-height: 1.1;
+    position: relative;
+}
+
+.reply-item-text {
+    min-height: 35px;
+    max-width: 380px;
     font-size: 14px;
     border-radius: 18px;
     background-color: #f2f3f5;
@@ -156,4 +218,9 @@
 .flex-column {
     display: flex;
     flex-direction: column;
+}
+
+.reply-index {
+    margin-left: 45px;
+    width: 463px;
 }

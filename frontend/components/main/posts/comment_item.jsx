@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FaEllipsisH } from 'react-icons/fa';
+import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
 import TextareaAutosize from 'react-autosize-textarea';
 import { editComment } from '../../../actions/comment_actions';
@@ -144,7 +145,7 @@ class CommentItem extends React.Component {
                 (this.state.showIcon ? "comment-settings-icon" : "none") : "none";
 
             return (
-                <div className="comment-item-text">
+                <div className={`${this.props.indexType}-item-text`}>
                     <Link
                         to={`/users/${this.props.commentAuthor.id}`}
                         className="comment-item-name"
@@ -170,19 +171,32 @@ class CommentItem extends React.Component {
     }
 
     render() {
-        if (this.props.comment) {    
+        if (this.props.comment) {
+            const nextIndex = this.props.comment.parentId ?
+                null :
+                <CommentsIndex
+                    indexType="reply"
+                    postId={this.props.comment.postId}
+                    parentId={this.props.comment.id}
+                />;
+
             return (
-                <div
-                    className="comment-item-box"
-                    onMouseEnter={this.showIcon}
-                    onMouseLeave={this.hideIcon}
-                >
-                    <img
-                        src={this.props.commentAuthor.defaultImgUrl}
-                        className="comment-avatar-icon"
-                    />
-                    {this.renderCommentBody()}
-                </div>
+                <li className="flex-column">
+                    <div
+                        className={`${this.props.indexType}-item-box`}
+                        onMouseEnter={this.showIcon}
+                        onMouseLeave={this.hideIcon}
+                    >
+                        <img
+                            src={this.props.commentAuthor.defaultImgUrl}
+                            className={`${this.props.indexType}-avatar-icon`}
+                        />
+                        {this.renderCommentBody()}
+                    </div>
+                    <div className="reply-index">
+                        {nextIndex}
+                    </div>
+                </li>
             )
         } else {
             return null;

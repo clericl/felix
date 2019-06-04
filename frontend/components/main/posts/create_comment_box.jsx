@@ -22,8 +22,8 @@ class CreateCommentBox extends React.Component {
         if (e.key === "Enter") {
             const newComment = this.state;
             newComment.authorId = this.props.currentUser;
-            newComment.postId = this.props.currentPost;
-            newComment.parentId = null;
+            newComment.postId = this.props.postId;
+            newComment.parentId = this.props.parentId;
             this.props.createComment(newComment).then(
                 res => this.setState({
                     body: "",
@@ -34,15 +34,18 @@ class CreateCommentBox extends React.Component {
 
     render() {
         return (
-            <div className="create-comment-box">
-                <img src={this.props.currentUserIcon} className="create-comment-avatar-icon" />
+            <div className={`create-${this.props.indexType}-box`}>
+                <img
+                    src={this.props.currentUserIcon}
+                    className={`create-${this.props.indexType}-avatar-icon`}
+                />
                 <input
                     type="text"
                     value={this.state.body}
                     onChange={this.handleChange}
                     onKeyPress={this.handleSubmit}
-                    className="create-comment-input"
-                    placeholder="Write a comment..."
+                    className={`create-${this.props.indexType}-input`}
+                    placeholder={`Write a ${this.props.indexType}...`}
                 />
             </div>
         )
