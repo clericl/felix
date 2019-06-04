@@ -44,7 +44,7 @@ class FriendsButton extends React.Component {
             if (this.props.pageUser.id === this.props.currentUser) {
                 return (
                     <button
-                        className="profile-header-button profile-friends-button"
+                        className="profile-header-button profile-friends-button none"
                         // onClick={}
                     >
                         <FaPen /> <p>Edit Profile</p>

@@ -5,3 +5,4 @@ json.birthday @user.birthday
 json.defaultImgUrl @user.default_img_url
 json.friends @user.friends
 json.pending @user.pending
+json.receivedPosts @user.received_posts

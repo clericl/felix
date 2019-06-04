@@ -17,33 +17,28 @@ class IntroBox extends React.Component {
 
     render() {
         if (this.props.pageUser) {
-            const { bio, school, title, workplace, hometown, currentCity } = this.props.pageUser;
+            const { school, title, workplace, hometown, currentCity } = this.props.pageUser;
 
-            const bioP = bio ? () => (
-                <p className="profile-intro-box-bio">
-                    {bio}
-                </p>
-            ) : () => null;
-            const schoolP = school ? () => (
+            const schoolP = school ? (
                 <p className="profile-intro-box-item">
                     <FaGraduationCap className="profile-intro-icon" />Studied at {school}
                 </p>
-            ) : () => null;
-            const workP = (title && workplace) ? () => (
+            ) : null;
+            const workP = (title && workplace) ? (
                 <p className="profile-intro-box-item">
                     <FaBriefcase className="profile-intro-icon" />{title} at {workplace}
                 </p>
-            ) : () => null;
-            const currentCityP = currentCity ? () => (
+            ) : null;
+            const currentCityP = currentCity ? (
                 <p className="profile-intro-box-item">
                     <GiHouse className="profile-intro-icon" />Lives in {currentCity}
                 </p>
-            ) : () => null;
-            const hometownP = hometown ? () => (
+            ) : null;
+            const hometownP = hometown ? (
                 <p className="profile-intro-box-item">
                     <FaMapMarkerAlt className="profile-intro-icon" />From {hometown}
                 </p>
-            ) : () => null;
+            ) : null;
 
             return (
                 <div className="profile-friends-box">
@@ -59,17 +54,17 @@ class IntroBox extends React.Component {
                         </li>
                     </ul>
                     <ul className="intro-box-ul">
-                        <li className="profile-intro-box-item">
-                            {workP()}
+                        <li className={workP ? "profile-intro-box-item" : "none"}>
+                            {workP}
                         </li>
-                        <li className="profile-intro-box-item">
-                            {schoolP()}
+                        <li className={schoolP ? "profile-intro-box-item" : "none"}>
+                            {schoolP}
                         </li>
-                        <li className="profile-intro-box-item">
-                            {currentCityP()}
+                        <li className={currentCityP ? "profile-intro-box-item" : "none"}>
+                            {currentCityP}
                         </li>
-                        <li className="profile-intro-box-item">
-                            {hometownP()}
+                        <li className={hometownP ? "profile-intro-box-item" : "none"}>
+                            {hometownP}
                         </li>
                     </ul>
                 </div>

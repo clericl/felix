@@ -12,6 +12,7 @@ json.set! @user.id do
     json.school @user.school
     json.currentCity @user.current_city
     json.hometown @user.hometown
+    json.receivedPosts @user.received_posts
     # other fields as they are added
 end
 

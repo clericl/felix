@@ -39,11 +39,12 @@ class User < ApplicationRecord
     # has_many :likes
 
     has_many :friend_requests
-    has_many :posts,
+
+    has_many :authored_posts,
         foreign_key: :author_id,
         class_name: :Post
-    has_many :received_posts, as: :postable
 
+    has_many :posts, as: :postable
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
@@ -67,6 +68,10 @@ class User < ApplicationRecord
     def pending
         self.friend_requests.where(status: "pending").pluck(:friend_id)
     end 
+
+    def received_posts
+        self.posts.pluck(:id)
+    end
 
     def is_password?(password)
         BCrypt::Password.new(self.password_digest).is_password?(password)

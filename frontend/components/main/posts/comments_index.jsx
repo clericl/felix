@@ -1,0 +1,17 @@
+import React from 'react';
+
+class CommentsIndex extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <ul>
+                {receivedComments}
+            </ul>
+        )
+    }
+}
+
+export default CommentsIndex;

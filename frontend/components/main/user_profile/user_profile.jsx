@@ -2,11 +2,11 @@ import React from 'react';
 import ProfileHeader from './profile_header';
 import FriendsBox from './friends_box';
 import IntroBox from './intro_box';
-import CreatePostModal from './create_post_modal';
+import CreatePostModal from '../posts/create_post_modal';
+import ProfileTimeline from './profile_timeline';
 import { withRouter } from 'react-router-dom';
 import { fetchUser } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
-import { takeRight } from 'lodash';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -25,9 +25,10 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        const friendsSample = takeRight(this.props.pageUser.friends, 9);
-
         if (this.props.pageUser.id) {
+            const friendsSample = this.props.pageUser.friends ?
+                this.props.pageUser.friends.slice(0, 8) : [];
+
             return (
                 <div className="profile-body">
                     <ProfileHeader pageUser={this.props.pageUser} />
@@ -38,6 +39,7 @@ class UserProfile extends React.Component {
                         </aside>
                         <main className="profile-main">
                             <CreatePostModal />
+                            <ProfileTimeline />
                         </main>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class FriendsBoxItem extends React.Component {
     constructor(props) {
@@ -19,30 +19,24 @@ class FriendsBoxItem extends React.Component {
     }
 
     render() {
-        if (this.state.fireRedirect) {
-            return (
-                <Redirect to={`/users/${this.state.redirectId}`} />
-            )
-        } else {
+        const itemStyle = {
+            backgroundImage: `url(${this.props.user.defaultImgUrl})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+        };
 
-            const itemStyle = {
-                backgroundImage: `url(${this.props.user.defaultImgUrl})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-            };
-    
-            const displayName = [
-                this.props.user.firstName,
-                this.props.user.lastName
-            ].join(" ");
-    
-            return (
-                <li className="friends-box-item" style={itemStyle}>
-                    {/* <img className="friends-box-item-pic" src={window.catvatarUrl} /> */}
+        const displayName = [
+            this.props.user.firstName,
+            this.props.user.lastName
+        ].join(" ");
+
+        return (
+            <li className="friends-box-item" style={itemStyle}>
+                <Link to={`/users/${this.props.user.id}`} className="friends-box-item">
                     <p>{displayName}</p>
-                </li>
-            )
-        }
+                </Link>
+            </li>
+        )
     }
 }
     

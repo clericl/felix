@@ -12,9 +12,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 
 const App = props => {
 
-    const { currentUser, sessionErrors } = props;
-
-    if (currentUser) {
+    if (props.currentUser) {
         return (
             <>
                 <Modal />
@@ -38,7 +36,6 @@ const App = props => {
 const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
-        sessionErrors: state.errors.sessions,
     }
 }; 
 

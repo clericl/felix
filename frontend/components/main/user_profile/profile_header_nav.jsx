@@ -26,21 +26,21 @@ class ProfileHeaderNav extends React.Component {
                     to={this.props.match.url}
                     onClick={e => this.toggleSelected(e, "timeline")}
                 >Timeline</Link>
-                <Link
+                {/* <Link
                     className={`profile-header-nav-button${this.state.selected === "about" ? "-selected" : ""}`}
                     to={this.props.match.url}
                     onClick={e => this.toggleSelected(e, "about")}
-                >About</Link>
-                <Link
+                >About</Link> */}
+                {/* <Link
                     className={`profile-header-nav-button${this.state.selected === "friends" ? "-selected" : ""}`}
                     to={this.props.match.url}
                     onClick={e => this.toggleSelected(e, "friends")}
-                >Friends</Link>
-                <Link
+                >Friends</Link> */}
+                {/* <Link
                     className={`profile-header-nav-button${this.state.selected === "photos" ? "-selected" : ""}`}
                     to={this.props.match.url}
                     onClick={e => this.toggleSelected(e, "photos")}
-                >Photos</Link>
+                >Photos</Link> */}
                 {/* <p
                     className="profile-header-nav-button"
                 >More &nbsp;<FaCaretDown /></p> */}

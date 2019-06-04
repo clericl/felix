@@ -11,3 +11,4 @@ json.workplace user.workplace
 json.school user.school
 json.currentCity user.current_city
 json.hometown user.hometown
+json.receivedPosts user.received_posts

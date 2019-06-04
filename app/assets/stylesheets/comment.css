@@ -1,0 +1,29 @@
+.create-comment-box {
+    height: 45px;
+    width: 100%;
+    background-color: white;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 8px;
+}
+
+.create-comment-avatar-icon {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.create-comment-input {
+    height: 40px;
+    width: 450px;
+    background-color: #f2f3f5;
+    padding: 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccd0d5;
+}

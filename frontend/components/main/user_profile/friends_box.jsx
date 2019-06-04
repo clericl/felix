@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchFriends } from '../../../actions/user_actions';
+import { fetchUser, fetchFriends } from '../../../actions/user_actions';
 import FriendsBoxItem from './friends_box_item';
 
 class FriendsBox extends React.Component {
@@ -9,7 +9,10 @@ class FriendsBox extends React.Component {
         super(props);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId != this.props.pageUser.id) {
+            this.props.fetchUser(this.props.pageUser.id);
+        }
         if (this.props.friendsSample.some(user => typeof user === "undefined")) {
             this.props.fetchFriends(this.props.currentUser);
         }
@@ -23,7 +26,7 @@ class FriendsBox extends React.Component {
             defaultImgUrl: window.catvatarUrl,
         };
 
-        if (this.props.pageUser) {
+        if (this.props.pageUser.friends) {
             return (
                 <div className="profile-friends-box">
                     <div className="profile-friends-box-header">
@@ -36,7 +39,7 @@ class FriendsBox extends React.Component {
                         <Link
                             className="profile-friends-box-count"
                             to={`/users/${this.props.pageUser.id}`}
-                        >{this.props.pageUser.friends.length || 0}</Link>
+                        >{this.props.pageUser.friends.length}</Link>
                     </div>
                     <ul className="friends-box-ul">
                         <FriendsBoxItem user={this.props.friendsSample[0] || nullUser} />
@@ -67,7 +70,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
     return {
-        fetchFriends: userId => dispatch(fetchFriends(userId))
+        fetchFriends: userId => dispatch(fetchFriends(userId)),
+        fetchUser: userId => dispatch(fetchUser(userId))
     }
 }
 
