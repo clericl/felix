@@ -37,12 +37,6 @@ export const fetchPost = postId => dispatch => {
     );
 };
 
-export const refetchPosts = (userId, postOffset) => dispatch => {
-    return PostAPIUtil.refetchPosts(userId, postOffset).then(
-        res => dispatch(receivePosts(res))
-    );
-};
-
 export const editPost = post => dispatch => {
     return PostAPIUtil.editPost(post).then(
         res => dispatch(receivePost(res))
@@ -52,5 +46,17 @@ export const editPost = post => dispatch => {
 export const deletePost = postId => dispatch => {
     return PostAPIUtil.deletePost(postId).then(
         res => dispatch(removePost(res))
+    );
+};
+
+export const refetchPosts = (userId, postOffset) => dispatch => {
+    return PostAPIUtil.refetchPosts(userId, postOffset).then(
+        res => dispatch(receivePosts(res))
+    );
+};
+
+export const refetchFeed = (userId, receivedPosts) => dispatch => {
+    return PostAPIUtil.refetchFeed(userId, receivedPosts).then(
+        res => dispatch(receivePosts(res))
     );
 };

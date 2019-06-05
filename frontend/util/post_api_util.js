@@ -19,16 +19,6 @@ export const fetchPost = postId => {
     });
 };
 
-export const refetchPosts = (userId, postOffset) => {
-    return $.ajax({
-        url: "api/posts/batch",
-        data: {
-            user_id: userId,
-            offset: postOffset,
-        },
-    });
-};
-
 export const editPost = post => {
     return $.ajax({
         method: "PATCH",
@@ -45,5 +35,25 @@ export const deletePost = postId => {
     return $.ajax({
         method: "DELETE",
         url: `api/posts/${postId}`,
+    });
+};
+
+export const refetchPosts = (userId, postOffset) => {
+    return $.ajax({
+        url: "api/posts/batch",
+        data: {
+            user_id: userId,
+            offset: postOffset,
+        },
+    });
+};
+
+export const refetchFeed = (userId, receivedPosts) => {
+    return $.ajax({
+        url: "api/posts/feed",
+        data: {
+            user_id: userId,
+            received_posts: receivedPosts || [],
+        },
     });
 };

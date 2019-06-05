@@ -68,7 +68,7 @@ class CreatePostModal extends React.Component {
 
                     const placeholder = this.props.pageUser.id !== this.props.currentUser ? 
                         `Write something to ${this.props.pageUser.firstName}...` :
-                        "What's on your mind?";
+                        this.props.placeholder;
             
                     return (
                         <div
@@ -111,17 +111,18 @@ class CreatePostModal extends React.Component {
     }
 }
 
-const msp = (state, ownProps) => {
+const profileMsp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
         currentUserIcon: state.entities.users[state.session.currentUser].defaultImgUrl,
         currentFriends: state.entities.users[state.session.currentUser].friends,
         pageUser: state.entities.users[ownProps.match.params.userId],
+        placeholder: "What's on your mind?",
         modal: state.ui.modal,
     };
 };
 
-const mdp = dispatch => {
+const profileMdp = dispatch => {
     return {
         createPost: post => dispatch(createPost(post)),
         closeModal: () => dispatch(closeModal()),
@@ -129,4 +130,28 @@ const mdp = dispatch => {
     };
 };
 
-export default withRouter(connect(msp, mdp)(CreatePostModal));
+const feedMsp = (state, ownProps) => {
+    const currentUser = state.session.currentUser || {};
+    const pageUser = state.entities.users[currentUser] || {};
+
+    return {
+        currentUser,
+        currentUserIcon: pageUser.defaultImgUrl,
+        currentFriends: pageUser.friends,
+        pageUser,
+        placeholder: `What's on your mind, ${pageUser.firstName}?`,
+        modal: state.ui.modal,
+    };
+};
+
+const feedMdp = dispatch => {
+    return {
+        createPost: post => dispatch(createPost(post)),
+        closeModal: () => dispatch(closeModal()),
+        openModal: () => dispatch(openModal("createPost")),
+    };
+};
+
+export const ProfilePostModal = withRouter(connect(profileMsp, profileMdp)(CreatePostModal));
+
+export const NewsFeedPostModal = withRouter(connect(feedMsp, feedMdp)(CreatePostModal));

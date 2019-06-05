@@ -149,27 +149,39 @@ User.create!(
     )
 end
 
-(2..49).to_a.each do |idx|
+friends = []
+
+(1..50).to_a.each do |idx|
+    (1..50).to_a.each do |jdx|
+        if idx < jdx
+            friends.push([idx, jdx])
+        end
+    end
+end
+
+friends.uniq.each do |pair|
     FriendRequest.create(
-        user_id: 1,
-        friend_id: idx,
-        status: ["accepted", "pending"].sample
+        user_id: pair[0],
+        friend_id: pair[1],
+        status: "accepted"
     )
 end
 
-500.times do |idx|
-    body = []
-    (1..20).to_a.sample.times do |jdx|
-        body.push("meow")
-    end
-    body = body.join(" ")
+(1..9).to_a.each do |idx|
+    30.times do |jdx|
+        body = []
+        (1..20).to_a.sample.times do |kdx|
+            body.push("meow")
+        end
+        body = body.join(" ")
 
-    Post.create(
-        author_id: (1..50).to_a.sample,
-        postable_type: "User",
-        postable_id: (1..50).to_a.sample,
-        body: [Faker::Hipster.sentence, body].sample
-    )
+        Post.create(
+            author_id: idx,
+            postable_type: "User",
+            postable_id: (1..10).to_a.sample,
+            body: [Faker::Hipster.sentence.downcase, body].sample
+        )
+    end
 end
 
 500.times do |idx|
@@ -199,25 +211,6 @@ end
 
     if post_like.valid?
         post_like.save
-    end
-end
-
-500.times do |idx|
-    body = []
-    (1..20).to_a.sample.times do |jdx|
-        body.push("meow")
-    end
-    body = body.join(" ")
-
-    comment = Comment.new(
-        author_id: (1..50).to_a.sample,
-        post_id: (1..500).to_a.sample,
-        parent_id: (1..500).to_a.sample,
-        body: [Faker::Hipster.sentence, body].sample
-    )
-
-    if comment.valid?
-        comment.save
     end
 end
 

@@ -449,3 +449,14 @@
 .profile-timeline {
     margin-top: 12px;
 }
+
+.post-item-header-name-container {
+    display: flex;
+    align-items: center;
+}
+
+.post-item-header-name-icon {
+    color: #616770;
+    font-size: 18px;
+    margin: none;
+}

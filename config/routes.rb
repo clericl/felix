@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'find_friend', to: "friend_requests#find"
     get 'get_users', to: "users#get_users"
     get 'posts/batch', to: "posts#batch"
+    get 'posts/feed', to: "posts#feed"
     get 'comments/batch', to: "comments#batch"
     resources :users, only: [:create, :show, :update, :index]
     resources :friend_requests, only: [:index, :create, :update, :destroy]

@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileHeader from './profile_header';
 import FriendsBox from './friends_box';
 import IntroBox from './intro_box';
-import CreatePostModal from '../posts/create_post_modal';
+import { ProfilePostModal } from '../posts/create_post_modal';
 import ProfileTimeline from './profile_timeline';
 import { withRouter } from 'react-router-dom';
 import { fetchUser, fetchFriends } from '../../../actions/user_actions';
@@ -39,7 +39,7 @@ class UserProfile extends React.Component {
                             <FriendsBox friendsSample={friendsSample}/>
                         </aside>
                         <main className="profile-main">
-                            <CreatePostModal />
+                            <ProfilePostModal />
                             <ProfileTimeline />
                         </main>
                     </div>

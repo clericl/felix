@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
+import { fetchUser } from '../../../actions/user_actions';
 import { toggleLikePost } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
-import { FaEllipsisH, FaRegCommentAlt, FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
 import ProfileHeaderDropdownItem from '../user_profile/profile_header_dropdown_item';
+import { FaEllipsisH, FaRegCommentAlt, FaRegThumbsUp, FaThumbsUp, FaCaretRight } from 'react-icons/fa';
 
 class PostItem extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class PostItem extends React.Component {
         this.addFocus = this.addFocus.bind(this);
         this.renderLikeButton = this.renderLikeButton.bind(this);
         this.renderLikeCountText = this.renderLikeCountText.bind(this);
+        this.renderPostName = this.renderPostName.bind(this);
     }
 
     toggleDropdown(e) {
@@ -42,6 +44,18 @@ class PostItem extends React.Component {
     addFocus() {
         const input = document.getElementById(`${this.props.post.id}-comment`);
         if (input) input.focus();
+    }
+
+    componentDidMount() {
+        if (!this.props.postAuthor) {
+            this.props.fetchUser(this.props.post.authorId);
+        }
+    }
+
+    componentDidUpdate() {
+        if (!this.props.postReceiver.firstName) {
+            this.props.fetchUser(this.props.post.postableId);
+        }
     }
 
     renderLikeButton() {
@@ -77,17 +91,53 @@ class PostItem extends React.Component {
         }
     }
 
-    render() {
+    renderPostName() {
         if (this.props.postAuthor) {
-            const displayName = [
+            const authorName = [
                 this.props.postAuthor.firstName,
                 this.props.postAuthor.lastName
             ].join(" ");
+    
+            const receiverName = [
+                this.props.postReceiver.firstName,
+                this.props.postReceiver.lastName,
+            ].join(" ");
+
+            if (this.props.post.authorId === this.props.post.postableId) {
+                return (
+                    <div className="flex-container">
+                        <Link
+                            className="post-item-header-name"
+                            to={`/users/${this.props.postAuthor.id}`}
+                        >{authorName}</Link>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="post-item-header-name-container">
+                        <Link
+                            className="post-item-header-name"
+                            to={`/users/${this.props.postAuthor.id}`}
+                        >{authorName}</Link>
+                        <FaCaretRight className="post-item-header-name-icon" />
+                        <Link
+                            className="post-item-header-name"
+                            to={`/users/${this.props.postReceiver.id}`}
+                        >{receiverName}</Link>
+                    </div>
+                )
+            }
+        } else {
+            return null;
+        }
+    }
+
+    render() {
+        if (this.props.postAuthor) {
 
             const display = `post-item-settings ${this.state.showDropdown ? "" : "hidden"}`;
-            const settingsIcon = (this.props.currentUser == this.props.match.params.userId) ?
+            const settingsIcon = (this.props.currentUser == this.props.post.authorId) ?
                 "post-item-settings-icon" : "none";
-            
             return (
                 <div className="post-item">
                     <div className="post-item-header">
@@ -96,11 +146,10 @@ class PostItem extends React.Component {
                             className="create-post-avatar-icon"
                         />
                         <div className="post-item-header-details">
-                            <Link
-                                className="post-item-header-name"
-                                to={`/users/${this.props.postAuthor.id}`}
-                            >{displayName}</Link>
-                            <p className="post-item-header-date">{this.props.post.displayDate}</p>
+                            <div className="post-item-header-details">
+                                {this.renderPostName()}
+                                <p className="post-item-header-date">{this.props.post.displayDate}</p>
+                            </div>
                         </div>
                         <FaEllipsisH
                             className={settingsIcon}
@@ -151,20 +200,21 @@ class PostItem extends React.Component {
 
 const msp = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    const likeCount = ownProps.post.likes
+
     return {
         currentUser,
         currentUserName: [
-            state.entities.users[state.session.currentUser].firstName,
-            state.entities.users[state.session.currentUser].lastName,
+            state.entities.users[currentUser].firstName,
+            state.entities.users[currentUser].lastName,
         ].join(" "),
         postAuthor: state.entities.users[ownProps.post.authorId],
-        likeCount,
+        postReceiver: state.entities.users[ownProps.post.postableId] || {},
     }
 }
 
 const mdp = dispatch => {
     return {
+        fetchUser: id => dispatch(fetchUser(id)),
         closeModal: () => dispatch(closeModal()),
         openModal: ([modal, id]) => dispatch(openModal([modal, id])),
         toggleLikePost: (userId, likeableId) => dispatch(toggleLikePost(userId, likeableId)),

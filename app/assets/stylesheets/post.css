@@ -12,7 +12,8 @@
     position: relative;
     border: 1px solid #dddfe2;
     margin-top: 12px;
-    border-radius: 3px;
+    border-radius: 5px;
+    background-color: white;
 }
 
 .create-post-box-high {
@@ -20,7 +21,8 @@
     z-index: 11;
     border: 1px solid #dddfe2;
     margin: 12px 0;
-    border-radius: 3px;
+    border-radius: 5px;
+    background-color: white;
 }
 
 .create-post-header {
@@ -28,6 +30,7 @@
     background-color: #f5f6f7;
     display: flex;
     justify-content: space-between;
+    border-radius: 5px 5px 0 0;
 }
 
 .create-post-header-item {
@@ -176,7 +179,7 @@
     justify-content: center;
     margin-bottom: 12px;
     border: 1px solid #dddfe2;
-    border-radius: 3px;
+    border-radius: 5px;
     white-space: pre-wrap;
 }
 
