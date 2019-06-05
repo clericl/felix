@@ -23,7 +23,7 @@ class ProfileTimeline extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.pageUser.id !== this.props.pageUser.id) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
             this.setState({
                 postOffset: 0,
             });

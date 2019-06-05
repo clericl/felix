@@ -37,15 +37,18 @@ class User < ApplicationRecord
     has_many :posts, as: :postable, dependent: :destroy
     
     has_many :authored_posts,
-        inverse_of: :author,
+        foreign_key: :author_id,
+        class_name: :Post,
         dependent: :destroy
     
     has_many :comments,
-        inverse_of: :author,
+        foreign_key: :author_id,
+        class_name: :Comment,
         dependent: :destroy
 
     has_many :liked,
-        inverse_of: :liker,
+        foreign_key: :user_id,
+        class_name: :Like,
         dependent: :destroy
 
     def self.find_by_credentials(username, password)

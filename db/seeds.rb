@@ -12,6 +12,10 @@ Comment.destroy_all
 Like.destroy_all
 FriendRequest.destroy_all
 
+ActiveRecord::Base.connection.tables.each do |t|
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
+end
+
 User.create!(
     first_name: "Tony",
     last_name: "Tiger",
@@ -129,3 +133,102 @@ User.create!(
     hometown: "Austin, Texas"
 )
 
+50.times do |idx|
+    User.create(
+        first_name: Faker::Creature::Cat.name,
+        last_name: Faker::Creature::Animal.name,
+        birthday: Date.parse("Thu, 28 Jul 1966"),
+        email: "test#{idx}@test.com",
+        gender: ["m", "f"].sample,
+        password: "starwars",
+        bio: Faker::Movie.quote,
+        title: Faker::Hipster.word.capitalize,
+        workplace: Faker::Company.name + " " + Faker::Company.suffix,
+        current_city: Faker::Address.city,
+        hometown: Faker::Address.city
+    )
+end
+
+(2..49).to_a.each do |idx|
+    FriendRequest.create(
+        user_id: 1,
+        friend_id: idx,
+        status: ["accepted", "pending"].sample
+    )
+end
+
+500.times do |idx|
+    body = []
+    (1..20).to_a.sample.times do |jdx|
+        body.push("meow")
+    end
+    body = body.join(" ")
+
+    Post.create(
+        author_id: (1..50).to_a.sample,
+        postable_type: "User",
+        postable_id: (1..50).to_a.sample,
+        body: [Faker::Hipster.sentence, body].sample
+    )
+end
+
+500.times do |idx|
+    body = []
+    (1..20).to_a.sample.times do |jdx|
+        body.push("meow")
+    end
+    body = body.join(" ")
+
+    comment = Comment.new(
+        author_id: (1..50).to_a.sample,
+        post_id: (1..500).to_a.sample,
+        body: [Faker::Hipster.sentence, body].sample
+    )
+
+    if comment.valid?
+        comment.save
+    end
+end
+
+500.times do |idx|
+    post_like = Like.new(
+        user_id: (1..50).to_a.sample,
+        likeable_id: (1..500).to_a.sample,
+        likeable_type: "Post"
+    )
+
+    if post_like.valid?
+        post_like.save
+    end
+end
+
+500.times do |idx|
+    body = []
+    (1..20).to_a.sample.times do |jdx|
+        body.push("meow")
+    end
+    body = body.join(" ")
+
+    comment = Comment.new(
+        author_id: (1..50).to_a.sample,
+        post_id: (1..500).to_a.sample,
+        parent_id: (1..500).to_a.sample,
+        body: [Faker::Hipster.sentence, body].sample
+    )
+
+    if comment.valid?
+        comment.save
+    end
+end
+
+500.times do |idx|
+    comment_like = Like.new(
+        user_id: (1..50).to_a.sample,
+        likeable_id: (1..500).to_a.sample,
+        likeable_type: "Comment"
+    )
+
+    if comment_like.valid?
+        comment_like.save
+    end
+end

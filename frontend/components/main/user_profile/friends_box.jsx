@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchUser } from '../../../actions/user_actions';
+import { fetchUser, fetchFriends } from '../../../actions/user_actions';
 import FriendsBoxItem from './friends_box_item';
 
 class FriendsBox extends React.Component {
@@ -10,8 +10,14 @@ class FriendsBox extends React.Component {
         this.renderFriendsBoxItems = this.renderFriendsBoxItems.bind(this);
     }
 
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.match.params.userId !== this.props.match.params.userId) {
+    //         this.props.fetchFriends(this.props.match.params.userId);
+    //     }
+    // }
+
     renderFriendsBoxItems() {
-        if (this.props.friendsSample.length < 1) {
+        if (this.props.friendsSample.length < 1 && this.props.currentUser == this.props.pageUser.id) {
             return (
                 <ul className="intro-box-ul">
                     <div className="profile-intro-box-add-bio" >

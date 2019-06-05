@@ -18,8 +18,8 @@ class UserProfile extends React.Component {
         this.props.fetchFriends(this.props.match.params.userId);
     }
 
-    componentDidUpdate() {
-        if (this.props.pageUser.id != this.props.match.params.userId) {
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId != this.props.pageUser.id) {
             this.props.fetchUser(this.props.match.params.userId);
             this.props.fetchFriends(this.props.match.params.userId);
         }
@@ -28,7 +28,7 @@ class UserProfile extends React.Component {
     render() {
         if (this.props.pageUser.id) {
             const friendsSample = this.props.pageUser.friends ?
-                this.props.pageUser.friends.slice(0, 8) : [];
+                this.props.pageUser.friends.slice(0, 9) : [];
 
             return (
                 <div className="profile-body">
