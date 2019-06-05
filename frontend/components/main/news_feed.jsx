@@ -39,7 +39,11 @@ class NewsFeed extends React.Component {
 
 const msp = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    const currentFriends = state.entities.users[currentUser].friends;
+    let currentFriends = [];
+
+    if (state.entities.users[currentUser]) {
+        currentFriends = state.entities.users[currentUser].friends;
+    };
 
     const receivedPosts = Object.values(state.entities.posts)
         .filter(post => (
