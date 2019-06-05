@@ -1,6 +1,6 @@
 import * as FriendAPIUtil from '../util/friend_api_util';
 
-import { receiveUser } from './user_actions';
+import { receiveUser, receiveUsers } from './user_actions';
 
 export const addFriend = (userId, targetId) => dispatch => {
     return FriendAPIUtil.addFriend(userId, targetId).then(
@@ -14,7 +14,7 @@ export const deleteFriend = (userId, targetId) => dispatch => {
     return FriendAPIUtil.findFriendId(userId, targetId).then(
         requestId => {
             return FriendAPIUtil.deleteFriend(requestId).then(
-                res => dispatch(receiveUser(res))
+                res => dispatch(receiveUsers(res))
             );
         }
     );

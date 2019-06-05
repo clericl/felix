@@ -5,7 +5,7 @@ import IntroBox from './intro_box';
 import CreatePostModal from '../posts/create_post_modal';
 import ProfileTimeline from './profile_timeline';
 import { withRouter } from 'react-router-dom';
-import { fetchUser } from '../../../actions/user_actions';
+import { fetchUser, fetchFriends } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
 
 class UserProfile extends React.Component {
@@ -15,11 +15,13 @@ class UserProfile extends React.Component {
 
     componentDidMount() {
         this.props.fetchUser(this.props.match.params.userId);
+        this.props.fetchFriends(this.props.match.params.userId);
     }
 
     componentDidUpdate() {
         if (this.props.pageUser.id != this.props.match.params.userId) {
             this.props.fetchUser(this.props.match.params.userId);
+            this.props.fetchFriends(this.props.match.params.userId);
         }
     }
 
@@ -59,6 +61,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         fetchUser: userId => dispatch(fetchUser(userId)),
+        fetchFriends: userId => dispatch(fetchFriends(userId)),
     }
 }
 

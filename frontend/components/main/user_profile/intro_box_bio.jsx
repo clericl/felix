@@ -90,13 +90,13 @@ class IntroBoxBio extends React.Component {
                     )
                 } else {
                     return (
-                        <p
+                        <div
                             className="profile-intro-box-add-bio"
                         >
                             <FaRegCommentAlt className="profile-intro-box-add-bio-icon" />
                             <p>Add a short bio to tell people more about yourself.</p>
-                            <p className="profile-intro-box-add-bio-link" onClick={this.showEdit}>Add Bio</p>
-                        </p>
+                            <p className="profile-intro-box-add-bio-link" onClick={this.toggleEdit}>Add Bio</p>
+                        </div>
                     )
                 };
             } else {

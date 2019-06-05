@@ -13,7 +13,4 @@ json.set! @user.id do
     json.currentCity @user.current_city
     json.hometown @user.hometown
     json.receivedPosts @user.received_posts
-    # other fields as they are added
 end
-
-# json.friend_requests @user.friend_requests

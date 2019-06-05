@@ -3,15 +3,21 @@ import { merge } from 'lodash';
 
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
-    
+    let newState;
+
     switch (action.type) {
         case RECEIVE_USER:
-            const newState = merge({}, state, action.user);
+            newState = merge({}, state, action.user);
             delete newState[Object.keys(action.user)[0]];
             newState[Object.keys(action.user)[0]] = Object.values(action.user)[0];
             return newState;
         case RECEIVE_USERS:
-            return merge({}, state, action.users);
+            newState = merge({}, state, action.users);
+            Object.keys(action.users).forEach(key => {
+                delete newState[key];
+                newState[key] = action.users[key];
+            });
+            return newState;
         default:
             return state;
     }

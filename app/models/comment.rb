@@ -15,4 +15,6 @@ class Comment < ApplicationRecord
     has_many :children,
         inverse_of: :parent
 
+    has_many :likes, as: :likeable
+    
 end

@@ -13,6 +13,7 @@ class FriendsButton extends React.Component {
         };
         this.toggleHidden = this.toggleHidden.bind(this);
         this.toggleShow = this.toggleShow.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         window.dropdownTimeout = null;
     }
 
@@ -37,9 +38,15 @@ class FriendsButton extends React.Component {
         500);
     }
 
+    handleDelete(e) {
+        this.props.deleteFriend(this.props.currentUser, this.props.pageUser.id);
+        this.setState({
+            show: false,
+        });
+    }
+
     render() {
         const display = "friends-dropdown-box " + (this.state.show ? "slow-show" : "hidden");
-        
         if (this.props.pageUser) {
             if (this.props.pageUser.id === this.props.currentUser) {
                 return (
@@ -54,6 +61,7 @@ class FriendsButton extends React.Component {
                 this.props.currentFriends.includes(this.props.pageUser.id) ||
                 this.props.pageUser.friends.includes(this.props.currentUser)
                 ) {
+                console.log("friends")
                 return (
                     <>
                         <button
@@ -70,16 +78,13 @@ class FriendsButton extends React.Component {
                         >
                             <ProfileHeaderDropdownItem
                                 text="Unfriend"
-                                action={e =>
-                                    this.props.deleteFriend(
-                                        this.props.currentUser,
-                                        this.props.pageUser.id
-                                )}
+                                action={this.handleDelete}
                             />
                         </ul>
                     </>
                 )
             } else if (this.props.currentPending.includes(this.props.pageUser.id)) {
+                console.log("sent")
                 return (
                     <>
                         <button
@@ -96,16 +101,13 @@ class FriendsButton extends React.Component {
                         >
                             <ProfileHeaderDropdownItem
                                 text="Cancel"
-                                action={e =>
-                                    this.props.deleteFriend(
-                                        this.props.currentUser,
-                                        this.props.pageUser.id
-                                    )}
+                                action={this.handleDelete}
                             />
                         </ul>
                     </>
                 )
             } else if (this.props.pageUser.pending.includes(this.props.currentUser)) {
+                console.log("respond")
                 return (
                     <>
                         <button
@@ -130,16 +132,13 @@ class FriendsButton extends React.Component {
                             />
                             <ProfileHeaderDropdownItem
                                 text="Delete Request"
-                                action={e =>
-                                    this.props.deleteFriend(
-                                        this.props.pageUser.id,
-                                        this.props.currentUser
-                                    )}
+                                action={this.handleDelete}
                             />
                         </ul>
                     </>
                 )
             } else {
+                console.log("add")
                 return (
                     <button
                         className="profile-header-button profile-friends-button"
@@ -162,10 +161,10 @@ class FriendsButton extends React.Component {
 const msp = (state, ownProps) => {
     const currentUser = state.session.currentUser;
     return {
-        pageUser: state.entities.users[ownProps.match.params.userId],
         currentUser: currentUser,
-        currentPending: state.entities.users[currentUser].pending,
-        currentFriends: state.entities.users[currentUser].friends,
+        currentPending: state.entities.users[currentUser].pending || [],
+        currentFriends: state.entities.users[currentUser].friends || [],
+        pageUser: state.entities.users[ownProps.match.params.userId],
     };
 };
 

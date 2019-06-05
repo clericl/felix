@@ -150,7 +150,7 @@
 
 .profile-header-button:active {
     background-color: #e4e4e4;
-    transform: scale(0.99);
+    transform: scale(0.98);
     transition: all 0s;
 }
 
@@ -444,4 +444,8 @@
     background-color: #4267b2;
     border-radius: 3px;
     margin-right: 4px;
+}
+
+.profile-timeline {
+    margin-top: 12px;
 }

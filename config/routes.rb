@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
   
   namespace :api, defaults: {format: :json} do
+    get 'find_like', to: "likes#find"
     get 'find_friend', to: "friend_requests#find"
     get 'get_users', to: "users#get_users"
     get 'posts/batch', to: "posts#batch"
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     resources :friend_requests, only: [:index, :create, :update, :destroy]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
     resources :comments, only: [:index, :create, :update, :destroy]
+    resources :likes, only: [:create, :destroy]
     resource :session, only: [:create, :destroy]
   end
 end

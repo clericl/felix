@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CommentsIndex from './comments_index';
-import { FaEllipsisH } from 'react-icons/fa';
 import { withRouter, Link } from 'react-router-dom';
+import { toggleLikePost } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
+import { FaEllipsisH, FaRegCommentAlt, FaRegThumbsUp } from 'react-icons/fa';
 import ProfileHeaderDropdownItem from '../user_profile/profile_header_dropdown_item';
 
 class PostItem extends React.Component {
@@ -14,6 +15,8 @@ class PostItem extends React.Component {
         };
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.hideDropdown = this.hideDropdown.bind(this);
+        this.toggleLike = this.toggleLike.bind(this);
+        this.addFocus = this.addFocus.bind(this);
     }
 
     toggleDropdown(e) {
@@ -28,6 +31,15 @@ class PostItem extends React.Component {
         this.setState({
             showDropdown: false,
         });
+    }
+
+    toggleLike() {
+        this.props.toggleLikePost(this.props.currentUser, this.props.post.id);
+    }
+
+    addFocus() {
+        const input = document.getElementById(`${this.props.post.id}-post`);
+        if (input) input.focus();
     }
 
     render() {
@@ -77,6 +89,14 @@ class PostItem extends React.Component {
                         <div className="post-item-actions-counts">
                         </div>
                         <div className="post-item-actions-nav">
+                            <div
+                                className="post-item-action"
+                                onClick={this.toggleLike}
+                            ><FaRegThumbsUp className="post-item-action-icon" /> Like</div>
+                            <div
+                                className="post-item-action"
+                                onClick={this.addFocus}
+                            ><FaRegCommentAlt className="post-item-action-icon" /> Comment</div>
                         </div>
                     </div>
                     <CommentsIndex postId={this.props.post.id} parentId={null} indexType="comment" />
@@ -99,6 +119,7 @@ const mdp = dispatch => {
     return {
         closeModal: () => dispatch(closeModal()),
         openModal: ([modal, id]) => dispatch(openModal([modal, id])),
+        toggleLikePost: (userId, likeableId) => dispatch(toggleLikePost(userId, likeableId)),
     }
 }
 

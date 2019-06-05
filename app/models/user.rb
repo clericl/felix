@@ -24,27 +24,26 @@ class User < ApplicationRecord
     validates :last_name, presence: { message: "lname" }
     validates :birthday, presence: { message: "birthday" }
     validates :gender, presence: { message: "gender" }
-    # validates :gender, inclusion: { in: ["m", "f", "t"] }
+    validates :password_digest, :session_token, presence: true, uniqueness: true
     validates :password,
         length: { minimum: 6, allow_nil: true, message: "newpassword" }
     validate :email_correct_format
-    
-    validates :password_digest, :session_token, presence: true, uniqueness: true
 
     before_validation :ensure_session_token, :ensure_default_img_url, :ensure_capitalized
 
     attr_reader :password
 
-    # has_many :comments
-    # has_many :likes
-
     has_many :friend_requests
-
-    has_many :authored_posts,
-        foreign_key: :author_id,
-        class_name: :Post
-
     has_many :posts, as: :postable
+    
+    has_many :authored_posts,
+        inverse_of: :author
+    
+    has_many :comments,
+        inverse_of: :author
+
+    has_many :liked,
+        inverse_of: :liker
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
@@ -101,7 +100,7 @@ class User < ApplicationRecord
     end
 
     def ensure_default_img_url
-        self.default_img_url ||= "http://localhost:3000/assets/catvatar-d2e991ad62187cb1cc169a044df9414ce311cb218801ee8d745408dadcfbcf74.jpg"
+        self.default_img_url ||= "/assets/catvatar.jpg"
     end
 
     def ensure_capitalized

@@ -19,24 +19,28 @@ class FriendsBoxItem extends React.Component {
     }
 
     render() {
-        const itemStyle = {
-            backgroundImage: `url(${this.props.user.defaultImgUrl})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-        };
-
-        const displayName = [
-            this.props.user.firstName,
-            this.props.user.lastName
-        ].join(" ");
-
-        return (
-            <li className="friends-box-item" style={itemStyle}>
-                <Link to={`/users/${this.props.user.id}`} className="friends-box-item">
-                    <p>{displayName}</p>
-                </Link>
-            </li>
-        )
+        if (this.props.user) {
+            const itemStyle = {
+                backgroundImage: `url(${this.props.user.defaultImgUrl})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+            };
+    
+            const displayName = [
+                this.props.user.firstName,
+                this.props.user.lastName
+            ].join(" ");
+    
+            return (
+                <li className="friends-box-item" style={itemStyle}>
+                    <Link to={`/users/${this.props.user.id}`} className="friends-box-item">
+                        <p>{displayName}</p>
+                    </Link>
+                </li>
+            )
+        } else {
+            return null;
+        }
     }
 }
     

@@ -1,32 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { fetchUser, fetchFriends } from '../../../actions/user_actions';
+import { fetchUser } from '../../../actions/user_actions';
 import FriendsBoxItem from './friends_box_item';
 
 class FriendsBox extends React.Component {
     constructor(props) {
         super(props);
+        this.renderFriendsBoxItems = this.renderFriendsBoxItems.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.match.params.userId != this.props.pageUser.id) {
-            this.props.fetchUser(this.props.pageUser.id);
-        }
-        if (this.props.friendsSample.some(user => typeof user === "undefined")) {
-            this.props.fetchFriends(this.props.currentUser);
+    renderFriendsBoxItems() {
+        if (this.props.friendsSample.length < 1) {
+            return (
+                <ul className="intro-box-ul">
+                    <div className="profile-intro-box-add-bio" >
+                        <img src="https://www.facebook.com/rsrc.php/v3/yg/r/vUnFbjB_5mv.png" />
+                        <p>Add friends to start seeing their updates.</p>
+                    </div>
+                </ul>
+            )
+        } else {
+            return (
+                <ul className="friends-box-ul">
+                    {this.props.friendsSample.map((friend, index) => {
+                        return <FriendsBoxItem user={friend} key={index} />
+                    })}
+                </ul>
+            )
         }
     }
 
     render() {
-        const nullUser = {
-            id: "",
-            firstName: "Veronica",
-            lastName: "McPaddington",
-            defaultImgUrl: window.catvatarUrl,
-        };
-
-        if (this.props.pageUser.friends) {
+        if (this.props.pageUser) {
             return (
                 <div className="profile-friends-box">
                     <div className="profile-friends-box-header">
@@ -39,19 +45,9 @@ class FriendsBox extends React.Component {
                         <Link
                             className="profile-friends-box-count"
                             to={`/users/${this.props.pageUser.id}`}
-                        >{this.props.pageUser.friends.length}</Link>
+                        >{this.props.pageUser.friends ? this.props.pageUser.friends.length : 0}</Link>
                     </div>
-                    <ul className="friends-box-ul">
-                        <FriendsBoxItem user={this.props.friendsSample[0] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[1] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[2] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[3] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[4] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[5] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[6] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[7] || nullUser} />
-                        <FriendsBoxItem user={this.props.friendsSample[8] || nullUser} />
-                    </ul>
+                    {this.renderFriendsBoxItems()}
                 </div>
             )
         } else {

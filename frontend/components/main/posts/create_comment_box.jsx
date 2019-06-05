@@ -32,6 +32,7 @@ class CreateCommentBox extends React.Component {
         }
     }
 
+
     render() {
         return (
             <div className={`create-${this.props.indexType}-box`}>
@@ -42,6 +43,7 @@ class CreateCommentBox extends React.Component {
                 <input
                     type="text"
                     value={this.state.body}
+                    id={`${this.props.postId}-post`}
                     onChange={this.handleChange}
                     onKeyPress={this.handleSubmit}
                     className={`create-${this.props.indexType}-input`}

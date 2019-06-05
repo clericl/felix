@@ -126,7 +126,7 @@ class CommentItem extends React.Component {
                         value={this.state.body}
                         onChange={this.handleChange}
                         onKeyDown={this.handleKeyDown}
-                        className="edit-comment-input"
+                        className={`edit-${this.props.indexType}-input`}
                         placeholder="Write a comment..."
                         onFocus={e => this.toggleEditFocus(e, true)}
                         onBlur={e => this.toggleEditFocus(e, false)}

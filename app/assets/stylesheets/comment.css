@@ -17,8 +17,8 @@
     font-family: sans-serif;
     display: flex;
     align-items: center;
-    margin-top: 2px;
-    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-bottom: 2px;
 }
 
 .create-comment-avatar-icon {
@@ -71,9 +71,9 @@
     background-color: white;
     font-family: sans-serif;
     display: flex;
-    margin-top: 2px;
+    margin-top: 8px;
     margin-left: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .reply-item-box {
@@ -82,9 +82,9 @@
     background-color: white;
     font-family: sans-serif;
     display: flex;
-    margin-top: 2px;
+    margin-top: 8px;
     margin-left: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 }
 
 .reply-avatar-icon {
@@ -189,6 +189,17 @@
 
 .edit-comment-input {
     width: 450px;
+    background-color: #f2f3f5;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 20px;
+    resize: none;
+    box-sizing: border-box;
+    border: 1px solid #ccd0d5;
+}
+
+.edit-reply-input {
+    width: 413px;
     background-color: #f2f3f5;
     padding: 12px;
     font-size: 14px;

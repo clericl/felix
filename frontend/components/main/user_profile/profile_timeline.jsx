@@ -38,7 +38,7 @@ class ProfileTimeline extends React.Component {
             );
     
             return (
-                <ul>
+                <ul className="profile-timeline">
                     {receivedPosts}
                     <Waypoint onEnter={this.reload} />
                 </ul>
