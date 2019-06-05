@@ -43,7 +43,7 @@ class CreateCommentBox extends React.Component {
                 <input
                     type="text"
                     value={this.state.body}
-                    id={`${this.props.postId}-post`}
+                    id={`${this.props.indexType === "comment" ? this.props.postId : this.props.parentId}-${this.props.indexType}`}
                     onChange={this.handleChange}
                     onKeyPress={this.handleSubmit}
                     className={`create-${this.props.indexType}-input`}

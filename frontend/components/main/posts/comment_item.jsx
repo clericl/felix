@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FaEllipsisH } from 'react-icons/fa';
 import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
 import TextareaAutosize from 'react-autosize-textarea';
+import { FaEllipsisH, FaThumbsUp } from 'react-icons/fa';
 import { editComment } from '../../../actions/comment_actions';
+import { toggleLikeComment } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
 import ProfileHeaderDropdownItem from '../user_profile/profile_header_dropdown_item';
 
@@ -27,6 +28,8 @@ class CommentItem extends React.Component {
         this.handleChange = this.handleChange.bind(this);   
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.toggleEditFocus = this.toggleEditFocus.bind(this);
+        this.toggleLike = this.toggleLike.bind(this);
+        this.addFocus = this.addFocus.bind(this);
     }
 
     showIcon(e) {
@@ -90,6 +93,15 @@ class CommentItem extends React.Component {
         this.setState({
             editFocus: bool,
         });
+    }
+
+    toggleLike() {
+        this.props.toggleLikeComment(this.props.currentUser, this.props.comment.id);
+    }
+
+    addFocus() {
+        const input = document.getElementById(`${this.props.comment.parentId || this.props.comment.id}-reply`);
+        if (input) input.focus();
     }
 
     renderCommentBody() {
@@ -165,19 +177,24 @@ class CommentItem extends React.Component {
                             action={e => this.props.openModal(["deleteComment", this.props.comment.id])}
                         />
                     </ul>
+                    <div className={this.props.comment.likes.length ? "comment-likes-count" : "none"}>
+                        <FaThumbsUp className="comment-likes-count-icon" />
+                        <p className="post-item-count-text">{this.props.comment.likes.length}</p>
+                    </div>
                 </div>
             )
         }
     }
 
     render() {
-        if (this.props.comment) {
+        if (this.props.comment && this.props.commentAuthor) {
             const nextIndex = this.props.comment.parentId ?
                 null :
                 <CommentsIndex
                     indexType="reply"
                     postId={this.props.comment.postId}
                     parentId={this.props.comment.id}
+                    // childComments={this.props.comment.comments}
                 />;
 
             return (
@@ -188,10 +205,23 @@ class CommentItem extends React.Component {
                         onMouseLeave={this.hideIcon}
                     >
                         <img
-                            src={this.props.commentAuthor.defaultImgUrl}
+                            src={this.props.commentAuthor.defaultImgUrl || ""}
                             className={`${this.props.indexType}-avatar-icon`}
                         />
                         {this.renderCommentBody()}
+                    </div>
+                    <div className={`${this.props.indexType}-actions`}>
+                        <p
+                            className={`comment-action-link ${this.props.comment.likes.includes(this.props.currentUser) ? "liked" : ""}`}
+                            onClick={this.toggleLike}
+                        >Like</p>
+                        &nbsp;·&nbsp;
+                        <p
+                            className="comment-action-link"
+                            onClick={this.addFocus}
+                        >Reply</p>
+                        &nbsp;·&nbsp;
+                        <p>{this.props.comment.displayDate}</p>
                     </div>
                     <div className="reply-index">
                         {nextIndex}
@@ -216,6 +246,7 @@ const mdp = dispatch => {
         closeModal: () => dispatch(closeModal()),
         openModal: ([modal, id]) => dispatch(openModal([modal, id])),
         editComment: comment => dispatch(editComment(comment)),
+        toggleLikeComment: (userId, likeableId) => dispatch(toggleLikeComment(userId, likeableId)),
     }
 }
 

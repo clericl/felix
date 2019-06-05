@@ -50,10 +50,12 @@ class ProfileTimeline extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+    const receivedPosts = Object.values(state.entities.posts)
+        .filter(post => (post.postableId == ownProps.match.params.userId))
+        .reverse();
+
     return {
-        receivedPosts: Object.values(state.entities.posts)
-            .filter(post => (post.postableId == ownProps.match.params.userId))
-            .reverse(),
+        receivedPosts,
         pageUser: state.entities.users[ownProps.match.params.userId],
     }
 }

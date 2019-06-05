@@ -35,7 +35,7 @@ class Api::FriendRequestsController < ApplicationController
 
     def destroy
         @friend = FriendRequest.find(params[:id])
-        if @friend.delete
+        if @friend.destroy
             render :show
         else
             render json: @friend.errors.values.flatten, status: 422

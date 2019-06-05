@@ -4,7 +4,7 @@ import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
 import { toggleLikePost } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
-import { FaEllipsisH, FaRegCommentAlt, FaRegThumbsUp } from 'react-icons/fa';
+import { FaEllipsisH, FaRegCommentAlt, FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
 import ProfileHeaderDropdownItem from '../user_profile/profile_header_dropdown_item';
 
 class PostItem extends React.Component {
@@ -17,6 +17,8 @@ class PostItem extends React.Component {
         this.hideDropdown = this.hideDropdown.bind(this);
         this.toggleLike = this.toggleLike.bind(this);
         this.addFocus = this.addFocus.bind(this);
+        this.renderLikeButton = this.renderLikeButton.bind(this);
+        this.renderLikeCountText = this.renderLikeCountText.bind(this);
     }
 
     toggleDropdown(e) {
@@ -38,8 +40,41 @@ class PostItem extends React.Component {
     }
 
     addFocus() {
-        const input = document.getElementById(`${this.props.post.id}-post`);
+        const input = document.getElementById(`${this.props.post.id}-comment`);
         if (input) input.focus();
+    }
+
+    renderLikeButton() {
+        if (this.props.post.likes.includes(this.props.currentUser)) {
+            return (
+                <div
+                    className="post-item-action liked"
+                    onClick={this.toggleLike}
+                ><FaThumbsUp className="post-item-action-icon" /> Like</div>
+            )
+        } else {
+            return (
+                <div
+                    className="post-item-action"
+                    onClick={this.toggleLike}
+                ><FaRegThumbsUp className="post-item-action-icon" /> Like</div>
+            )
+        }
+    }
+
+    renderLikeCountText() {
+        const count = this.props.post.likes.length;
+        if (this.props.post.likes.includes(this.props.currentUser)) {
+            if (count === 1) {
+                return this.props.currentUserName
+            } else if (count === 2) {
+                return "You and 1 other"
+            } else {
+                return `You and ${(count - 1)} others`
+            }
+        } else {
+            return count;
+        }
     }
 
     render() {
@@ -52,7 +87,7 @@ class PostItem extends React.Component {
             const display = `post-item-settings ${this.state.showDropdown ? "" : "hidden"}`;
             const settingsIcon = (this.props.currentUser == this.props.match.params.userId) ?
                 "post-item-settings-icon" : "none";
-    
+            
             return (
                 <div className="post-item">
                     <div className="post-item-header">
@@ -87,19 +122,25 @@ class PostItem extends React.Component {
                     </div>
                     <div className="post-item-actions">
                         <div className="post-item-actions-counts">
+                            <div className={this.props.post.likes.length ? "post-item-likes-count" : "none"}>
+                                <FaThumbsUp className="post-item-likes-count-icon" />
+                                <p className="post-item-count-text">{this.renderLikeCountText()}</p>
+                            </div>
                         </div>
                         <div className="post-item-actions-nav">
-                            <div
-                                className="post-item-action"
-                                onClick={this.toggleLike}
-                            ><FaRegThumbsUp className="post-item-action-icon" /> Like</div>
+                            {this.renderLikeButton()}
                             <div
                                 className="post-item-action"
                                 onClick={this.addFocus}
                             ><FaRegCommentAlt className="post-item-action-icon" /> Comment</div>
                         </div>
                     </div>
-                    <CommentsIndex postId={this.props.post.id} parentId={null} indexType="comment" />
+                    <CommentsIndex
+                        indexType="comment"
+                        parentId={null}
+                        postId={this.props.post.id}
+                        // childComments={this.props.post.comments}
+                    />
                 </div>
             )
         } else {
@@ -109,9 +150,16 @@ class PostItem extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+    const currentUser = state.session.currentUser;
+    const likeCount = ownProps.post.likes
     return {
-        currentUser: state.session.currentUser,
+        currentUser,
+        currentUserName: [
+            state.entities.users[state.session.currentUser].firstName,
+            state.entities.users[state.session.currentUser].lastName,
+        ].join(" "),
         postAuthor: state.entities.users[ownProps.post.authorId],
+        likeCount,
     }
 }
 

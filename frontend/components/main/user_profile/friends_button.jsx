@@ -61,7 +61,6 @@ class FriendsButton extends React.Component {
                 this.props.currentFriends.includes(this.props.pageUser.id) ||
                 this.props.pageUser.friends.includes(this.props.currentUser)
                 ) {
-                console.log("friends")
                 return (
                     <>
                         <button
@@ -84,7 +83,6 @@ class FriendsButton extends React.Component {
                     </>
                 )
             } else if (this.props.currentPending.includes(this.props.pageUser.id)) {
-                console.log("sent")
                 return (
                     <>
                         <button
@@ -107,7 +105,6 @@ class FriendsButton extends React.Component {
                     </>
                 )
             } else if (this.props.pageUser.pending.includes(this.props.currentUser)) {
-                console.log("respond")
                 return (
                     <>
                         <button
@@ -138,7 +135,6 @@ class FriendsButton extends React.Component {
                     </>
                 )
             } else {
-                console.log("add")
                 return (
                     <button
                         className="profile-header-button profile-friends-button"

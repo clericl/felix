@@ -5,7 +5,9 @@
         json.parentId comment.parent_id
         json.postId comment.post_id
         json.body comment.body
-        json.likes comment.likes.pluck(:id)
+        json.comments comment.children.pluck(:id)
+        json.likes comment.likes.pluck(:user_id)
+        json.displayDate comment.posted_at
         json.createdAt comment.created_at
         json.updatedAt comment.updated_at
     end

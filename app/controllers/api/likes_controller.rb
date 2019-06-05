@@ -27,7 +27,7 @@ class Api::LikesController < ApplicationController
 
     def destroy
         @like = Like.find(params[:id])
-        if @like.delete
+        if @like.destroy
             @object = @like.likeable_type.constantize.find(@like.likeable_id)
             render :show
         else

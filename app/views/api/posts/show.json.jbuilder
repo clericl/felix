@@ -5,7 +5,7 @@ json.set! @post.id do
     json.postableType @post.postable_type
     json.postableId @post.postable_id
     json.comments @post.comments.pluck(:id)
-    json.likes @post.likes.pluck(:id)
+    json.likes @post.likes.pluck(:user_id)
     json.displayDate @post.posted_at
     json.createdAt @post.created_at
     json.updatedAt @post.updated_at

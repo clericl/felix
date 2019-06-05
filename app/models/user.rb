@@ -33,17 +33,20 @@ class User < ApplicationRecord
 
     attr_reader :password
 
-    has_many :friend_requests
-    has_many :posts, as: :postable
+    has_many :friend_requests, dependent: :destroy
+    has_many :posts, as: :postable, dependent: :destroy
     
     has_many :authored_posts,
-        inverse_of: :author
+        inverse_of: :author,
+        dependent: :destroy
     
     has_many :comments,
-        inverse_of: :author
+        inverse_of: :author,
+        dependent: :destroy
 
     has_many :liked,
-        inverse_of: :liker
+        inverse_of: :liker,
+        dependent: :destroy
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)

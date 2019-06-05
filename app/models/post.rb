@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
     belongs_to :postable, polymorphic: true
     
-    has_many :comments
+    has_many :comments, dependent: :destroy
     has_many :likes, as: :likeable
 
     def posted_at
