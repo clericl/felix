@@ -29,7 +29,7 @@ class User < ApplicationRecord
         length: { minimum: 6, allow_nil: true, message: "newpassword" }
     validate :email_correct_format
 
-    before_validation :ensure_session_token, :ensure_capitalized
+    before_validation :ensure_session_token, :ensure_capitalized, :ensure_default_img_url
 
     attr_reader :password
 
@@ -105,9 +105,9 @@ class User < ApplicationRecord
         self.session_token ||= User.generate_session_token
     end
 
-    # def ensure_default_img_url
-    #     self.default_img_url ||= "/assets/catvatar.jpg"
-    # end
+    def ensure_default_img_url
+        self.default_img_url ||= image_tag("catvatar.jpg")
+    end
 
     def ensure_capitalized
         self.first_name.capitalize!
