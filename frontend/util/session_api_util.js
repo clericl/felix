@@ -9,7 +9,8 @@ export const createUser = user => {
                 email: user.email,
                 password: user.password,
                 gender: user.gender,
-                birthday: user.birthday,    
+                birthday: user.birthday,
+                default_img_url: window.catvatarUrl,
             },
         },
     });

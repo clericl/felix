@@ -62,7 +62,6 @@ class CreatePostModal extends React.Component {
         // i hate facebook
 
         if (this.props.pageUser.id) {
-            debugger
             if ((this.props.currentFriends.includes(this.props.pageUser.id) ||
                 this.props.pageUser.friends.includes(this.props.currentUser) ||
                 this.props.pageUser.id == this.props.currentUser)) {

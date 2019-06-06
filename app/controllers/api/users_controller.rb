@@ -42,7 +42,8 @@ class Api::UsersController < ApplicationController
             :workplace,
             :school,
             :current_city,
-            :hometown
+            :hometown,
+            :default_img_url
         )
     end
 
