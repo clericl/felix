@@ -106,7 +106,7 @@ class User < ApplicationRecord
     end
 
     def ensure_default_img_url
-        self.default_img_url ||= image_tag("catvatar.jpg")
+        self.default_img_url ||= "https://i.imgur.com/EKXpljT.jpg"
     end
 
     def ensure_capitalized
