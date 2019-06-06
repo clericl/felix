@@ -23,7 +23,7 @@ class ProfileHeaderUtils extends React.Component {
                 {displayName}
                 </Link>
                 <div className="profile-header-nav-floating-buttons">
-                    <FriendsButton pageUser={this.props.pageUser} />
+                    <FriendsButton pageUser={this.props.pageUser} buttonType="header" />
                     <div>
                         <MessageButton />
                     </div>

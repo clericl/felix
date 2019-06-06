@@ -4,7 +4,7 @@ import FriendsBox from './friends_box';
 import IntroBox from './intro_box';
 import { ProfilePostModal } from '../posts/create_post_modal';
 import ProfileTimeline from './profile_timeline';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { fetchUser, fetchFriends } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
 
@@ -45,6 +45,10 @@ class UserProfile extends React.Component {
                     </div>
                 </div>
             )
+        } else if (this.props.errors) {
+            return (
+                <Redirect to="/" />
+            )
         } else {
             return null;
         }
@@ -55,6 +59,7 @@ const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
         pageUser: state.entities.users[ownProps.match.params.userId] || {id: null},
+        errors: state.errors.users
     };
 }
 

@@ -141,11 +141,13 @@
     justify-content: space-around;
     border: 1px solid black;
     border-radius: 2px;
+    background-color: #f5f6f7;
+    color: #444950;
 }
 
 .profile-header-button:hover {
-    background-color: #f1f1f1;
-    transition: all .5s linear;
+    background-color: #dadbdc;
+    transition: all .1s linear;
 }
 
 .profile-header-button:active {
@@ -188,8 +190,8 @@
     position: absolute;
     display: block;
     background: white;
-    border: 1px solid #696969;
-    box-shadow: 0 0 4px #696969;
+    border: 1px solid #8b8b8b;
+    box-shadow: 0 0 4px #8b8b8b;
     border-radius: 2px;
     z-index: 1;
 }
@@ -208,6 +210,19 @@
     border-top: 0;
     left: 15px;
     top: -8px;
+}
+
+#friends-button-dropdown::before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-bottom: 9px solid #8b8b8b;
+    border-right: 10px solid transparent;
+    border-top: 0;
+    left: 14px;
+    top: -9px;
+    z-index: -1;
 }
 
 .profile-friends-box {

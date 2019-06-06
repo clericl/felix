@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'posts/batch', to: "posts#batch"
     get 'posts/feed', to: "posts#feed"
     get 'comments/batch', to: "comments#batch"
+    get 'search', to: "users#search"
     resources :users, only: [:create, :show, :update, :index]
     resources :friend_requests, only: [:index, :create, :update, :destroy]
     resources :posts, only: [:index, :show, :create, :update, :destroy]

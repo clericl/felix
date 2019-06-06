@@ -64,7 +64,7 @@ class FriendsButton extends React.Component {
                 return (
                     <>
                         <button
-                            className="profile-header-button profile-friends-button"
+                            className={`profile-friends-button ${this.props.buttonType === "header" ? "profile-header-button" : "people-results-button"}`}
                             onMouseEnter={this.toggleShow}
                             onMouseLeave={this.toggleHidden}
                         >
@@ -86,7 +86,7 @@ class FriendsButton extends React.Component {
                 return (
                     <>
                         <button
-                            className="profile-header-button profile-friends-button"
+                            className={`profile-friends-button ${this.props.buttonType === "header" ? "profile-header-button" : "people-results-button"}`}
                             onMouseEnter={this.toggleShow}
                             onMouseLeave={this.toggleHidden}
                         >
@@ -108,7 +108,7 @@ class FriendsButton extends React.Component {
                 return (
                     <>
                         <button
-                            className="profile-header-button profile-friends-button"
+                            className={`profile-friends-button ${this.props.buttonType === "header" ? "profile-header-button" : "people-results-button"}`}
                             onMouseEnter={this.toggleShow}
                             onMouseLeave={this.toggleHidden}
                         >
@@ -137,7 +137,7 @@ class FriendsButton extends React.Component {
             } else {
                 return (
                     <button
-                        className="profile-header-button profile-friends-button"
+                        className={`profile-friends-button ${this.props.buttonType === "header" ? "profile-header-button" : "people-results-button"}`}
                         onClick={e =>
                             this.props.addFriend(
                                 this.props.currentUser,
@@ -160,7 +160,6 @@ const msp = (state, ownProps) => {
         currentUser: currentUser,
         currentPending: state.entities.users[currentUser].pending || [],
         currentFriends: state.entities.users[currentUser].friends || [],
-        pageUser: state.entities.users[ownProps.match.params.userId],
     };
 };
 

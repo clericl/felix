@@ -97,7 +97,7 @@ class PostItem extends React.Component {
                 this.props.postAuthor.firstName,
                 this.props.postAuthor.lastName
             ].join(" ");
-    
+
             const receiverName = [
                 this.props.postReceiver.firstName,
                 this.props.postReceiver.lastName,
@@ -131,7 +131,7 @@ class PostItem extends React.Component {
             return null;
         }
     }
-
+    
     render() {
         if (this.props.postAuthor) {
 

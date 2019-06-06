@@ -16,6 +16,11 @@ class Api::PostsController < ApplicationController
         render :batch
     end
 
+    def show
+        @post = Post.find(params[:id])
+        render :show
+    end
+
     def feed
         friends = User.find(params[:user_id]).friends
         

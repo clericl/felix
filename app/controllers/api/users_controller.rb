@@ -17,14 +17,41 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
-        render :show
+        @user = User.find_by(id: params[:id])
+        if @user
+            render :show
+        else
+            render json: ["no user"], status: 404
+        end
     end
 
     def update 
         @user = User.find(params[:id])
         @user.update(user_params)
         render :show
+    end
+
+    def search
+        query = ['%', params[:query], '%'].join("")
+
+        @user_results = User
+            .where(
+                "first_name ILIKE ? OR last_name ILIKE ?",
+                query,
+                query
+            )
+            .limit(10)
+
+        @post_results = Post
+            .joins(:author)
+            .where(
+                "body ILIKE ?",
+                query,
+            )
+            .limit(10)
+
+        @query = params[:query]
+        render :search
     end
 
     private 
