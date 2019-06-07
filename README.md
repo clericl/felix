@@ -28,21 +28,22 @@ Answering those questions presented one of the biggest challenges of this projec
 
 The solution I implemented was having the tooltip exist regardless of whether there were any errors or not, and then have its visibility be toggled by specific errors passed up from the database. Switching between the tooltip and the border and icon occurred through a state change whenever the user interacted with the input field.
 
-```<input
-        type="text"
-        className={`login-input ${this.state.emailBorder ? "error-border" : ""}`}
-        placeholder="Email or Phone Number"
-        onChange={e => this.handleChange(e, "email")}
-        onFocus={e => this.toggleError(e, "email")}
-        onBlur={e => this.toggleError(e, "email")}
-        value={this.state.email}
-    />
-    <FormError
-        type="email"
-        text="The email or phone number you've entered doesn't match any account."
-        displayBorder={this.state.emailBorder}
-        displayError={this.state.emailError}
-    />
+```
+<input
+    type="text"
+    className={`login-input ${this.state.emailBorder ? "error-border" : ""}`}
+    placeholder="Email or Phone Number"
+    onChange={e => this.handleChange(e, "email")}
+    onFocus={e => this.toggleError(e, "email")}
+    onBlur={e => this.toggleError(e, "email")}
+    value={this.state.email}
+/>
+<FormError
+    type="email"
+    text="The email or phone number you've entered doesn't match any account."
+    displayBorder={this.state.emailBorder}
+    displayError={this.state.emailError}
+/>
 ```
 
 ### News Feed
@@ -59,26 +60,27 @@ felix's search bar dynamically queries the database, autocompleting the user's q
 
 Formatting these results correctly was an unexpectedly challenging exercise in string manipulation, especially with the necessary conversions between plaintext and HTML.
 
-``` formatSearchResults(resultText) {
-        let boldTextArray = resultText.split(this.props.query);
-        boldTextArray = boldTextArray.map((segment, idx) => {
-            if (idx !== 0) {
-                return (
-                    <div className="search-index-chunk" key={idx}>
-                        <p className="search-index-chunk-regular">{this.props.query}</p>
-                        <p className="search-index-chunk-bold">{segment}</p>
-                    </div>
-                )
-            } else {
-                return (
-                    <div className="search-index-chunk" key={idx}>
-                        <p className="search-index-chunk-bold">{segment}</p>
-                    </div>
-                )
-            }
-        });
-        return boldTextArray;
-    }
+```
+formatSearchResults(resultText) {
+    let boldTextArray = resultText.split(this.props.query);
+    boldTextArray = boldTextArray.map((segment, idx) => {
+        if (idx !== 0) {
+            return (
+                <div className="search-index-chunk" key={idx}>
+                    <p className="search-index-chunk-regular">{this.props.query}</p>
+                    <p className="search-index-chunk-bold">{segment}</p>
+                </div>
+            )
+        } else {
+            return (
+                <div className="search-index-chunk" key={idx}>
+                    <p className="search-index-chunk-bold">{segment}</p>
+                </div>
+            )
+        }
+    });
+    return boldTextArray;
+}
 ```
 
 ### Profiles
