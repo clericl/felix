@@ -1,9 +1,9 @@
 # felix
 
-![splash-screenshot](https://github.com/clericl/felix/raw/master/app/assets/images/splash.png "Splash")
-
 felix is a clone of Facebook, a social media and networking application where users post and share text, photos, and other multimedia with other users as "friends."
 Check it out [here](https://felixfb.herokuapp.com/#/)!
+
+![splash-screenshot](https://github.com/clericl/felix/raw/master/app/assets/images/splash.png "Splash")
 
 ## Technologies
 
