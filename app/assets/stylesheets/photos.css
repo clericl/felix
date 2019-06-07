@@ -46,6 +46,9 @@
     font-size: 12px;
     font-weight: 700;
     color: #4b4f56;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .photos-header-tab-selected {
@@ -86,4 +89,26 @@
     background-color: white;
     padding: 0 0 6px 6px;
     border-top: 1px solid #d3d6db;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo-item {
+    height: 205px;
+    width: 205px;
+    margin: 5px 5px 0 0;
+    object-fit: contain;
+    background-color: black;
+    position: relative;
+}
+
+.photo-item-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 205px;
+    width: 205px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
 }

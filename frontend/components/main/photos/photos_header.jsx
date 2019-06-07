@@ -11,8 +11,8 @@ class PhotosHeader extends React.Component {
             imageUrl: "",
             imageFile: null,
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.fileInputRef = React.createRef();
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.openFileDialog = this.openFileDialog.bind(this);
     }
 
@@ -21,11 +21,11 @@ class PhotosHeader extends React.Component {
     }
 
     handleSubmit() {
-        if (this.fileInputRef.files[0]) {
+        if (this.fileInputRef.current.files[0]) {
             const formData = new FormData();
             formData.append('photo[photoable_type]', "User");
             formData.append('photo[photoable_id', this.props.pageUser.id);
-            formData.append('photo[photo]', this.fileInputRef.files);
+            formData.append('photo[photo]', this.fileInputRef.current.files[0]);
 
             this.props.submitPhoto(formData);
         }
@@ -45,7 +45,6 @@ class PhotosHeader extends React.Component {
     // }
 
     render() {
-        debugger
         return (
             <div className="photos-header">
                 <div className="photos-header-top">
@@ -61,7 +60,7 @@ class PhotosHeader extends React.Component {
                             type="file"
                             ref={this.fileInputRef}
                             className="none"
-                            onChange={this.addFile}
+                            onChange={this.handleSubmit}
                         />
                     </div>
                 </div>

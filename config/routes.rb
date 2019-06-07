@@ -9,12 +9,14 @@ Rails.application.routes.draw do
     get 'posts/batch', to: "posts#batch"
     get 'posts/feed', to: "posts#feed"
     get 'comments/batch', to: "comments#batch"
+    get 'photos/batch', to: "photos#batch"
     get 'search', to: "users#search"
     resources :users, only: [:create, :show, :update, :index]
     resources :friend_requests, only: [:index, :create, :update, :destroy]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
     resources :comments, only: [:index, :create, :update, :destroy]
     resources :likes, only: [:create, :destroy]
+    resources :photos, only: [:create, :show, :destroy]
     resource :session, only: [:create, :destroy]
   end
 end
