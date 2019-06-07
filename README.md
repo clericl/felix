@@ -1,8 +1,7 @@
-# felix - A Facebook clone for furry friends
+# felix
 
 felix is a clone of Facebook, a social media and networking application where users post and share text, photos, and other multimedia with other users as "friends."
 Check it out [here](https://felixfb.herokuapp.com/#/).
----
 
 ## Technologies
 
@@ -23,7 +22,7 @@ felix follows Facebook in its list of features: the ability to create posts, com
 
 Like with any modern web application, a user has to sign up for an account or log in with their existing credentials. What differs from app to app is how invalid credentials are handled. How does any given app tell you that the username you've chosen is already taken, or that the password you've entered is incorrect? What are the visual and graphical cues that are used? How are they interactive?
 
-![sign-up-screenshot](https://github.com/clericl/felix/raw/master/app/assets/images/sign-up.png "Sign Up errors")
+![sign-up-screenshot](https://github.com/clericl/felix/raw/master/app/assets/images/sign_up.png "Sign Up errors")
 
 Answering those questions presented one of the biggest challenges of this project, especially as this laid the groundwork for how I designed every user-interactive feature to follow. In this particular example, invalid input fields are outlined with a red border and show an exclamation mark icon. However, when they're clicked on, the border and icon disappear and a tooltip with more details about the error appears. Managing the appearance and disappearance of each of these details was difficult, especially when multiple errors were involved.
 
