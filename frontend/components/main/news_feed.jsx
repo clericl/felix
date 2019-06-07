@@ -15,6 +15,10 @@ class NewsFeed extends React.Component {
         this.reload = this.reload.bind(this);
     }
 
+    componentDidMount() {
+        this.reload();
+    }
+
     reload() {
         this.props.refetchFeed(this.props.currentUser, this.state.receivedPosts).then(
             res => this.setState({

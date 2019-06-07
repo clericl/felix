@@ -27,6 +27,8 @@ export const editUser = user => {
                 workplace: user.workplace,
                 current_city: user.currentCity,
                 hometown: user.hometown,
+                default_img_url: user.defaultImgUrl,
+                cover_photo_url: user.coverPhotoUrl,
             },
         },
     });

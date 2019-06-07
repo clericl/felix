@@ -29,7 +29,10 @@ class User < ApplicationRecord
         length: { minimum: 6, allow_nil: true, message: "newpassword" }
     validate :email_correct_format
 
-    before_validation :ensure_session_token, :ensure_capitalized, :ensure_default_img_url
+    before_validation :ensure_session_token,
+        :ensure_capitalized,
+        :ensure_default_img_url,
+        :ensure_default_cover_url
 
     attr_reader :password
 
@@ -107,7 +110,11 @@ class User < ApplicationRecord
     end
 
     def ensure_default_img_url
-        self.default_img_url ||= "https://i.imgur.com/EKXpljT.jpg"
+        self.default_img_url ||= image_url("catvatar.jpg")
+    end
+
+    def ensure_default_cover_url
+        self.cover_photo_url ||= "https://badgleys-landscape.com/images/badgleys-landscape-snohomish.jpg"
     end
 
     def ensure_capitalized

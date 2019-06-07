@@ -6,7 +6,6 @@ class ProfileButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageUser: this.props.pageUser,
             fireRedirect: false,
         };
         this.handleClick = this.handleClick.bind(this);
@@ -29,9 +28,9 @@ class ProfileButton extends React.Component {
     render() {
         if (this.state.fireRedirect) {
             return (
-                <Redirect to={`/users/${this.state.pageUser.id}`} />
+                <Redirect to={`/users/${this.props.currentUser}`} />
             )
-        } else if (this.state.pageUser) {
+        } else if (this.props.currentUser) {
             return (
                 <button
                     className="nav-button"
@@ -40,9 +39,9 @@ class ProfileButton extends React.Component {
                 >
                     <img
                         className="profile-photo-nav-icon"
-                        src={this.state.pageUser.defaultImgUrl}
+                        src={this.props.currentPhoto}
                     />
-                    {this.state.pageUser.firstName}
+                    {this.props.currentName}
                 </button>
             )
         } else {
@@ -54,6 +53,8 @@ class ProfileButton extends React.Component {
 const msp = (state, ownProps) => {
     return {
         currentUser: state.session.currentUser,
+        currentPhoto: state.entities.users[state.session.currentUser].defaultImgUrl,
+        currentName: state.entities.users[state.session.currentUser].firstName,
     };
 }
 

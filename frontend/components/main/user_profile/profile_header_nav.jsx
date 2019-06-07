@@ -7,7 +7,7 @@ class ProfileHeaderNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: this.props.location
+            selected: "timeline"
         };
         this.toggleSelected = this.toggleSelected.bind(this);
     }

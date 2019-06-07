@@ -22,7 +22,7 @@ class PhotosIndex extends React.Component {
 
     renderPhotoItems() {
         return this.props.receivedPhotos.map(photo => {
-            return <PhotoItem photo={photo} />
+            return <PhotoItem photo={photo} key={photo.id} />
         });
     }
 

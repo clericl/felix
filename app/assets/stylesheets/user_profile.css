@@ -43,6 +43,7 @@
     top: 170px;
     box-shadow: 0 0 2px 1px #acaeb3;
     background-color: white;
+    object-fit: cover;
 }
 
 .profile-header-nav {

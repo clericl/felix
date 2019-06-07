@@ -1,5 +1,9 @@
 import React from 'react';
 import { FaPencilAlt } from 'react-icons/fa';
+import { editUser } from '../../../actions/user_actions';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import ProfileHeaderDropdownItem from '../user_profile/profile_header_dropdown_item';
 
 class PhotoItem extends React.Component {
     constructor(props) {
@@ -23,8 +27,16 @@ class PhotoItem extends React.Component {
         if (this.state.showOptions) {
             this.setState({
                 showOptions: false,
+                showDropdown: false,
             });
         }
+    }
+
+    handleSubmit(key) {
+        const newUser = this.props.pageUser;
+        newUser[key] = this.props.photo.url;
+
+        this.props.editUser(newUser);
     }
 
     render() {
@@ -39,7 +51,24 @@ class PhotoItem extends React.Component {
                     src={this.props.photo.url}
                 />
                 <div className={`photo-item-overlay ${this.state.showOptions ? "" : "none"}`}>
-                    <button className="photos-header-button"><FaPencilAlt /></button>
+                    <button
+                        className="photos-header-button"
+                        onClick={e => this.setState({ showDropdown: true })}
+                    ><FaPencilAlt /></button>
+                    <ul className={this.state.showDropdown ? "photo-item-options-dropdown" : "none"}>
+                        <ProfileHeaderDropdownItem
+                            text="Make Profile Picture"
+                            action={e => this.handleSubmit("defaultImgUrl")}
+                        />
+                        <ProfileHeaderDropdownItem
+                            text="Make Cover Photo"
+                            action={e => this.handleSubmit("coverPhotoUrl")}
+                        />
+                        {/* <ProfileHeaderDropdownItem
+                            text="Delete"
+                            action={e => this.props.deletePhoto(this.props.photo.id)}
+                        /> */}
+                    </ul>
                     <div className="photo-item-overlay-bottom">
                         <div className="photo-item-overlay-actions"></div>
                         <div className="photo-item-overlay-comment-show-button"></div>
@@ -50,4 +79,16 @@ class PhotoItem extends React.Component {
     }
 }
 
-export default PhotoItem;
+const msp = (state, ownProps) => {
+    return {
+        pageUser: state.entities.users[ownProps.match.params.userId],
+    }
+}
+
+const mdp = dispatch => {
+    return {
+        editUser: user => dispatch(editUser(user)),
+    }
+}
+
+export default withRouter(connect(msp, mdp)(PhotoItem));

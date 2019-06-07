@@ -70,7 +70,8 @@ class Api::UsersController < ApplicationController
             :school,
             :current_city,
             :hometown,
-            :default_img_url
+            :default_img_url,
+            :cover_photo_url
         )
     end
 
