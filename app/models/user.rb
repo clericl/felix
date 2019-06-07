@@ -35,6 +35,7 @@ class User < ApplicationRecord
 
     has_many :friend_requests, dependent: :destroy
     has_many :posts, as: :postable, dependent: :destroy
+    has_many :photos, as: :photoable, dependent: :destroy
     
     has_many :authored_posts,
         foreign_key: :author_id,

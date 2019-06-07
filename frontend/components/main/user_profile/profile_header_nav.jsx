@@ -7,7 +7,7 @@ class ProfileHeaderNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "timeline"
+            selected: this.props.location
         };
         this.toggleSelected = this.toggleSelected.bind(this);
     }
@@ -23,7 +23,7 @@ class ProfileHeaderNav extends React.Component {
             <nav className="profile-header-nav">
                 <Link
                     className={`profile-header-nav-button${this.state.selected === "timeline" ? "-selected" : ""}`}
-                    to={this.props.match.url}
+                    to={`/users/${this.props.pageUser.id}`}
                     onClick={e => this.toggleSelected(e, "timeline")}
                 >Timeline</Link>
                 {/* <Link
@@ -36,11 +36,11 @@ class ProfileHeaderNav extends React.Component {
                     to={this.props.match.url}
                     onClick={e => this.toggleSelected(e, "friends")}
                 >Friends</Link> */}
-                {/* <Link
+                <Link
                     className={`profile-header-nav-button${this.state.selected === "photos" ? "-selected" : ""}`}
-                    to={this.props.match.url}
+                    to={`/users/${this.props.pageUser.id}/photos`}
                     onClick={e => this.toggleSelected(e, "photos")}
-                >Photos</Link> */}
+                >Photos</Link>
                 {/* <p
                     className="profile-header-nav-button"
                 >More &nbsp;<FaCaretDown /></p> */}

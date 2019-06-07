@@ -1,12 +1,10 @@
 import React from 'react';
 import ProfileHeader from './profile_header';
-import FriendsBox from './friends_box';
-import IntroBox from './intro_box';
-import { ProfilePostModal } from '../posts/create_post_modal';
-import ProfileTimeline from './profile_timeline';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect, Route } from 'react-router-dom';
 import { fetchUser, fetchFriends } from '../../../actions/user_actions';
 import { connect } from 'react-redux';
+import TimelineMain from './timeline_main';
+import PhotosMain from '../photos/photos_main';
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -33,16 +31,9 @@ class UserProfile extends React.Component {
             return (
                 <div className="profile-body">
                     <ProfileHeader pageUser={this.props.pageUser} />
-                    <div className="profile-content">
-                        <aside className="profile-side">
-                            <IntroBox />
-                            <FriendsBox friendsSample={friendsSample}/>
-                        </aside>
-                        <main className="profile-main">
-                            <ProfilePostModal />
-                            <ProfileTimeline />
-                        </main>
-                    </div>
+
+                    <Route exact path="/users/:userId" render={props => <TimelineMain {...props} />} />
+                    <Route exact path="/users/:userId/photos" render={props => <PhotosMain {...props} />} />
                 </div>
             )
         } else if (this.props.errors) {
