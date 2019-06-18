@@ -1,0 +1,104 @@
+.search-main {
+    margin: 0 auto;
+    width: 980px;
+    display: flex;
+    justify-content: space-around;
+    font-family: sans-serif;
+}
+
+.search-results-index {
+    margin-top: 56px;
+    width: 500px;
+}
+
+.people-results-index {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.people-results-header {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.people-results-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.people-results-item-avatar {
+    width: 73px;
+    height: 73px;
+    border-radius: 50%;
+}
+
+.people-results-item {
+    display: flex;
+    margin: 12px 0;
+    position: relative;
+}
+
+.search-friends-button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.people-results-item-details {
+    line-height: 1.5;
+    padding: 0 12px;
+}
+
+.people-results-item:after {
+    content: "";
+    border-bottom: 1px solid #ededed;
+    width: 95%;
+    position: absolute;
+    bottom: -12px;
+    left: 2.5%;
+}
+
+.people-results-item:last-of-type:after {
+    content: "";
+}
+
+.people-results-button:hover {
+    background-color: #dadbdc;
+    transition: all .1s linear;
+}
+
+.people-results-button:active {
+    background-color: #e4e4e4;
+    transform: scale(0.98);
+    transition: all 0s;
+}
+
+.people-results-button {
+    height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #ccd0d5;
+    border-radius: 2px;
+    background-color: #f5f6f7;
+    color: #444950;
+    position: relative;
+}
+
+.people-results-button > p {
+    margin: 0 3px;
+}
+
+.post-result-item {
+    background-color: white;
+    padding-bottom: 6px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+}

@@ -1,0 +1,253 @@
+.login-header {
+    background-image: linear-gradient(#4d69a1, #3b5997);
+    height: 85px;
+    font-family: sans-serif;
+    font-size: 12px;
+    border-bottom: 1px solid #133783;
+    color: white;
+}
+
+.login-header-logo {
+    height: 45px;
+    width: auto;
+}
+
+.new-user-nav {
+    width: 980px;
+    height: 72px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.login-header-form {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.login-header-input-box {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.login-header-label {
+    margin: 6px 0;
+}
+
+.login-header-input {
+    border: 1px solid #394878;
+    width: 140px;
+    height: 20px;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.login-header-submit-button {
+    font-weight: 700;
+    color: white;
+    background-color: #4267b2;
+    border: 1px solid #304e87;
+    border-radius: 2px;
+    height: 22px;
+    font-size: 12px;
+    margin-top: 23px;
+}
+
+.login-header-submit-button:hover {
+    background-color: #3b61a0;
+}
+
+.login-nav {
+    width: 980px;
+    height: 72px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto;
+    align-items: flex-end;
+    position: relative;
+}
+
+.new-account-button {
+    width: 140px;
+    height: 35px;
+    background-color: #41b72a;
+    border: 1px solid #41b72a;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: background-color .1s ease-in-out;
+    transition: border .1s ease-in-out;
+    margin: 6px 12px;
+}
+
+.new-account-button:hover {
+    background-color: #379b24;
+    border: 1px solid #379b24;
+    transition: all .1s ease-out;
+}
+
+.login-main-box {
+    height: 325px;
+    width: 615px;
+    background-color: white;
+    border: 1px solid #dddfe2;
+    border-radius: 4px;
+    font-family: sans-serif;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.login-box {
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.login-box > p {
+    font-size: 12px;
+    position: relative;
+}
+
+.login-box > p:before, .login-box > p:after {
+    content: "";
+    border-bottom: 1px solid #bdc6d8;
+    display: block;
+    width: 130px;
+}
+
+.login-box > h3 {
+    font-size: 18px;
+}
+
+.login-box > p:before {
+    position: absolute;
+    left: 100%;
+    margin-left: 15px;
+    bottom: 6px;
+}
+
+.login-box > p:after {
+    position: absolute;
+    right: 100%;
+    margin-right: 15px;
+    top: 5px;
+}
+
+.login-form {
+    position: relative;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.login-input {
+    height: 34px;
+    width: 302px;
+    padding: 0 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+
+.login-input:focus {
+    outline: none;
+}
+
+.login-submit-button {
+    height: 46px;
+    background-color: #4167b2;
+    border: 1px solid #4167b2;
+    border-radius: 4px;
+    font-size: 13px;
+    color: white;
+    transition: background-color .1s ease-in-out;
+    transition: border .1s ease-in-out;
+}
+
+.login-submit-button:hover {
+    background-color: #385999;
+    border: 1px solid #385999;
+    transition: all .1s ease-in-out;
+}
+
+.forgot-account-link {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #4167b2;
+    text-decoration: none;
+}
+
+.forgot-account-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.error-link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.email-error-icon {
+    top: -63px;
+    left: 274px;
+}
+
+.email-error-box {
+    width: 318px;
+    height: 50px;
+    left: 320px;
+    top: -74px;
+}
+
+.email-error-box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -10px;
+    border-right: 12px solid #ba4a46;
+    border-left: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+.password-error-icon {
+    top: -17px;
+    left: 274px;
+}
+
+.password-error-box {
+    width: 318px;
+    height: 50px;
+    left: 320px;
+    top: -31px;
+}
+
+.password-error-box:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -10px;
+    border-right: 12px solid #ba4a46;
+    border-left: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+.error-bounds {
+    display: block;
+    position: absolute;
+}

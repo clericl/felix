@@ -1,0 +1,124 @@
+.photos-content {
+    margin-top: 12px;
+    width: 850px;
+    border: 1px solid #ccd0d5;
+    border-radius: 3px;
+}
+
+.photos-header {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f5f6f7;
+    padding: 12px;
+    height: 85px;
+}
+
+.photos-header-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.photos-header-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4b4f56;
+    display: flex;
+    align-items: flex-end;
+}
+
+.photos-header-icon {
+    font-size: 28px;
+    margin-right: 4px;
+}
+
+.photos-header-buttons {
+    padding: 2px;
+}
+
+.photos-header-button {
+    height: 28px;
+    box-sizing: border-box;
+    border: 1px solid #ccd0d5;
+    border-radius: 2px;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4b4f56;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.photos-header-tab-selected {
+    font-size: 12px;
+    font-weight: 700;
+    color: #4b4f5b;
+    position: relative;
+    width: 72px;
+}
+
+.photos-header-tab-selected:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 8px solid transparent;
+    border-bottom: 8px solid #d3d6db;
+    border-right: 8px solid transparent;
+    border-top: 0;
+    left: 50%;
+    margin-left: -5px;
+    bottom: -13px;
+}
+
+.photos-header-tab-selected:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid white;
+    border-right: 7px solid transparent;
+    border-top: 0;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -13px;
+}
+
+.photos-index {
+    background-color: white;
+    padding: 0 0 5px 6px;
+    border-top: 1px solid #d3d6db;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo-item {
+    height: 205px;
+    width: 205px;
+    margin: 5px 5px 0 0;
+    object-fit: contain;
+    background-color: black;
+    position: relative;
+}
+
+.photo-item-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 205px;
+    width: 205px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.photo-item-options-dropdown {
+    position: absolute;
+    right: 5px;
+    top: 34px;
+    border: 1px solid #4b4f56;
+    background-color: white;
+    border-radius: 2px;
+}
