@@ -1,4 +1,4 @@
-.main-header {
+.header-main {
     height: 43px;
     background-color: #4267b1;
     display: flex;
@@ -6,10 +6,10 @@
     border-bottom: 1px solid #2a477d;
     position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 10;
 }
 
-.main-header-nav {
+.header-nav {
     width: 1010px;
     color: #1a2947;
     display: flex;
@@ -75,7 +75,7 @@
     cursor: pointer;
 }
 
-.main-header-logo-search {
+.logo-search {
     display: flex;
     align-items: center;
     position: relative;
@@ -264,15 +264,16 @@
 .header-search-icon {
     color: #4e5665;
     background-color: #f5f6f7;
-    height: 23px;
+    height: 25px;
     width: 45px;
     border-radius: 0 3px 3px 0;
     position: absolute;
     right: 0px;
-    top: 8px;
+    top: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #3b5998;
     border-left: none;
 }
 

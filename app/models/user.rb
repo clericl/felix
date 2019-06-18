@@ -110,7 +110,7 @@ class User < ApplicationRecord
     end
 
     def ensure_default_img_url
-        self.default_img_url ||= ActionController::Base.helpers.image_url("catvatar.jpg")
+        self.default_img_url ||= image_url("catvatar.jpg")
     end
 
     def ensure_default_cover_url

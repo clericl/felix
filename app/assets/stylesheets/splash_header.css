@@ -1,0 +1,79 @@
+.session-header {
+    background-image: linear-gradient(#4d69a1, #3b5997);
+    height: 85px;
+    font-family: sans-serif;
+    font-size: 12px;
+    border-bottom: 1px solid #133783;
+    color: white;
+}
+
+.session-nav {
+    width: 980px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+}
+
+.header-form {
+    width: 380px;
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-inputs {
+    width: 315px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-input {
+    width: 150px;
+    height: 23px;
+    margin: 7px 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-size: 12px;
+    padding: 3px;
+}
+
+.header-submit-button {
+    height: 23px;
+    width: 50px;
+    background-color: #4167b2;
+    color: white;
+    font-weight: 700;
+    border: 1px solid #29477d;
+    border-radius: 2px;
+    margin-top: 11px;
+    font-size: 11px;
+}
+
+.header-submit-button:hover {
+    cursor: pointer;
+    background-color: #29477d;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    font-family: myriad-pro;
+    text-shadow:
+    -.5px -.5px 0 #788db7,  
+     .5px -.5px 0 #788db7,
+     -.5px .5px 0 #788db7,
+      .5px .5px 0 #788db7;
+}

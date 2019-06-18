@@ -1,8 +1,8 @@
 import React from 'react';
-import NewUserMain from './main/new_user_main/new_user_main';
-import LoginMain from './login/login';
-import SignupMain from './signup/signup';
-import Header from './header/header';
+import NewUserMain from './session/new_user_main';
+import LoginMain from './session/login_main';
+import SignupMain from './session/signup_main';
+import Header from './main/header/header';
 import Main from './main/main';
 import UserProfile from './main/user_profile/user_profile';
 import Modal from './modal';
@@ -26,7 +26,6 @@ const App = props => {
     } else {
         return (
             <>
-                <Header />
                 <Route exact path="/" render={props => <NewUserMain {...props} />} />
                 <Route exact path="/search" render={props => <Redirect to="/" />} />
                 <Route exact path="/login" render={props => <LoginMain {...props} />} />

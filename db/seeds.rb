@@ -132,4 +132,3 @@ User.create!(
     current_city: "New York",
     hometown: "Austin, Texas"
 )
-

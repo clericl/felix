@@ -7,58 +7,6 @@
     color: white;
 }
 
-.login-header-logo {
-    height: 45px;
-    width: auto;
-}
-
-.new-user-nav {
-    width: 980px;
-    height: 72px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.login-header-form {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.login-header-input-box {
-    display: flex;
-    flex-direction: column;
-    margin-right: 15px;
-}
-
-.login-header-label {
-    margin: 6px 0;
-}
-
-.login-header-input {
-    border: 1px solid #394878;
-    width: 140px;
-    height: 20px;
-    padding: 0 5px;
-    font-size: 12px;
-}
-
-.login-header-submit-button {
-    font-weight: 700;
-    color: white;
-    background-color: #4267b2;
-    border: 1px solid #304e87;
-    border-radius: 2px;
-    height: 22px;
-    font-size: 12px;
-    margin-top: 23px;
-}
-
-.login-header-submit-button:hover {
-    background-color: #3b61a0;
-}
-
 .login-nav {
     width: 980px;
     height: 72px;
