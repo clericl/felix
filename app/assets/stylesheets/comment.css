@@ -27,6 +27,7 @@
     border-radius: 50%;
     margin-right: 7px;
     margin-top: 5px;
+    object-fit: cover;
 }
 
 .create-reply-avatar-icon {
@@ -35,6 +36,7 @@
     border-radius: 50%;
     margin-right: 7px;
     margin-left: 12px;
+    object-fit: cover;
 }
 
 .create-comment-input {
