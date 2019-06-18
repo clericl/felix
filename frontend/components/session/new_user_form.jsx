@@ -35,11 +35,11 @@ class NewUserForm extends React.Component {
         this.toggleError = this.toggleError.bind(this);
     }
 
-    toggleError(e, key, val) {
+    toggleError(e, key) {
         if (this.props.sessionErrors.includes(key)) {
             this.setState({
-                [`${key}Error`]: val,
-                [`${key}Border`]: !val,
+                [`${key}Error`]: !this.state[`${key}Error`],
+                [`${key}Border`]: !this.state[`${key}Border`],
             });
         }
     }
@@ -96,8 +96,8 @@ class NewUserForm extends React.Component {
                             className={`new-user-name-input ${this.state.fnameBorder ? "error-border" : ""}`}
                             placeholder="First name"
                             onChange={e => this.handleChange(e, "firstName")}
-                            onFocus={e => this.toggleError(e, "fname", true)}
-                            onBlur={e => this.toggleError(e, "fname", false)}
+                            onFocus={e => this.toggleError(e, "fname")}
+                            onBlur={e => this.toggleError(e, "fname")}
                             value={this.state.firstName}
                         />
                         <FormError
@@ -111,8 +111,8 @@ class NewUserForm extends React.Component {
                             className={`new-user-name-input ${this.state.lnameBorder ? "error-border" : ""}`}
                             placeholder="Last name"
                             onChange={e => this.handleChange(e, "lastName")}
-                            onFocus={e => this.toggleError(e, "lname", true)}
-                            onBlur={e => this.toggleError(e, "lname", false)}
+                            onFocus={e => this.toggleError(e, "lname")}
+                            onBlur={e => this.toggleError(e, "lname")}
                             value={this.state.lastName}
                         />
                         <FormError
@@ -127,8 +127,8 @@ class NewUserForm extends React.Component {
                         className={`new-user-input ${this.state.newemailBorder ? "error-border" : ""}`}
                         placeholder="Mobile number or email"
                         onChange={e => this.handleChange(e, "email")}
-                        onFocus={e => this.toggleError(e, "newemail", true)}
-                        onBlur={e => this.toggleError(e, "newemail", false)}
+                        onFocus={e => this.toggleError(e, "newemail")}
+                        onBlur={e => this.toggleError(e, "newemail")}
                         value={this.state.email}
                     />
                     <FormError
@@ -142,8 +142,8 @@ class NewUserForm extends React.Component {
                         className={`new-user-input ${this.state.newpasswordBorder ? "error-border" : ""}`}
                         placeholder="New password"
                         onChange={e => this.handleChange(e, "password")}
-                        onFocus={e => this.toggleError(e, "newpassword", true)}
-                        onBlur={e => this.toggleError(e, "newpassword", false)}
+                        onFocus={e => this.toggleError(e, "newpassword")}
+                        onBlur={e => this.toggleError(e, "newpassword")}
                         value={this.state.password}
                     />
                     <FormError
@@ -160,8 +160,8 @@ class NewUserForm extends React.Component {
                             className={`birthday-select ${this.state.birthdayBorder ? "error-border" : ""}`}
                             value={this.state.birthMonth}
                             onChange={e => this.handleChange(e, "birthMonth")}
-                            onFocus={e => this.toggleError(e, "birthday", true)}
-                            onBlur={e => this.toggleError(e, "birthday", false)}
+                            onFocus={e => this.toggleError(e, "birthday")}
+                            onBlur={e => this.toggleError(e, "birthday")}
                         >
                             <option value="0" disabled>Month</option>
                             <option value="1">January</option>
@@ -181,8 +181,8 @@ class NewUserForm extends React.Component {
                             className={`birthday-select ${this.state.birthdayBorder ? "error-border" : ""}`}
                             value={this.state.birthDay}
                             onChange={e => this.handleChange(e, "birthDay")}
-                            onFocus={e => this.toggleError(e, "birthday", true)}
-                            onBlur={e => this.toggleError(e, "birthday", false)}
+                            onFocus={e => this.toggleError(e, "birthday")}
+                            onBlur={e => this.toggleError(e, "birthday")}
                         >
                             <option value="0" disabled>Day</option>
                             {selectDays}
@@ -191,8 +191,8 @@ class NewUserForm extends React.Component {
                             className={`birthday-select ${this.state.birthdayBorder ? "error-border" : ""}`}
                             value={this.state.birthYear}
                             onChange={e => this.handleChange(e, "birthYear")}
-                            onFocus={e => this.toggleError(e, "birthday", true)}
-                            onBlur={e => this.toggleError(e, "birthday", false)}
+                            onFocus={e => this.toggleError(e, "birthday")}
+                            onBlur={e => this.toggleError(e, "birthday")}
                         >
                             <option value="0" disabled>Year</option>
                             {selectYears}
@@ -211,8 +211,8 @@ class NewUserForm extends React.Component {
                         type="radio"
                         name="gender-radio"
                         value="f"
-                        onFocus={e => this.toggleError(e, "gender", true)}
-                        onBlur={e => this.toggleError(e, "gender", false)}
+                        onFocus={e => this.toggleError(e, "gender")}
+                        onBlur={e => this.toggleError(e, "gender")}
                     />Female</label>
                     <label className={`gender-radio-box ${this.state.genderBorder ? "error-border" : ""}`}><input
                         type="radio"
