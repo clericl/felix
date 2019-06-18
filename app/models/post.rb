@@ -24,9 +24,9 @@ class Post < ApplicationRecord
         elsif time_diff < 172800
             return "Yesterday"
         elsif time_diff < 604800
-            return "#{self.created_at.strftime("%B%e")} at #{self.created_at.strftime("%I:%M %p")}"
+            return "#{self.created_at.strftime("%B %e")} at #{self.created_at.strftime("%-I:%M %p")}"
         else
-            return "#{self.created_at.strftime("%B%e")}"
+            return "#{self.created_at.strftime("%B %e")}"
         end
     end
 

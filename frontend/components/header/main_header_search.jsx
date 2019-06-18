@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchIndex from './search_index';
-import { Link, Redirect } from 'react-router-dom';
-import { FaSearch, FaFacebookSquare } from 'react-icons/fa';
+import SearchIndex from '../header/search_index';
+import { Redirect } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
 
-class LogoSearch extends React.Component {
+class MainHeaderSearch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,10 +56,7 @@ class LogoSearch extends React.Component {
             )
         } else {
             return (
-                <div className="logo-search">
-                    <Link to="/" className="header-logo-box" >
-                        <FaFacebookSquare className="header-logo-icon" />
-                    </Link>
+                <div className="search">
                     <input
                         type="text"
                         className="header-search"
@@ -86,4 +83,4 @@ class LogoSearch extends React.Component {
     }
 }
 
-export default LogoSearch;
+export default MainHeaderSearch;

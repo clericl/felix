@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FaQuestionCircle } from 'react-icons/fa';
-import { logoutUser } from '../../../actions/session_actions';
+import { logoutUser } from '../../actions/session_actions';
 import NavDropdownItem from './nav_dropdown_item';
 
 class HelpDropdown extends React.Component {

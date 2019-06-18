@@ -1,9 +1,10 @@
 import React from 'react';
-import NavDropdownItem from './nav_dropdown_item';
-import { logoutUser } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
+import { FaCaretDown } from 'react-icons/fa';
+import { logoutUser } from '../../actions/session_actions';
+import NavDropdownItem from './nav_dropdown_item';
 
-class CreateButton extends React.Component {
+class SettingsDropdown extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,16 +34,15 @@ class CreateButton extends React.Component {
 
     render() {
         return (
-            <>
-                <button className="nav-button" onClick={this.handleIconClick}>Create</button>
-                <ul
-                    className={`dropdown-box ${this.state.show}`}
-                    id="create-dropdown"
+            <div>
+                <FaCaretDown className="nav-icon" id="settings-icon" onClick={this.handleIconClick} />
+                <ul className={`dropdown-box ${this.state.show}`}
+                    id="settings-dropdown"
                     onClick={this.handleIconClick}
                 >
                     <NavDropdownItem text="Log Out" action={this.props.logoutUser} />
                 </ul>
-            </>
+            </div>
         )
     }
 }
@@ -53,4 +53,4 @@ const mdp = dispatch => {
     };
 };
 
-export default connect(null, mdp)(CreateButton);
+export default connect(null, mdp)(SettingsDropdown);

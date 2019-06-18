@@ -1,5 +1,5 @@
 import React from 'react';
-import { search } from '../../../actions/search_actions';
+import { search } from '../../actions/search_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 

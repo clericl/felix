@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { loginUser, clearErrors } from '../../actions/session_actions';
-import FormError from './form_error';
+import NewUserFormError from '../main/new_user_main/new_user_form_error';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -62,7 +62,7 @@ class LoginForm extends React.Component {
                         onBlur={e => this.toggleError(e, "email")}
                         value={this.state.email}
                     />
-                    <FormError
+                    <NewUserFormError
                         type="email"
                         text="The email or phone number you've entered doesn't match any account."
                         displayBorder={this.state.emailBorder}
@@ -77,7 +77,7 @@ class LoginForm extends React.Component {
                         onBlur={e => this.toggleError(e, "password")}
                         value={this.state.password}
                         />
-                    <FormError
+                    <NewUserFormError
                         type="password"
                         text="The password you've entered is incorrect."
                         displayBorder={this.state.passwordBorder}

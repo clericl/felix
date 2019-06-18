@@ -9,7 +9,7 @@ import HelpDropdown from './help_dropdown';
 import SettingsDropdown from './settings_dropdown';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchUser } from '../../../actions/user_actions';
+import { fetchUser } from '../../actions/user_actions';
 
 class HeaderNav extends React.Component {
     constructor(props) {

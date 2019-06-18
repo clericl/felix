@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SplashHeaderLogo from './splash_header_logo';
+import LoginHeaderLogo from './login_header_logo';
 
-const LoginHeader = props => {
+const SignupHeader = props => {
     return (
-        <header className="login-header">
-            <nav className="login-nav">
-                <SplashHeaderLogo />
+        <header className="header login-header">
+            <nav className="signup-nav">
+                <LoginHeaderLogo />
                 <Link to="/signup"><button className="new-account-button">Create New Account</button></Link>
             </nav>
         </header>
     )
 };
 
-export default LoginHeader;
+export default SignupHeader;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/session_actions';
+import { loginUser } from '../../../actions/session_actions';
 
 class DemoLink extends React.Component {
     constructor(props){
