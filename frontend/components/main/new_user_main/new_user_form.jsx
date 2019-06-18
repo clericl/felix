@@ -86,7 +86,7 @@ class NewUserForm extends React.Component {
             <form className="new-user-form">
                 <span>
                     <h2 className="new-user-form-h2">Sign Up</h2>
-                    <h3 className="new-user-form-h3">It's free! At least until our copyright infringement suit.</h3>
+                    <h3 className="new-user-form-h3">It's free and always will be.</h3>
                 </span>
                 <div className="new-user-form-box">
                     <div className="new-user-form-name-box">

@@ -12,8 +12,8 @@ class NewUserMain extends React.Component {
             <main className="main new-user-main">
                 <section className="new-user-content">
                     <span className="new-user-heading">
-                        <h2 className="new-user-h2">Connect with the three other</h2>
-                        <h2 className="new-user-h2">people on felix. All of them are me.</h2>
+                        <h2 className="new-user-h2">Connect with your friends and the</h2>
+                        <h2 className="new-user-h2">world around you on felix.</h2>
                     </span>
                     <div>
                         <div className="new-user-text"><img src="https://scontent-lga3-1.xx.fbcdn.net/v/t39.2365-6/32213527_1720875981299142_7601737152052854784_n.png?_nc_cat=1&_nc_ht=scontent-lga3-1.xx&oh=0b20e6e14e749a98340202f00140bb83&oe=5D65CEE8" /><strong className="strong">See photos and updates</strong>&nbsp; from friends in News Feed.</div>
