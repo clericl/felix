@@ -96,7 +96,7 @@ class LoginForm extends React.Component {
 
 const msp = (state, ownProps) => {
     return {
-        sessionErrors: state.errors.sessions,
+        sessionErrors: state.errors.sessions
     }
 }
 

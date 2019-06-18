@@ -9,7 +9,7 @@ import Modal from './modal';
 import Search from './main/search/search';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
-// import { AuthRoute } from '../util/route_util';
+import { ProtectedRoute } from '../util/route_util';
 
 const App = props => {
     
@@ -20,6 +20,8 @@ const App = props => {
                 <Header />
                 <Route exact path="/" render={props => <Main {...props} />} />
                 <Route exact path="/search" render={props => <Search {...props} />} />
+                <ProtectedRoute exact path="/login" render={props => <LoginMain {...props} />} />
+                <ProtectedRoute exact path="/signup" render={props => <SignupMain {...props} />} />
                 <Route path="/users/:userId" render={props => <UserProfile {...props} />} />
             </>
         )
