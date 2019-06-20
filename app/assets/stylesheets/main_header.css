@@ -44,7 +44,7 @@
 
 #settings-dropdown {
     width: 200px;
-    height: 180px;
+    height: 38px;
     right: -4px;
     top: 42px;
 }
@@ -192,9 +192,9 @@
 
 .header-utils {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    width: 65px;
+    width: 35px;
     margin-left: 6px;
     position: relative;
 }

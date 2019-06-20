@@ -251,3 +251,8 @@
     display: block;
     position: absolute;
 }
+
+.signup-main {
+    width: min-content;
+    margin: 0 auto;
+}

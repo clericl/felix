@@ -38,15 +38,15 @@ class HeaderNav extends React.Component {
                     <div className="header-buttons">
                         <ProfileButton pageUser={this.state.pageUser} />
                         <HomeButton />
-                        <CreateDropdown />
+                        {/* <CreateDropdown /> */}
                     </div>
-                    <div className="header-indexes">
+                    {/* <div className="header-indexes">
                         <FriendsIndex />
                         <MessagesIndex />
                         <NotificationsIndex />
-                    </div>
+                    </div> */}
                     <div className="header-utils">
-                        <HelpDropdown />
+                        {/* <HelpDropdown /> */}
                         <SettingsDropdown />
                     </div>
                 </div>
