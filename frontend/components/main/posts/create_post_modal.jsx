@@ -5,6 +5,7 @@ import { createPost } from '../../../actions/post_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
 import { FaPencilAlt } from 'react-icons/fa';
 import TextareaAutosize from 'react-autosize-textarea';
+import PostPhotoButton from './post_photo_button';
 
 class CreatePostModal extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class CreatePostModal extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.photoButtonRef = React.createRef();
     }
 
     handleChange(e) {
@@ -23,14 +25,25 @@ class CreatePostModal extends React.Component {
     }
 
     handleSubmit(e) {
-        const newPost = this.state;
-        newPost.authorId = this.props.currentUser;
-        newPost.postableType = "User";
-        newPost.postableId = this.props.pageUser.id;
-        this.props.createPost(newPost).then(
-            res => this.setState({
+        const formData = new FormData();
+        formData.append('post[author_id]', this.props.currentUser);
+        formData.append('post[body]', this.state.body);
+        formData.append('post[postable_type]', "User");
+        formData.append('post[postable_id]', this.props.pageUser.id);
+        this.photoButtonRef.current.state.imageFile.forEach(file => {
+            formData.append('post[photos][]', file)
+        });
+        
+        this.props.createPost(formData).then(
+            res => {
+                this.setState({
                     body: "",
+                });
+                this.photoButtonRef.current.setState({
+                    imageUrl: [],
+                    imageFile: [],
                 })
+            }
         );
     }
 
@@ -50,7 +63,7 @@ class CreatePostModal extends React.Component {
             <button
                 className="create-post-footer-share"
                 disabled={this.state.body.length === 0}
-                 onClick={this.handleSubmit}
+                onClick={this.handleSubmit}
             >Share</button>
         )
         const closeButton = this.props.modal ? "create-post-header-close" : "hidden"
@@ -92,11 +105,13 @@ class CreatePostModal extends React.Component {
                                 <img src={this.props.currentUserIcon} className="create-post-avatar-icon" />
                                 <TextareaAutosize
                                     className={textarea}
+                                    id="post-box"
                                     placeholder={placeholder}
                                     value={this.state.body}
                                     onChange={this.handleChange}
                                 />
                             </div>
+                            <PostPhotoButton placeholder={placeholder} ref={this.photoButtonRef} />
                             <div className={footer}>
                                 {footerButton}
                             </div>

@@ -2,14 +2,9 @@ export const createPost = post => {
     return $.ajax({
         method: "POST",
         url: "api/posts",
-        data: {
-            post: {
-                author_id: post.authorId,
-                body: post.body,
-                postable_type: post.postableType,
-                postable_id: post.postableId,
-            },
-        },
+        data: post,
+        contentType: false,
+        processData: false
     });
 };
 

@@ -7,6 +7,7 @@ json.set! @post.id do
     json.comments @post.comments.pluck(:id)
     json.likes @post.likes.pluck(:user_id)
     json.displayDate @post.posted_at
+    json.photoUrls @post.photos.map { |file| url_for(file) }
     json.createdAt @post.created_at
     json.updatedAt @post.updated_at
 end

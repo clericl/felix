@@ -24,6 +24,7 @@
     margin: 12px 0;
     border-radius: 5px;
     background-color: white;
+    box-sizing: border-box;
 }
 
 .create-post-header {
@@ -87,7 +88,6 @@
     background-color: white;
     display: inline-flex;
     border-top: 1px solid #dddfe2;
-    border-bottom: 1px solid #dddfe2;
 }
 
 .create-post-avatar-icon {
@@ -162,7 +162,7 @@
 
 .create-post-footer-share {
     height: 25px;
-    width: 500px;
+    width: 497px;
     font-size: 12px;
     font-weight: bold;
     color: white;
@@ -170,10 +170,13 @@
     border-radius: 3px;
     margin: 8px;
     transition: background-color .2s ease-in-out;
+    border: 1px solid #4167b2;
+
 }
 
 .create-post-footer-share:disabled {
     background-color: #9cb4d8;
+    border: 1px solid #9cb4d8;
 }
 
 .post-item {
@@ -422,3 +425,75 @@
 .delete-post-footer-edit:hover {
     background-color: #d3d3d4;
 }
+
+.post-add-photo-button {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #54585f;
+    background-color: #f5f6f7;
+    border-radius: 15px;
+    width: 75px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 14px 8px 14px;
+    position: relative;
+}
+
+.post-add-photo-icon {
+    font-size: 20px;
+}
+
+.post-add-photo-button:hover {
+    background-color: #e1e1e1;
+    cursor: pointer;
+}
+
+.post-add-photo-button:after {
+    content: "";
+    width: 488px;
+    position: absolute;
+    top: -10px;
+    left: -2px;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.post-photo-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.post-photo-preview-index {
+    display: flex;
+    margin: 12px;
+    width: 487px;
+    overflow-x: auto;
+}
+
+.post-photo-drag-zone {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    box-sizing: border-box;
+    border: 3px dashed #dddfe2;
+    font-size: 40px;
+    color: #dddddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-photo-drag-zone:hover {
+    cursor: pointer;
+}
+
+.post-item-photo-item {
+    width: 100%;
+    height: auto;
+}
+

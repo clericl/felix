@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
+import PostItemPhotoIndex from './post_item_photo_index';
 import { fetchUser } from '../../../actions/user_actions';
 import { toggleLikePost } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
@@ -169,6 +170,7 @@ class PostItem extends React.Component {
                     <div className={this.props.post.body.length > 85 ? "post-item-body-small" : "post-item-body"}>
                         <p>{this.props.post.body}</p>
                     </div>
+                    <PostItemPhotoIndex photos={this.props.post.photoUrls} />
                     <div className="post-item-actions">
                         <div className="post-item-actions-counts">
                             <div className={this.props.post.likes.length ? "post-item-likes-count" : "none"}>

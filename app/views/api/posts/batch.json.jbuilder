@@ -8,6 +8,7 @@
         json.likes post.likes.pluck(:user_id)
         json.body post.body
         json.displayDate post.posted_at
+        json.photoUrls post.photos.map { |file| url_for(file) }
         json.createdAt post.created_at
         json.updatedAt post.updated_at
     end

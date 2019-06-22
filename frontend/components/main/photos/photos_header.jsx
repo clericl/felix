@@ -8,7 +8,6 @@ class PhotosHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imageUrl: "",
             imageFile: null,
         };
         this.fileInputRef = React.createRef();
@@ -24,9 +23,9 @@ class PhotosHeader extends React.Component {
         if (this.fileInputRef.current.files[0]) {
             const formData = new FormData();
             formData.append('photo[photoable_type]', "User");
-            formData.append('photo[photoable_id', this.props.pageUser.id);
+            formData.append('photo[photoable_id]', this.props.pageUser.id);
             formData.append('photo[photo]', this.fileInputRef.current.files[0]);
-
+            
             this.props.submitPhoto(formData);
         }
     }

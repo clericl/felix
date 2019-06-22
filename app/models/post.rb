@@ -8,6 +8,7 @@ class Post < ApplicationRecord
     
     has_many :comments, dependent: :destroy
     has_many :likes, as: :likeable
+    has_many_attached :photos
 
     def posted_at
         time_diff = Time.now - self.created_at
@@ -29,5 +30,5 @@ class Post < ApplicationRecord
             return "#{self.created_at.strftime("%B %e")}"
         end
     end
-
+    
 end
