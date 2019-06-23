@@ -289,7 +289,7 @@
 .post-item-likes-count {
     display: flex;
     align-items: center;
-    margin: 0 8px;
+    margin: 6px 8px;
 }
 
 .post-item-count-text {
@@ -492,8 +492,100 @@
     cursor: pointer;
 }
 
-.post-item-photo-item {
-    width: 100%;
-    height: auto;
+.post-item-photo-index {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 515px;
+    width: 515px;
+    position: relative;
 }
 
+.post-item-photo-index > img:hover {
+    cursor: pointer;
+    filter: brightness(88%);
+}
+
+.post-item-photo-index > img {
+    background-color: black;
+}
+
+.post-item-photo-half {
+    width: 255.5px;
+    height: 515px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-item-photo-quarter {
+    width: 255.5px;
+    height: 255.5px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-item-photo-23 {
+    width: 342px;
+    height: 515px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-item-photo-23-half {
+    width: 342px;
+    height: 256px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-item-photo-13 {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.post-item-photo-free {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.post-item-photo-free:hover {
+    cursor: pointer;
+}
+
+.post-item-index-more {
+    position: relative;
+    width: 170px;
+    height: 170px;
+}
+
+.post-item-index-more-overlay {
+    font-size: 28px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -172px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0006;
+    z-index: 1;
+    color: white;
+}
+
+.post-item-index-more-overlay:hover {
+    cursor: pointer;
+}
+/* 
+.post-item-photo-index:after {
+    content: "";
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    position: absolute;
+    bottom: -4px;
+} */
