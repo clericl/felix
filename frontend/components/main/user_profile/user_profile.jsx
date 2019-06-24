@@ -12,6 +12,7 @@ class UserProfile extends React.Component {
     }
 
     componentDidMount() {
+        window.scroll(0, 0);
         this.props.fetchUser(this.props.match.params.userId);
         this.props.fetchFriends(this.props.match.params.userId);
     }
@@ -25,7 +26,6 @@ class UserProfile extends React.Component {
 
     render() {
         if (this.props.pageUser.id) {
-            window.scroll(0, 0);
             return (
                 <div className="profile-body">
                     <ProfileHeader pageUser={this.props.pageUser} />
