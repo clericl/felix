@@ -4,6 +4,7 @@ import CommentsIndex from './comments_index';
 import { withRouter, Link } from 'react-router-dom';
 import TextareaAutosize from 'react-autosize-textarea';
 import { FaEllipsisH, FaThumbsUp } from 'react-icons/fa';
+import { fetchUser } from '../../../actions/user_actions';
 import { editComment } from '../../../actions/comment_actions';
 import { toggleLikeComment } from '../../../actions/like_actions';
 import { openModal, closeModal } from '../../../actions/modal_actions';
@@ -186,6 +187,10 @@ class CommentItem extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.fetchUser(this.props.comment.authorId);
+    }
+
     render() {
         if (this.props.comment && this.props.commentAuthor) {
             const nextIndex = this.props.comment.parentId ?
@@ -243,6 +248,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
     return {
+        fetchUser: user => dispatch(fetchUser(user)),
         closeModal: () => dispatch(closeModal()),
         openModal: ([modal, id]) => dispatch(openModal([modal, id])),
         editComment: comment => dispatch(editComment(comment)),
