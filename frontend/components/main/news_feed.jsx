@@ -31,11 +31,12 @@ class NewsFeed extends React.Component {
         const displayPosts = this.props.receivedPosts.map(
             post => <PostItem post={post} key={post.id} />
         );
+
+        displayPosts.splice((displayPosts.length - 2), 0, <Waypoint onEnter={this.reload} key="waypoint" />);
                 
         return (
             <ul className="news-feed">
                 {displayPosts}
-                <Waypoint onEnter={this.reload} />
             </ul>
         )
     }
