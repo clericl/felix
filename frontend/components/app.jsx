@@ -11,31 +11,42 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
 
-const App = props => {
-    
-    if (props.currentUser) {
-        return (
-            <>
-                <Modal />
-                <Header />
-                <Route exact path="/" render={props => <Main {...props} />} />
-                <Route exact path="/search" render={props => <Search {...props} />} />
-                <AuthRoute exact path="/login" render={props => <LoginMain {...props} />} />
-                <AuthRoute exact path="/signup" render={props => <SignupMain {...props} />} />
-                <Route path="/users/:userId" render={props => <UserProfile {...props} />} />
-            </>
-        )
-    } else {
-        return (
-            <>
-                <Header />
-                <Route exact path="/" render={props => <NewUserMain {...props} />} />
-                <Route exact path="/search" render={props => <Redirect to="/" />} />
-                <Route exact path="/login" render={props => <LoginMain {...props} />} />
-                <Route exact path="/signup" render={props => <SignupMain {...props} />} />
-                <Route path="/users/:userId" render={props => <Redirect to="/" /> } />
-            </>
-        )
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.location.pathName !== this.props.location.pathName) {
+            window.scroll(0, 0);
+        }
+    }
+
+    render() {
+        if (props.currentUser) {
+            return (
+                <>
+                    <Modal />
+                    <Header />
+                    <Route exact path="/" render={props => <Main {...props} />} />
+                    <Route exact path="/search" render={props => <Search {...props} />} />
+                    <AuthRoute exact path="/login" render={props => <LoginMain {...props} />} />
+                    <AuthRoute exact path="/signup" render={props => <SignupMain {...props} />} />
+                    <Route path="/users/:userId" render={props => <UserProfile {...props} />} />
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <Header />
+                    <Route exact path="/" render={props => <NewUserMain {...props} />} />
+                    <Route exact path="/search" render={props => <Redirect to="/" />} />
+                    <Route exact path="/login" render={props => <LoginMain {...props} />} />
+                    <Route exact path="/signup" render={props => <SignupMain {...props} />} />
+                    <Route path="/users/:userId" render={props => <Redirect to="/" /> } />
+                </>
+            )
+        }
     }
 };
 
