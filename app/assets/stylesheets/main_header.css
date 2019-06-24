@@ -262,17 +262,18 @@
 }
 
 .header-search-icon {
-    color: #4e5665;
+    color: #32528f;
     background-color: #f5f6f7;
-    height: 23px;
+    height: 24.5px;
     width: 45px;
     border-radius: 0 3px 3px 0;
     position: absolute;
     right: 0px;
-    top: 8px;
+    top: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #32528f;
     border-left: none;
 }
 
