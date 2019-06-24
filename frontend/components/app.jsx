@@ -17,33 +17,33 @@ class App extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.location.pathName !== this.props.location.pathName) {
+        if (prevProps.location.pathname !== this.props.location.pathname) {
             window.scroll(0, 0);
         }
     }
 
     render() {
-        if (props.currentUser) {
+        if (this.props.currentUser) {
             return (
                 <>
                     <Modal />
                     <Header />
-                    <Route exact path="/" render={props => <Main {...props} />} />
-                    <Route exact path="/search" render={props => <Search {...props} />} />
-                    <AuthRoute exact path="/login" render={props => <LoginMain {...props} />} />
-                    <AuthRoute exact path="/signup" render={props => <SignupMain {...props} />} />
-                    <Route path="/users/:userId" render={props => <UserProfile {...props} />} />
+                    <Route exact path="/" component={Main} />
+                    <Route exact path="/search" component={Search} />
+                    <AuthRoute exact path="/login" component={LoginMain} />
+                    <AuthRoute exact path="/signup" component={SignupMain} />
+                    <Route path="/users/:userId" component={UserProfile} />
                 </>
             )
         } else {
             return (
                 <>
                     <Header />
-                    <Route exact path="/" render={props => <NewUserMain {...props} />} />
-                    <Route exact path="/search" render={props => <Redirect to="/" />} />
-                    <Route exact path="/login" render={props => <LoginMain {...props} />} />
-                    <Route exact path="/signup" render={props => <SignupMain {...props} />} />
-                    <Route path="/users/:userId" render={props => <Redirect to="/" /> } />
+                    <Route exact path="/" component={NewUserMain} />
+                    <Route exact path="/search" render={() => <Redirect to="/" />} />
+                    <Route exact path="/login" component={LoginMain} />
+                    <Route exact path="/signup" component={SignupMain} />
+                    <Route path="/users/:userId" render={() => <Redirect to="/" /> } />
                 </>
             )
         }
