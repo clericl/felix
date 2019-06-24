@@ -25,9 +25,7 @@ class UserProfile extends React.Component {
 
     render() {
         if (this.props.pageUser.id) {
-            const friendsSample = this.props.pageUser.friends ?
-                this.props.pageUser.friends.slice(0, 9) : [];
-
+            window.scroll(0, 0);
             return (
                 <div className="profile-body">
                     <ProfileHeader pageUser={this.props.pageUser} />
