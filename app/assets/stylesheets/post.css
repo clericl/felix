@@ -151,6 +151,7 @@
     font-weight: bold;
     color: white;
     background-color: #4167b2;
+    border: 1px solid #4167b2;
     border-radius: 3px;
     margin: 8px;
     transition: background-color .2s ease-in-out;
@@ -158,6 +159,7 @@
 
 .create-post-footer-post:disabled {
     background-color: #9cb4d8;
+    border: 1px solid #9cb4d8;
 }
 
 .create-post-footer-share {
@@ -301,11 +303,13 @@
 .post-item-body {
     font-size: 22px;
     margin: 0 12px 12px 12px;
+    line-height: 1.2;
 }
 
 .post-item-body-small {
     font-size: 14px;
     margin: 0 12px 12px 12px;
+    line-height: 1.2;
 }
 
 .edit-post-modal {

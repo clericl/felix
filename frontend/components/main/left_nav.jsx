@@ -18,11 +18,11 @@ const LeftNav = props => {
                 <FaRegNewspaper className="left-nav-icon" />
                 News Feed
             </NavLink>
-            <a className="left-nav-link" href="https://github.com/clericl/felix">
+            <a className="left-nav-link" href="https://github.com/clericl/felix" target="_blank" rel="noopener noreferrer">
                 <FaGithub className="left-nav-icon" />
                 GitHub
             </a>
-            <a className="left-nav-link" href="https://www.linkedin.com/in/eliang58/">
+            <a className="left-nav-link" href="https://www.linkedin.com/in/eliang58/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin className="left-nav-icon" />
                 LinkedIn
             </a>
